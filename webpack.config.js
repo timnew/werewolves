@@ -39,10 +39,10 @@ module.exports = {
       {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file"},
       {test: /.*\.json$/, loader: 'json'},
       {test: /\.css$/, loader: 'style!css' },
-      { test: /\.styl$/, loader: ExtractTextPlugin.extract('style!css!stylus')},    
+      { test: /\.styl$/, loader: ExtractTextPlugin.extract('style!css!stylus')},
       { test: /\.cjsx$/, loaders: 'react-hot!coffee!cjsx'},
       { test: /\.coffee$/, loader: 'react-hot!coffee' },
-      { test: /\.jsx$|\.js$/, loader: 'react-hot!jsx?harmony' },
-    ])
+      { test: /\.jsx$|\.js$/, loader: 'react-hot!jsx?harmony' }
+    ]
   }
 };

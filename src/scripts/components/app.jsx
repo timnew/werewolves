@@ -1,4 +1,4 @@
-var { Navbar, Nav } = Bootstrap;
+var { Navbar, Nav, Grid, Row, Col } = Bootstrap;
 var { NavItemLink } = RouterBootstrap;
 
 class App extends React.Component {
@@ -7,11 +7,13 @@ class App extends React.Component {
       <div>
         <Navbar brand="Werewolves" inverse fixedTop toggleNavkey={0}>
           <Nav>
-            <NavItemLink to="link1">Link1</NavItemLink>
-            <NavItemLink to="link2">Link2</NavItemLink>
+            <NavItemLink to="Setup">Setup</NavItemLink>
+            <NavItemLink to="Play">Play</NavItemLink>
           </Nav>
         </Navbar>
-        <Router.RouteHandler/>
+        <Grid>
+          <Router.RouteHandler/>
+        </Grid>
       </div>
     );
   }
