@@ -60,8 +60,9 @@ gulp.task "webpack:build", (callback) ->
     return
 
 gulp.task "webpack:build-dev", (callback) ->
+  config = require './webpack.config/development'
 
-  webpack webpackConfig, (err, stats) ->
+  webpack config, (err, stats) ->
     throw new gutil.PluginError("webpack:build-dev", err)  if err
     gutil.log "[webpack:build-dev]", stats.toString(colors: true)
     callback()
@@ -73,10 +74,13 @@ gulp.task "webpack:dev-server", (callback) ->
   config = require './webpack.config/development'
 
   devServer = new WebpackDevServer webpack(config),
-    contentBase: "./#{paths.dest}/"
+    contentBase: "./public/"
     hot: true
+    quiet: false
+    noInfo: false
     watchDelay: 100
     noInfo: true
+    stats: { colors: true }
 
   devServer.listen "8888", "0.0.0.0", (err) ->
     throw new gutil.PluginError("webpack:dev-server", err) if err

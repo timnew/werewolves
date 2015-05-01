@@ -14,7 +14,7 @@ DefaultConfig =
     modulesDirectories: ['node_modules']
 
   plugins: [
-    new webpack.DefinePlugin 'process.env.NODE_ENV': process.env.NODE_ENV ? 'development'
+    new webpack.DefinePlugin 'process.env.NODE_ENV': process.env.NODE_ENV==null ? "'development'" : "'#{process.env.NODE_ENV}'"
   ]
 
   resolve:
