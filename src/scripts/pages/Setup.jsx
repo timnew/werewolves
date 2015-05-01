@@ -1,3 +1,5 @@
+"use strict";
+
 var { Row, Col } = Bootstrap;
 
 class Setup extends React.Component {

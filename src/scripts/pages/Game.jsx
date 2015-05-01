@@ -1,5 +1,6 @@
-var { Row, Col } = Bootstrap;
+"use strict";
 
+var { Row, Col } = Bootstrap;
 
 class Game extends React.Component {
   render() {

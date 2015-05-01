@@ -1,4 +1,6 @@
-require('../utils/initEnv.jsx');
+"use strict";
+
+require('./initEnv.jsx');
 
 var { Route:Route, RouteHandler:RouteHandler } = Router;
 

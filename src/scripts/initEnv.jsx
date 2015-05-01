@@ -1,3 +1,5 @@
+"use strict";
+
 global.$ = global.jQuery = require('jquery');
 require('bootstrap');
 global.React = require('react');
