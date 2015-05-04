@@ -1,0 +1,14 @@
+{
+    "es5": true,
+    "node": true,
+    "esnext": true,
+    "predef": [
+        "$",
+        "jQuery",
+        "React",
+        "Router",
+        "Bootstrap",
+        "RouterBootstrap",
+        "Reflux"
+    ]
+}

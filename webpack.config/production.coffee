@@ -5,6 +5,7 @@ process.env.NODE_ENV = 'production'
 
 Config = require('./common')
 
+# coffeelint: disable=max_line_length
 Config.set devtool: 'source-map'
   .appendPlugins [
       new ExtractTextPlugin('main.css')
@@ -23,5 +24,6 @@ Config.set devtool: 'source-map'
       { test: /\.coffee$/, loader: 'coffee' }
       { test: /\.jsx$|\.js$/, loader: 'jsx?harmony' }
     ]
+# coffeelint: enable=max_line_length
 
 module.exports = Config.toJson()
