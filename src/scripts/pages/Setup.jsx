@@ -1,6 +1,8 @@
-"use strict";
+'use strict';
 
-var { Row, Col } = Bootstrap;
+const React = require('react');
+const { Row, Col, Table } = require('react-bootstrap');
+const { ButtonToolbar, ButtonGroup, Button } = require('react-bootstrap');
 
 class Setup extends React.Component {
   render() {

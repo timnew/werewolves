@@ -1,6 +1,7 @@
-"use strict";
+'use strict';
 
-var { Row, Col } = Bootstrap;
+const React = require('react');
+const { Row, Col } = require('react-bootstrap');
 
 class Game extends React.Component {
   render() {

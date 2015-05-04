@@ -1,13 +1,12 @@
-"use strict";
+'use strict';
 
-require('./initEnv.jsx');
+const React = require('react');
+const Router = require('react-router');
+const { Route, RouteHandler } = Router;
 
-var { Route:Route, RouteHandler:RouteHandler } = Router;
-
-var App = require('./app');
-var Setup = require('./pages/Setup');
-var Game = require('./pages/Game');
-
+const App = require('./app');
+const Setup = require('./pages/Setup');
+const Game = require('./pages/Game');
 
 const routes = (
   <Route handler={App}>

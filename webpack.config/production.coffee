@@ -17,6 +17,8 @@ Config.set devtool: 'source-map'
       { test: /\.(gif)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=false' }
       { test: /\.(jpe?g)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=false&progressive=true' }
 
+      { test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file" },
+
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap') }
       { test: /\.styl$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap!stylus') }
 

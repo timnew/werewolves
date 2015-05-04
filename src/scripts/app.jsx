@@ -1,7 +1,9 @@
-"use strict";
+'use strict';
 
-var { Navbar, Nav, Grid, Row, Col } = Bootstrap;
-var { NavItemLink } = RouterBootstrap;
+const React = require('react');
+const { Navbar, Nav, Grid, Row, Col } = require('react-bootstrap');
+const { NavItemLink } = require('react-router-bootstrap');
+const { RouteHandler } = require('react-router');
 
 class App extends React.Component {
   render() {
@@ -14,7 +16,7 @@ class App extends React.Component {
           </Nav>
         </Navbar>
         <Grid>
-          <Router.RouteHandler/>
+          <RouteHandler/>
         </Grid>
       </div>
     );
