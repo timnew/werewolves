@@ -77,7 +77,6 @@ gulp.task "webpack:dev-server", (callback) ->
     contentBase: "./public/"
     hot: true
     quiet: false
-    noInfo: false
     watchDelay: 100
     noInfo: true
     stats: { colors: true }
@@ -92,7 +91,9 @@ gulp.task "webpack:dev-server", (callback) ->
 gulp.task 'default', ->
   gulp.start 'dev'
 
+# coffeelint: disable=max_line_length
 gulp.task 'build', ['webpack:build', 'css', 'assets:copy-assets-ignore-html', 'assets:minify-html']
+# coffeelint: enable=max_line_length
 
 gulp.task 'dev', ['assets:copy-assets'], ->
   runSequence 'css', 'webpack:dev-server', ->
