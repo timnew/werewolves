@@ -9,6 +9,7 @@ size = require 'gulp-size'
 map = require 'map-stream'
 touch = require 'touch'
 del = require 'del'
+start = require 'gulp-start-process'
 
 webpack = require 'webpack'
 WebpackDevServer = require 'webpack-dev-server'
@@ -102,3 +103,8 @@ gulp.task 'dev', ['assets:copy-assets'], ->
 
 gulp.task 'clean', (done) ->
   del([paths.dest + '/*'], done)
+
+# coffeelint: disable=max_line_length
+gulp.task 'spec', (done) ->
+  start "./node_modules/.bin/mocha --opts ./mocha.opts src/specs/**Spec.cjsx ", done
+# coffeelint: enable=max_line_length
