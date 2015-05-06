@@ -1,6 +1,6 @@
 'use strict';
 
-const { registerRole } = require('../actions/RoleManipulations');
+const { registerRole } = require('../../actions/RoleManipulations');
 
 const Role = require('./role');
 const Cupido = require('./cupido');

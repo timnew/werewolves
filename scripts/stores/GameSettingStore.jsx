@@ -1,6 +1,7 @@
 "use strict";
 
-var GameSetupActions = require('../actions/GameSetupActions');
+const Reflux = require('reflux');
+const GameSetupActions = require('../actions/GameSetupActions');
 
 const playerSpec = {
     8:  [2, 5],

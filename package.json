@@ -46,6 +46,7 @@
     "react-fa-icon": "git://github.com/timnew/react-fa-icon.git"
   },
   "devDependencies": {
+    "approot": "^0.1.2",
     "chai": "^2.3.0",
     "coffee-react": "^3.1.0",
     "coffee-script": "^1.9.2",

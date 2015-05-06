@@ -1,7 +1,5 @@
 'use strict';
 
-const RoleManager = require('./RoleManager');
-
 class Role {
     constructor(name, turnPriority) {
         this._name = name;

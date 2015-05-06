@@ -1,3 +1,4 @@
+# coffeelint: disable=max_line_length
 require('coffee-script/register')
 
 gulp = require 'gulp'
@@ -92,20 +93,16 @@ gulp.task "webpack:dev-server", (done) ->
 gulp.task 'default', ->
   gulp.start 'dev'
 
-# coffeelint: disable=max_line_length
 gulp.task 'build', ['webpack:build', 'css', 'assets:copy-assets-ignore-html', 'assets:minify-html']
-# coffeelint: enable=max_line_length
 
 gulp.task 'dev', ['assets:copy-assets'], ->
-  runSequence 'css', 'webpack:dev-server', ->
+  runSequence 'css', 'webpack:dev-server', 'spec', ->
+    gulp.watch ['specs/**', 'scripts/**'], {debounceDelay: 100}, ['spec']
     gulp.watch ['styles/**'], ['css']
     gulp.watch ['assets/**'], ['assets:copy-assets']
-    gulp.watch ['specs/**, scripts/**'], ['spec']
 
 gulp.task 'clean', (done) ->
   del [paths.dest + '/*'], done
 
-# coffeelint: disable=max_line_length
 gulp.task 'spec', (done) ->
-  start "./node_modules/.bin/mocha --opts ./mocha.opts src/specs/**Spec.cjsx ", done
-# coffeelint: enable=max_line_length
+  start "./node_modules/.bin/mocha --harmony --opts mocha.opts specs/**/*Spec.cjsx ", done
