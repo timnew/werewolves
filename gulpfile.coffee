@@ -21,7 +21,7 @@ devServer = {}
 
 gulp.task 'css', ->
 
-  gulp.src ['src/styles/*.styl']
+  gulp.src ['styles/*.styl']
   .pipe stylus compress: true
   .on 'error', (err) ->
     gutil.log err
@@ -34,7 +34,7 @@ gulp.task 'css', ->
 
 gulp.task 'assets:minify-html', ->
 
-  gulp.src('assets/**/*.html')
+  gulp.src ['assets/**/*.html']
   .pipe minifyHTML(comments: true, spare: true)
   .pipe gulp.dest(paths.dest)
   .pipe size()
@@ -47,31 +47,31 @@ gulp.task 'assets:copy-assets-ignore-html', ->
 
 gulp.task 'assets:copy-assets', ->
 
-  gulp.src(['assets/**'])
-  .pipe(gulp.dest(paths.dest))
-  .pipe(size())
+  gulp.src ['assets/**']
+  .pipe gulp.dest(paths.dest)
+  .pipe size()
 
-gulp.task "webpack:build", (callback) ->
+gulp.task "webpack:build", (done) ->
   config = require './webpack.config/production'
 
   webpack config, (err, stats) ->
     throw new gutil.PluginError("webpack:build", err)  if err
     gutil.log "[webpack:build]", stats.toString(colors: true)
-    callback()
+    done()
     return
 
-gulp.task "webpack:build-dev", (callback) ->
+gulp.task "webpack:build-dev", (done) ->
   config = require './webpack.config/development'
 
   webpack config, (err, stats) ->
     throw new gutil.PluginError("webpack:build-dev", err)  if err
     gutil.log "[webpack:build-dev]", stats.toString(colors: true)
-    callback()
+    done()
     return
 
   return
 
-gulp.task "webpack:dev-server", (callback) ->
+gulp.task "webpack:dev-server", (done) ->
   config = require './webpack.config/development'
 
   devServer = new WebpackDevServer webpack(config),
@@ -85,7 +85,7 @@ gulp.task "webpack:dev-server", (callback) ->
   devServer.listen "8888", "0.0.0.0", (err) ->
     throw new gutil.PluginError("webpack:dev-server", err) if err
     gutil.log "[webpack:dev-server]", "http://localhost:8888"
-    callback()
+    done()
 
   return
 
@@ -98,11 +98,12 @@ gulp.task 'build', ['webpack:build', 'css', 'assets:copy-assets-ignore-html', 'a
 
 gulp.task 'dev', ['assets:copy-assets'], ->
   runSequence 'css', 'webpack:dev-server', ->
-    gulp.watch(['src/styles/**'], ['css'])
-    gulp.watch(['assets/**'], ['assets:copy-assets'])
+    gulp.watch ['styles/**'], ['css']
+    gulp.watch ['assets/**'], ['assets:copy-assets']
+    gulp.watch ['specs/**, scripts/**'], ['spec']
 
 gulp.task 'clean', (done) ->
-  del([paths.dest + '/*'], done)
+  del [paths.dest + '/*'], done
 
 # coffeelint: disable=max_line_length
 gulp.task 'spec', (done) ->

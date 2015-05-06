@@ -5,10 +5,10 @@ ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 # coffeelint: disable=max_line_length
 DefaultConfig =
-  entry: [ './src/scripts/route' ]
+  entry: [ './scripts/route' ]
 
   output:
-    path: path.join(__dirname, "public")
+    path: path.join(__dirname, '..', 'public')
     filename: 'bundle.js'
 
   resolveLoader:
