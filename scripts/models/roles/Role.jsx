@@ -4,6 +4,7 @@ class Role {
   constructor(name, turnPriority) {
     this._name = name;
     this._turnPriority = turnPriority;
+    this._enabled = false;
   }
 
   get defaultSide() {
@@ -21,6 +22,9 @@ class Role {
   get turnPriority(){
     return this._turnPriority;
   }
+
+  get enabled() { return this._enabled; }
+  set enabled(value) { this._enabled  = value; }
 
   isInTurn(player) {
     return this.turnPriority > 0 && player.isAlive;

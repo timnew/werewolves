@@ -2,18 +2,12 @@
 
 const Reflux = require('reflux');
 
-const Role = require('../models/roles/role');
-const Cupido = require('../models/roles/cupido');
-const Guardian = require('../models/roles/guardian');
-const Werewolf = require('../models/roles/werewolf');
-const Girl = require('../models/roles/girl');
-const Witch = require('../models/roles/witch');
-const Seer = require('../models/roles/seer');
-const Hunter = require('../models/roles/hunter');
-const Idiot = require('../models/roles/idiot');
-const Villager = require('../models/roles/Villager');
+const RoleManipulations = require('../actions/RoleManipulations');
+const { Cupido, Guardian, Werewolf, Girl, Witch, Seer, Hunter, Idiot, Villager } = require('../models/roles/index');
 
 const RoleStore = Reflux.createStore({
+  listenables: RoleManipulations,
+
   roles: {},
 
   register(role) {
@@ -22,7 +16,6 @@ const RoleStore = Reflux.createStore({
   },
 
   registerAll() {
-    // this.register(new Role('thief', 1));
     this.register(new Cupido('Cupido', 2));
     this.register(new Guardian('Guardian', 3));
     this.register(new Werewolf('Werewolf', 4));
@@ -32,6 +25,16 @@ const RoleStore = Reflux.createStore({
     this.register(new Hunter('Hunter', 0));
     this.register(new Idiot('Idiot', 0));
     this.register(new Villager('Villager', 0));
+  },
+
+  onSwitchRole(name, enabled) {    
+    let role = this.roles[name];
+
+    if (!role) throw new Error(`Invalid role name: ${name}`);
+
+    role.enabled = enabled;
+
+    this.trigger(this.roles);
   }
 });
 
