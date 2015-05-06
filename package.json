@@ -9,6 +9,7 @@
     "build": "./node_modules/.bin/gulp build"
   },
   "dependencies": {
+    "bluebird": "^2.9.25",
     "bootstrap": "^3.3.4",
     "cjsx-loader": "^1.2.0",
     "classnames": "^1.2.2",
@@ -32,6 +33,7 @@
     "map-stream": "0.0.5",
     "react": "^0.13.2",
     "react-bootstrap": "^0.21.1",
+    "react-fa-icon": "git://github.com/timnew/react-fa-icon.git",
     "react-hot-loader": "^1.1.4",
     "react-retina-image": "^1.1.2",
     "react-router": "^0.13.3",
@@ -42,8 +44,7 @@
     "stylus-loader": "^1.1.0",
     "touch": "0.0.3",
     "webpack": "^1.5.3",
-    "webpack-dev-server": "^1.7.0",
-    "react-fa-icon": "git://github.com/timnew/react-fa-icon.git"
+    "webpack-dev-server": "^1.7.0"
   },
   "devDependencies": {
     "approot": "^0.1.2",

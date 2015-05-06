@@ -4,6 +4,9 @@ const React = require('react');
 const Router = require('react-router');
 const { Route, RouteHandler } = Router;
 
+const Reflux = require('reflux');
+Reflux.setPromise(require('bluebird'));
+
 const App = require('./app');
 const Setup = require('./pages/Setup');
 const Game = require('./pages/Game');
