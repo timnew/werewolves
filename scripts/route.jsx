@@ -8,8 +8,8 @@ const Reflux = require('reflux');
 Reflux.setPromise(require('bluebird'));
 
 const App = require('./app');
-const Setup = require('./pages/Setup');
-const Game = require('./pages/Game');
+const Setup = require('./components/Setup');
+const Game = require('./components/Game');
 
 const routes = (
   <Route handler={App}>

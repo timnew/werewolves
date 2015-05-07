@@ -11,7 +11,7 @@ class App extends React.Component {
       <div>
         <Navbar brand="Werewolves" inverse fixedTop toggleNavkey={0}>
           <Nav>
-            <NavItemLink to="Setup">New Game</NavItemLink>
+            <NavItemLink to="Setup">Setup Game</NavItemLink>
             <NavItemLink to="Play">Play Game</NavItemLink>
           </Nav>
         </Navbar>
