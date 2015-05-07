@@ -1,9 +1,9 @@
 "use strict";
 
-const Reflux = require('reflux');
-const GameSetupActions = require('../actions/GameSetupActions');
+const Marty = require('marty');
+const GameSetupConstants = require('../constants/GameSetupConstants');
 
-const playerSpec = {
+const playerDivids = {
     8:  [2, 5],
     9:  [2, 6],
     10: [2, 7],
@@ -17,23 +17,24 @@ const playerSpec = {
     18: [4, 13]
 };
 
-var gameSettingStore = Reflux.createStore({
-    listenerables: GameSetupActions,
+class GameSettingStore extends Marty.Store {
+  constructor(options) {
+    super(options);
 
-    init(){
-        this.lightPlayerCount = 0;
-        this.darkPlayerCount = 0;
-    },
+    this.state = {
+      lightPlayerCount: 0,
+      darkPlayerCount: 0
+    };
 
-    onUpdatePlayerCount(count) {
-        [this.darkPlayerCount, this.lightPlayerCount] = playerSpec[count];
+    this.handlers = {
+      updatePlayerCount: GameSetupConstants.UPDATE_PLAYER_COUNT
+    };
+  }
 
-        this.trigger(this);
-    },
+  updatePlayerCount(playerCount) {
+    let [darkPlayerCount, lightPlayerCount] = playerDivids[playerCount];
+    this.setState({lightPlayerCount, darkPlayerCount});
+  }
+}
 
-    onUpdateRoleCount(role, count) {
-
-    }
-});
-
-module.exports = gameSettingStore;
+module.exports = Marty.register(GameSettingStore);

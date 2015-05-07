@@ -1,19 +1,27 @@
 'use strict';
 
-const Reflux = require('reflux');
-
-const RoleManipulations = require('../actions/RoleManipulations');
+const Marty = require('marty');
+const GameSetupConstants = require('../constants/GameSetupConstants');
 const { Cupido, Guardian, Werewolf, Girl, Witch, Seer, Hunter, Idiot, Villager } = require('../models/roles/index');
 
-const RoleStore = Reflux.createStore({
-  listenables: RoleManipulations,
+class RoleStore extends Marty.Store {
+  constructor(options) {
+      super(options);
 
-  roles: {},
+      this.state = {
+        roles: {}
+      };
+
+      this.handlers = {
+        toggleRole: GameSetupConstants.TOOGLE_ROLE
+      };
+  }
 
   register(role) {
-    this.roles[role.name] = role;
-    this.trigger(this);
-  },
+    this.setState({
+      [role.name]: role
+    });
+  }
 
   registerAll() {
     this.register(new Cupido('Cupido', 2));
@@ -25,17 +33,12 @@ const RoleStore = Reflux.createStore({
     this.register(new Hunter('Hunter', 0));
     this.register(new Idiot('Idiot', 0));
     this.register(new Villager('Villager', 0));
-  },
-
-  onSwitchRole(name, enabled) {
-    let role = this.roles[name];
-
-    if (!role) throw new Error(`Invalid role name: ${name}`);
-
-    role.enabled = enabled;
-
-    this.trigger(this.roles);
   }
-});
 
-module.exports = RoleStore;
+  toggleRole(name, enabled) {
+    this.state.role[name].enabled = true;
+    this.hasChanged();
+  }
+}
+
+module.exports = Marty.register(RoleStore);
