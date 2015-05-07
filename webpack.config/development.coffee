@@ -2,7 +2,6 @@ webpack = require('webpack')
 
 Config = require('./common')
 
-# coffeelint: disable=max_line_length
 Config.prependEntry [
       "webpack-dev-server/client?http://0.0.0.0:8888"
       'webpack/hot/only-dev-server'
@@ -23,6 +22,5 @@ Config.prependEntry [
       { test: /\.coffee$/, loader: 'react-hot!coffee' },
       { test: /\.jsx$|\.js$/, loader: 'react-hot!jsx?harmony' }
     ]
-# coffeelint: enable=max_line_length
 
 module.exports = Config.toJson()

@@ -3,7 +3,6 @@ _ = require('lodash')
 webpack = require('webpack')
 ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-# coffeelint: disable=max_line_length
 DefaultConfig =
   entry: [ './scripts/route' ]
 
@@ -19,6 +18,7 @@ DefaultConfig =
   ]
 
   resolve:
+    root: path.resolve(__dirname, '..')
     extensions: ['', '.js', '.jsx', '.cjsx', '.coffee', '.css', '.styl']
 
   module:
@@ -27,7 +27,6 @@ DefaultConfig =
 
       { test: /\.json$/, loader: 'file' }
     ]
-# coffeelint: enable=max_line_length
 
 class Config
   constructor: ->
