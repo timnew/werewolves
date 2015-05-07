@@ -27,7 +27,7 @@ const RoleStore = Reflux.createStore({
     this.register(new Villager('Villager', 0));
   },
 
-  onSwitchRole(name, enabled) {    
+  onSwitchRole(name, enabled) {
     let role = this.roles[name];
 
     if (!role) throw new Error(`Invalid role name: ${name}`);

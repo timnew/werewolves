@@ -1,9 +1,9 @@
 'use strict';
 
-const Role = require('./role');
+const Role = require('./Role');
 
 class Seer extends Role {
-    playTurn(player) {        
+    playTurn(player) {
     }
 }
 

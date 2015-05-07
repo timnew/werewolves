@@ -1,8 +1,8 @@
 'use strict';
 
-const Role = require('./role');
+const Role = require('./Role');
 
-class Idiot extends Role {     
+class Idiot extends Role {
 }
 
 module.exports = Idiot;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Role = require('./role');
+const Role = require('./Role');
 
 class Guardian extends Role {
     playRole(player) {

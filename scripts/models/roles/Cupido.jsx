@@ -1,6 +1,6 @@
 'use strict';
 
-const FirstTurnRole = require('./role');
+const FirstTurnRole = require('./FirstTurnRole');
 
 class Cupido extends FirstTurnRole {
     playTurn(player) {
