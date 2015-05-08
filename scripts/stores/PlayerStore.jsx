@@ -67,7 +67,7 @@ class PlayerStore extends Marty.Store {
     }
 
     if(this.players.length !== this.expectedPlayerCount) {
-      return this.setError(`Expected ${this.expectedPlayerCount} players, but got ${this.players.count}.`);
+      return this.setError(`Expected ${this.expectedPlayerCount} players, but got ${this.players.length}`);
     }
 
     for(var player of this.players) {
@@ -92,4 +92,8 @@ class PlayerStore extends Marty.Store {
   }
 }
 
-module.exports = Marty.register(PlayerStore);
+PlayerStore.register = () => {
+  Marty.register(PlayerStore);
+};
+
+module.exports = PlayerStore;
