@@ -1,6 +1,6 @@
 describe 'RoleStore', ->
   RoleStore = require(sourceRoot.stores('RoleStore'))
-  RoleManipulations = require(sourceRoot.actions('RoleManipulations'))
+  GameSetup = require(sourceRoot.actions('GameSetup'))
 
   it 'should register roles', ->
     RoleStore.should.be.ok
@@ -19,15 +19,11 @@ describe 'RoleStore', ->
       'Villager'
     ]
 
-  it 'should switch role', (done) ->
+  it 'should switch role', ->
     RoleStore.registerAll()
 
     RoleStore.roles.Witch.enabled.should.be.false
 
-    RoleManipulations.switchRole('Witch', true)
+    GameSetup.toggleRole('Witch', true)
 
-    Scheduler
-      .execute()
-      .then ->
-        RoleStore.roles.Witch.enabled.should.be.true
-      .nodeify(done)
+    RoleStore.roles.Witch.enabled.should.be.true

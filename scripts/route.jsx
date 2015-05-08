@@ -1,7 +1,6 @@
 'use strict';
 
-const Reflux = require('reflux');
-Reflux.setPromise(require('bluebird'));
+global.Promise = require('bluebird');
 
 const React = require('react');
 const Router = require('react-router');

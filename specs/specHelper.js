@@ -9,5 +9,3 @@ global.expect = require('chai');
 global.sourceRoot = require('approot')(__dirname, '..', 'scripts').consolidate();
 
 global.Promise = require('bluebird');
-
-require('./configReflux.jsx');

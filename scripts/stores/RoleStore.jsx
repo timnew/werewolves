@@ -9,12 +9,15 @@ class RoleStore extends Marty.Store {
       super(options);
 
       this.state = {
-        roles: {}
       };
 
       this.handlers = {
-        toggleRole: GameSetupConstants.TOOGLE_ROLE
+        toggleRole: GameSetupConstants.TOGGLE_ROLE
       };
+  }
+
+  get roles() {
+    return this.state;
   }
 
   register(role) {
@@ -36,8 +39,15 @@ class RoleStore extends Marty.Store {
   }
 
   toggleRole(name, enabled) {
-    this.state.role[name].enabled = true;
-    this.hasChanged();
+    let role = this.roles[name];
+
+    if(role){
+      this.roles[name].enabled = true;
+      this.hasChanged();
+    }
+    else{
+      throw new Error(`Invalid role name ${name}`);
+    }
   }
 }
 
