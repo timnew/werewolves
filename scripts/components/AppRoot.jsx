@@ -5,7 +5,7 @@ const { Navbar, Nav, Grid, Row, Col } = require('react-bootstrap');
 const { NavItemLink } = require('react-router-bootstrap');
 const { RouteHandler } = require('react-router');
 
-class App extends React.Component {
+class AppRoot extends React.Component {
   render() {
     return (
       <div>
@@ -15,12 +15,10 @@ class App extends React.Component {
             <NavItemLink to="Play">Play Game</NavItemLink>
           </Nav>
         </Navbar>
-        <Grid>
-          <RouteHandler/>
-        </Grid>
+        <RouteHandler/>        
       </div>
     );
   }
 }
 
-module.exports = App;
+module.exports = AppRoot;
