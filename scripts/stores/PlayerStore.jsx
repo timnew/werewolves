@@ -70,7 +70,9 @@ class PlayerStore extends Marty.Store {
       return this.setError(`Expected ${this.expectedPlayerCount} players, but got ${this.players.length}`);
     }
 
-    for(var player of this.players) {
+    for(var index in this.players) {
+      let player = this.players[index];
+      
       if(!player.name) {
         return this.setError('Player name is empty');
       }
@@ -93,7 +95,7 @@ class PlayerStore extends Marty.Store {
 }
 
 PlayerStore.register = () => {
-  Marty.register(PlayerStore);
+  return Marty.register(PlayerStore);
 };
 
 module.exports = PlayerStore;
