@@ -1,13 +1,18 @@
 'use strict';
 
-const FirstTurnRole = require('./FirstTurnRole');
+const Role = require('./Role');
 
-class Cupido extends FirstTurnRole {
-    playTurn(player) {
-        super.playTurn(player);
+class Cupido extends Role {
+  constructor(player) {
+    super('Cupido', player);
+  }
 
+  inNightTurn(turn) {
+    return turn.fistNight;
+  }
 
-    }
+  playNightTurn(turn){
+  }
 }
 
 module.exports = Cupido;

@@ -1,36 +1,43 @@
 'use strict';
 
+const roleSpecs = require('./roleSpecs');
+
 class Role {
-  constructor(name, turnPriority) {
-    this._name = name;
-    this._turnPriority = turnPriority;
-    this._enabled = false;
+  constructor(roleName, player) {
+    this._roleName = roleName;
+    this._nightTurnOrder = roleSpecs[roleName].order;
+
+    this._player = player;
+    this._alive = true;
+    this._side = roleSpecs[roleName].side;
   }
 
-  get defaultSide() {
-    return 'villager';
+  get roleName() {
+    return this._roleName;
   }
 
-  get name() {
-    return this._name;
+  get nightTurnOrder(){
+    return this._nightTurnOrder;
   }
 
-  initPlayer(player) {
-    player.state = {};
+  get player() { return this._player; }
+
+  get side() {
+    return this._side;
   }
 
-  get turnPriority(){
-    return this._turnPriority;
+  get alive() {
+    return this._alive;
   }
 
-  get enabled() { return this._enabled; }
-  set enabled(value) { this._enabled  = value; }
-
-  isInTurn(player) {
-    return this.turnPriority > 0 && player.isAlive;
+  inNightTurn(turn) {
+    return this.nightTurnOrder > 0 && this.alive;
   }
 
-  playTurn(player) {
+  playNightTurn(turn){
+  }
+
+  playDayTurn(turn) {
   }
 }
 

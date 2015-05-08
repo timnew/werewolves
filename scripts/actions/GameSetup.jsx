@@ -1,15 +1,23 @@
 'use strict';
 
 const Marty = require('marty');
-const GameSetupConstants = require('../constants/GameSetupConstants');
+const {UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER} = require('../constants/GameSetupConstants');
 
 class GameSetup extends Marty.ActionCreators {
   updatePlayerCount(count) {
-    this.dispatch(GameSetupConstants.UPDATE_PLAYER_COUNT, count);
+    this.dispatch(UPDATE_PLAYER_COUNT, count);
   }
 
-  toggleRole(roleName, enabled) {
-    this.dispatch(GameSetupConstants.TOGGLE_ROLE, roleName, enabled);
+  addPlayer(playerDefinition) {
+    this.dispatch(ADD_PLAYER, playerDefinition);
+  }
+
+  removePlayer(index) {
+    this.dispatch(REMOVE_PLAYER, index);
+  }
+
+  updatePlayer(index, playerDefinition) {
+    this.dispatch(UPDATE_PLAYER, index, playerDefinition);
   }
 }
 

@@ -2,40 +2,33 @@
 
 const Marty = require('marty');
 const GameSetupConstants = require('../constants/GameSetupConstants');
-const { Cupido, Guardian, Werewolf, Girl, Witch, Seer, Hunter, Idiot, Villager } = require('../models/roles/index');
+const roleSettings = require('../modles/roles').settings;
+const { Cupido, Guardian, Werewolf, Girl, Witch, Seer, Hunter, Idiot, Villager } = require('../models/roles').Roles;
+const GameRuleStore = require('./GameRuleStore');
+const _ = require('lodash');
 
 class RoleStore extends Marty.Store {
   constructor(options) {
       super(options);
 
       this.state = {
+        roles: {},
+        isValid: false
       };
 
       this.handlers = {
-        toggleRole: GameSetupConstants.TOGGLE_ROLE
+        toggleRole: GameSetupConstants.TOGGLE_ROLE,
+        revalidate: GameSetupConstants.UPDATE_PLAYER_COUNT
       };
   }
 
   get roles() {
-    return this.state;
+    return this.state.roles;
   }
 
   register(role) {
-    this.setState({
-      [role.name]: role
-    });
-  }
-
-  registerAll() {
-    this.register(new Cupido('Cupido', 2));
-    this.register(new Guardian('Guardian', 3));
-    this.register(new Werewolf('Werewolf', 4));
-    this.register(new Girl('Girl', 5));
-    this.register(new Witch('Witch', 6));
-    this.register(new Seer('Seer', 7));
-    this.register(new Hunter('Hunter', 0));
-    this.register(new Idiot('Idiot', 0));
-    this.register(new Villager('Villager', 0));
+    this.roles[role.name] = role;
+    this.hasChanged();
   }
 
   toggleRole(name, enabled) {
@@ -43,11 +36,36 @@ class RoleStore extends Marty.Store {
 
     if(role){
       this.roles[name].enabled = true;
+      this.validate();
       this.hasChanged();
     }
     else{
       throw new Error(`Invalid role name ${name}`);
     }
+  }
+
+  populateEnabledRoles() {
+    return _(this.roles)
+      .filter('enabled')
+      .value();
+  }
+
+  revalidate() {
+    this.validate();
+    this.hasChanged();
+  }
+
+  validate() {
+    this.waitFor(GameRuleStore);
+
+    let enabledRoles = this.populateEnabledRoles();
+    let enabledLightRoles = _.reject(enabledRoles, 'defaultSide', 'werewolf');
+
+    this.state.isValid = this.roles.Werewolf.enabled &&
+                         this.roles.Seer.enabled &&
+                         this.roles.Villager.enabled &&
+                         _.size(enabledLightRoles) <= GameRuleStore.lightPlayerCount &&
+                         _.size(enabledRoles)  <= GameRuleStore.playerCount;
   }
 }
 

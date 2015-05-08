@@ -4,7 +4,9 @@ const Marty = require('marty');
 
 var GameSetupConstants = Marty.createConstants([
         'UPDATE_PLAYER_COUNT',
-        'TOGGLE_ROLE'
+        'ADD_PLAYER',
+        'REMOVE_PLAYER',
+        'UPDATE_PLAYER'
     ]);
 
 module.exports = GameSetupConstants;

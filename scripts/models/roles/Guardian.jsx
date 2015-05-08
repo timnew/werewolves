@@ -3,9 +3,9 @@
 const Role = require('./Role');
 
 class Guardian extends Role {
-    playRole(player) {
-
-    }
+  constructor(player) {
+    super('Guardian', player);
+  }
 }
 
 module.exports = Guardian;

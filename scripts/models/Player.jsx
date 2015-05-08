@@ -1,21 +1,27 @@
 'use strict';
 
 class Player {
-    constructor(human, role) {
-        this._human = human;
-        this._role = role;
+    constructor(name, seat) {
+        this._name = name;
+        this._seat = seat;
     }
 
-    get role() { return this._role; }
-    get human() { return this._human; }
+    get name(){ return this._name; }
+    set name(name) { this._name = name; }
 
-    get roleName() { return this.role.name; }
-    get priority() { return this.role.priority; }
+    get seat() { return this._seat; }
+    set seat(seat) { this._seat = seat; }
 
-    get name() { return this.human.name; }
-    get seat() { return this.human.seat; }
+    swapSeatWith(anotherHuman) {
+        let mySeat = this.seat;
 
-    get alive() { return this._alive; }
+        this.seat = anotherHuman.seat;
+        anotherHuman.seat = mySeat;
+    }
+
+    assignRole(role) {
+        return new Player(this, role);
+    }
 }
 
 module.exports = Player;

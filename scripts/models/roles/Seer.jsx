@@ -3,8 +3,9 @@
 const Role = require('./Role');
 
 class Seer extends Role {
-    playTurn(player) {
-    }
+  constructor(player) {
+    super('Seer', player);
+  }
 }
 
 
