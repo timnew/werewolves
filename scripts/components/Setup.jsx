@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { Grid } from 'react-bootstrap';
-import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
-import { FaIcon } from 'react-fa-icon';
 
 import PlayerTable from './setup/PlayerTable';
 import PlayerStore from 'stores/PlayerStore';

@@ -24,7 +24,8 @@
     "es6": true
   },
   "rules": {
-    "quotes": [1, "single", "avoid-escape"]
+    "quotes": [1, "single", "avoid-escape"],
+    "no-underscore-dangle": false
   },
   "plugins": [
     "react"

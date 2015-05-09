@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import React from 'react';
 import { FaIcon } from 'react-fa-icon';
-import { ButtonGroup, Button, Input } from 'react-bootstrap';
+import { ButtonGroup, Button } from 'react-bootstrap';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GameSetup from 'actions/GameSetup';

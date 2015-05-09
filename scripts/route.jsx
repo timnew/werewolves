@@ -3,7 +3,7 @@
 require('./initApp');
 
 import React from 'react';
-import Router, { Route, RouteHandler } from 'react-router';
+import Router, { Route } from 'react-router';
 
 import AppRoot from 'components/AppRoot';
 import Setup from 'components/Setup';
@@ -17,5 +17,5 @@ const routes = (
 );
 
 Router.run(routes, function(Handler) {
-  React.render(<Handler/>, document.getElementById("content"));
+  React.render(<Handler/>, document.getElementById('content'));
 });

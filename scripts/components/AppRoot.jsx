@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Navbar, Nav, Grid, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { NavItemLink } from 'react-router-bootstrap';
 import { RouteHandler } from 'react-router';
 

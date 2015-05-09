@@ -1,11 +1,10 @@
 'use strict';
 
 import React from 'react';
-import { Row, Col, Panel, Table, ButtonGroup, Button } from 'react-bootstrap';
+import { Row, Panel, Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 import PlayerTableRow from './PlayerTableRow';
 import GameSetup from 'actions/GameSetup';
-import _ from 'lodash';
 
 class PlayerTable extends React.Component {
   constructor(props) {
@@ -31,10 +30,15 @@ class PlayerTable extends React.Component {
                 <th>Name</th>
                 <th>Seat</th>
                 <th>
-                  <ButtonGroup bsSize='xsmall'>
-                    <Button><FaIcon icon='minus'/></Button>
-                    <Button><FaIcon icon='plus'/></Button>
-                  </ButtonGroup>
+                  <ButtonToolbar>
+                    <ButtonGroup bsSize='xsmall'>
+                      <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='plus'/></Button>
+                      <Button onClick={this.decreasePlayer.bind(this)}><FaIcon icon='minus'/></Button>
+                    </ButtonGroup>
+                    <ButtonGroup bsSize='xsmall'>
+                      <Button><FaIcon icon='pencil'/></Button>
+                    </ButtonGroup>
+                  </ButtonToolbar>
                 </th>
               </tr>
             </thead>
@@ -70,7 +74,7 @@ class PlayerTable extends React.Component {
 
   renderChildren() {
     let rows = [];
-    for (var index = 0; index < this.props.playerCount; index ++) {
+    for (var index = 0; index < this.props.playerCount; index++) {
       let player = this.props.players[index];
 
       rows.push(<PlayerTableRow index={index} player={player}/>);

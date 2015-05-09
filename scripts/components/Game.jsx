@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
 import { FaIcon, FaStack } from 'react-fa-icon';
 
 class Game extends React.Component {
