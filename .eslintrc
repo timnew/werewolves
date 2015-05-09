@@ -1,4 +1,22 @@
 {
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "binaryLiterals": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "forOf": true,
+    "generators": true,
+    "modules": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "spread": true,
+    "superInFunctions": true,
+    "templateStrings": true,
+    "jsx": true
+  },
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -7,5 +25,8 @@
   },
   "rules": {
     "quotes": [1, "single", "avoid-escape"]
-  }
+  },
+  "plugins": [
+    "react"
+  ]
 }

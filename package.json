@@ -49,6 +49,7 @@
     "css-loader": "^0.12.0",
     "del": "^1.1.1",
     "eslint": "^0.20.0",
+    "eslint-plugin-react": "^2.2.0",
     "extract-text-webpack-plugin": "^0.7.1",
     "file": "^0.2.2",
     "file-loader": "^0.8.1",
