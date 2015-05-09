@@ -43,6 +43,11 @@ werewolves [![Build Status][ci-image]][ci-url] [![Dependency Status][depstat-ima
 * chai
 * approot **Test Only**
 * NODE_PATH hack
+* eslint
+* babel-eslint
+* atom-linter
+* linter-eslint
+* eslint-plugin-react
 
 ## License
 MIT
