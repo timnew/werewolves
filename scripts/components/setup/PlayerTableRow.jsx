@@ -1,11 +1,24 @@
 'use strict';
 
+const _ = require('lodash');
+
 const React = require('react');
 const { FaIcon } = require('react-fa-icon');
-const { ButtonGroup, Button } = require('react-bootstrap');
+const { ButtonGroup, Button, Input } = require('react-bootstrap');
+
+const GameSetup = require('../../actions/GameSetup');
 
 class PlayerTableRow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { inEditing: false };
+  }
   render() {
+    if(this.state.inEditing) {
+        return this.renderEditing();
+    }
+
     if(this.props.player) {
       return this.renderPlayer();
     }
@@ -14,16 +27,66 @@ class PlayerTableRow extends React.Component {
     }
   }
 
+  edit() {
+    let player = this.props.player || {};
+
+    this.setState({ inEditing: true, name: player.name, seat: player.seat });
+  }
+
+  remove() {
+    GameSetup.removePlayer(this.props.index);
+  }
+
+  confirmEdit() {
+    let playerDefinition = _.pick(this.state, 'name', 'seat');
+
+    if(this.props.player) {
+      GameSetup.updatePlayer(this.props.index, playerDefinition);
+    }else{
+      GameSetup.addPlayer(playerDefinition);
+    }
+
+    this.abortEdit();
+  }
+
+  abortEdit() {
+    this.setState((state) => {
+      state.inEditing = false;
+      return _.omit(state, 'name', 'seat');
+    });
+  }
+
+  nameValueLink() {
+    return {
+      value: this.state.name,
+      requestChange: this.nameChanged.bind(this)
+    };
+  }
+  nameChanged(name) {
+    this.setState({name});
+  }
+
+  seatValueLink() {
+    return {
+      value: this.state.seat,
+      requestChange: this.seatChanged.bind(this)
+    };
+  }
+  seatChanged(seat) {
+    this.setState({seat});
+  }
+
+
   renderPlayer() {
     return (
       <tr>
         <td>{this.props.index + 1}</td>
-        <td>{player.name}</td>
-        <td>{player.seat}</td>
+        <td>{this.props.player.name}</td>
+        <td>{this.props.player.seat}</td>
         <td>
           <ButtonGroup bsSize='xsmall'>
-            <Button><FaIcon icon='edit'/></Button>
-            <Button><FaIcon icon='remove'/></Button>
+            <Button onClick={this.edit.bind(this)}><FaIcon icon='edit'/></Button>
+            <Button onClick={this.remove.bind(this)}><FaIcon icon='remove'/></Button>
           </ButtonGroup>
         </td>
       </tr>
@@ -38,7 +101,23 @@ class PlayerTableRow extends React.Component {
         <td>--Empty--</td>
         <td>
           <ButtonGroup bsSize='xsmall'>
-            <Button><FaIcon icon='edit'/></Button>
+            <Button onClick={this.edit.bind(this)}><FaIcon icon='edit'/></Button>
+          </ButtonGroup>
+        </td>
+      </tr>
+    );
+  }
+
+  renderEditing() {
+    return (
+      <tr>
+        <td>{this.props.index + 1}</td>
+        <td><input type='text' className='table-inline' valueLink={this.nameValueLink()}/></td>
+        <td><input type='text' className='table-inline' valueLink={this.seatValueLink()}/></td>
+        <td>
+          <ButtonGroup bsSize='xsmall'>
+            <Button bsStyle='success' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
+            <Button bsStyle='danger' onClick={this.abortEdit.bind(this)}><FaIcon icon='remove'/></Button>
           </ButtonGroup>
         </td>
       </tr>
