@@ -24,7 +24,6 @@ DefaultConfig =
   module:
     loaders: [
       { test: /\.woff$|\.ttf$/, loader: "file" }
-
       { test: /\.json$/, loader: 'file' }
     ]
 

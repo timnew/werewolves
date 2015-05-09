@@ -20,7 +20,7 @@ Config.prependEntry [
 
       { test: /\.cjsx$/, loaders: 'react-hot!coffee!cjsx' },
       { test: /\.coffee$/, loader: 'react-hot!coffee' },
-      { test: /\.jsx$|\.js$/, loader: 'react-hot!jsx?harmony' }
+      { test: /\.jsx$/, loader: 'react-hot!babel?optional=runtime' }
     ]
 
 module.exports = Config.toJson()

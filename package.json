@@ -6,6 +6,10 @@
     "type": "git",
     "url": "https://github.com/timnew/werewolves.git"
   },
+  "engines": {
+    "npm": "^2.7.5",
+    "node": "0.12.x"
+  },
   "private": true,
   "homepage": "https://github.com/timnew/werewolves",
   "scripts": {
@@ -15,12 +19,39 @@
     "test": "./node_modules/.bin/gulp spec"
   },
   "dependencies": {
+    "babel-runtime": "^5.2.17",
     "bluebird": "^2.9.25",
     "bootstrap": "^3.3.4",
-    "cjsx-loader": "^2.0.1",
     "classnames": "^2.1.1",
-    "coffee-loader": "^0.7.2",
     "coffee-script": "^1.9.0",
+    "jquery": "^2.1.4",
+    "lodash": "^3.1.0",
+    "marty": "^0.9.12",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.21.1",
+    "react-fa-icon": "^0.1.0",
+    "react-retina-image": "^1.1.2",
+    "react-router": "^0.13.3",
+    "react-router-bootstrap": "^0.13.3",
+    "touch": "0.0.3",
+    "webpack": "^1.5.3"
+  },
+  "devDependencies": {
+    "approot": "^0.2.1",
+    "cjsx-loader": "^2.0.1",
+    "babel-core": "^5.2.17",
+    "babel-loader": "^5.0.0",
+    "chai": "^2.3.0",
+    "coffee-react": "^3.1.0",
+    "gulp-start-process": "^1.1.1",
+    "jsdom": "^5.3.0",
+    "mocha": "^2.2.4",
+    "node-jsx": "^0.13.3",
+    "run-sequence": "^1.0.2",
+    "style-loader": "^0.12.2",
+    "stylus-loader": "^1.1.0",
+    "map-stream": "^0.1.0",
+    "webpack-dev-server": "^1.7.0",
     "css-loader": "^0.12.0",
     "del": "^1.1.1",
     "extract-text-webpack-plugin": "^0.7.1",
@@ -33,32 +64,7 @@
     "gulp-util": "^3.0.3",
     "image-webpack-loader": "^1.2.0",
     "imagemin": "^3.1.0",
-    "jquery": "^2.1.4",
-    "jsx-loader": "^0.13.2",
-    "lodash": "^3.1.0",
-    "map-stream": "^0.1.0",
-    "marty": "^0.9.12",
-    "react": "^0.13.3",
-    "react-bootstrap": "^0.21.1",
-    "react-fa-icon": "^0.1.0",
-    "react-hot-loader": "^1.1.4",
-    "react-retina-image": "^1.1.2",
-    "react-router": "^0.13.3",
-    "react-router-bootstrap": "^0.13.3",
-    "run-sequence": "^1.0.2",
-    "style-loader": "^0.12.2",
-    "stylus-loader": "^1.1.0",
-    "touch": "0.0.3",
-    "webpack": "^1.5.3",
-    "webpack-dev-server": "^1.7.0"
-  },
-  "devDependencies": {
-    "approot": "^0.2.1",
-    "chai": "^2.3.0",
-    "coffee-react": "^3.1.0",
-    "gulp-start-process": "^1.1.1",
-    "jsdom": "^5.3.0",
-    "mocha": "^2.2.4",
-    "node-jsx": "^0.13.3"
+    "coffee-loader": "^0.7.2",
+    "react-hot-loader": "^1.1.4"
   }
 }

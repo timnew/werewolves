@@ -9,7 +9,7 @@ Config.set devtool: 'source-map'
   .appendPlugins [
       new ExtractTextPlugin('main.css')
       new webpack.optimize.DedupePlugin()
-      # new webpack.optimize.UglifyJsPlugin() # Failed due to let keyword is not supported by uglifyjs
+      new webpack.optimize.UglifyJsPlugin()
     ]
   .appendLoaders [
       { test: /\.(png|svg)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=true' }
@@ -23,7 +23,7 @@ Config.set devtool: 'source-map'
 
       { test: /\.cjsx$/, loaders: 'coffee!cjsx' }
       { test: /\.coffee$/, loader: 'coffee' }
-      { test: /\.jsx$|\.js$/, loader: 'jsx?harmony' }
+      { test: /\.jsx$/, loader: 'babel?optional=runtime' }
     ]
 
 module.exports = Config.toJson()
