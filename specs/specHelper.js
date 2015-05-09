@@ -1,7 +1,7 @@
 'use strict';
 
 require('coffee-script/register');
-require('node-jsx').install({extension: '.jsx', harmony: true});
+require("babel/register");
 
 require('chai').should();
 global.expect = require('chai');
