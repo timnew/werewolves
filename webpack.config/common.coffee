@@ -3,11 +3,14 @@ _ = require('lodash')
 webpack = require('webpack')
 ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+process.env.NODE_PATH = path.resolve(__dirname, '..', 'scripts')
+require('module').Module._initPaths()
+
 DefaultConfig =
   entry: [ './scripts/route' ]
 
   output:
-    path: path.join(__dirname, '..', 'public')
+    path: path.resolve(__dirname, '..', 'scripts')
     filename: 'bundle.js'
 
   resolveLoader:
@@ -18,7 +21,7 @@ DefaultConfig =
   ]
 
   resolve:
-    root: path.resolve(__dirname, '..')
+    root: process.env.NODE_PATH
     extensions: ['', '.js', '.jsx', '.cjsx', '.coffee', '.css', '.styl']
 
   module:

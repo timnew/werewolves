@@ -1,11 +1,10 @@
 'use strict';
 
-const Marty = require('marty');
-const GameSetupConstants = require('../constants/GameSetupConstants');
-const roleSettings = require('../modles/roles').settings;
-const { Cupido, Guardian, Werewolf, Girl, Witch, Seer, Hunter, Idiot, Villager } = require('../models/roles').Roles;
-const GameRuleStore = require('./GameRuleStore');
-const _ = require('lodash');
+import Marty from 'marty';
+import GameSetupConstants from 'constants/GameSetupConstants';
+
+import { Cupido, Guardian, Werewolf, Girl, Witch, Seer, Hunter, Idiot, Villager } from 'models/roles';
+import _ from 'lodash';
 
 class RoleStore extends Marty.Store {
   constructor(options) {
@@ -69,4 +68,4 @@ class RoleStore extends Marty.Store {
   }
 }
 
-module.exports = Marty.register(RoleStore);
+export default RoleStore;

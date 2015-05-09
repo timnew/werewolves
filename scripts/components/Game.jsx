@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
-const { Row, Col } = require('react-bootstrap');
-const { FaIcon, FaStack } = require('react-fa-icon');
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import { FaIcon, FaStack } from 'react-fa-icon';
 
 class Game extends React.Component {
     render() {
@@ -15,5 +15,4 @@ class Game extends React.Component {
     }
 }
 
-
-module.exports = Game;
+export default Game;

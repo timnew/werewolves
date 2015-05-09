@@ -1,6 +1,6 @@
 'use strict';
 
-const Role = require('./Role');
+import Role from './Role';
 
 class Witch extends Role {
   constructor(player) {
@@ -8,4 +8,4 @@ class Witch extends Role {
   }
 }
 
-module.exports = Witch;
+export default Witch;

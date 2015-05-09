@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react');
-const { Navbar, Nav, Grid, Row, Col } = require('react-bootstrap');
-const { NavItemLink } = require('react-router-bootstrap');
-const { RouteHandler } = require('react-router');
+import React from 'react';
+import { Navbar, Nav, Grid, Row, Col } from 'react-bootstrap';
+import { NavItemLink } from 'react-router-bootstrap';
+import { RouteHandler } from 'react-router';
 
 class AppRoot extends React.Component {
   render() {
@@ -15,10 +15,10 @@ class AppRoot extends React.Component {
             <NavItemLink to="Play">Play Game</NavItemLink>
           </Nav>
         </Navbar>
-        <RouteHandler/>        
+        <RouteHandler/>
       </div>
     );
   }
 }
 
-module.exports = AppRoot;
+export default AppRoot;

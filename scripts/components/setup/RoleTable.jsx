@@ -1,11 +1,11 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
 class RoleTable extends React.Component {
   render() {
-    
+
   }
 }
 
-module.exports = RoleTable;
+export default RoleTable;

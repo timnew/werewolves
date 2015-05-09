@@ -1,6 +1,6 @@
 'use strict';
 
-const Marty = require('marty');
+import Marty from 'marty';
 
 var GameSetupConstants = Marty.createConstants([
         'UPDATE_PLAYER_COUNT',
@@ -9,4 +9,4 @@ var GameSetupConstants = Marty.createConstants([
         'UPDATE_PLAYER'
     ]);
 
-module.exports = GameSetupConstants;
+export default GameSetupConstants;

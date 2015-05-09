@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+const roleSpecs = {
   Cupido: { order: 2, side: 'villager', min: 0, max: 1 },
   Guardian: { order: 3, side: 'villager', min: 0, max: 1 },
   Werewolf: { order: 4, side: 'werewolf', min: 1, max: 4 },
@@ -10,3 +10,5 @@ module.exports = {
   Idiot: { order: 0, side: 'villager', min: 0, max: 1 },
   Villager: { order: 0, side: 'villager', min: 1, max: 13 }
 };
+
+export default roleSpecs;

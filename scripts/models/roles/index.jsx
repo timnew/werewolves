@@ -1,17 +1,11 @@
 'use strict';
 
-module.exports = {
-  Roles: {
-    Role : require('./Role'),
-    Cupido : require('./Cupido'),
-    Guardian : require('./Guardian'),
-    Werewolf : require('./Werewolf'),
-    Witch : require('./Witch'),
-    Seer : require('./Seer'),
-    Hunter : require('./Hunter'),
-    Idiot : require('./Idiot'),
-    Villager : require('./Villager')
-  },
-  roleSpecs: require('./roleSpecs'),
-  roleSchemas: require('./roleSchemas')
-};
+export * from './Role';
+export * from './Cupido';
+export * from './Guardian';
+export * from './Werewolf';
+export * from './Witch';
+export * from './Seer';
+export * from './Hunter';
+export * from './Idiot';
+export * from './Villager';

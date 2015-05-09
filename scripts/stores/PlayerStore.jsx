@@ -1,11 +1,11 @@
 'use strict';
 
-const Marty = require('marty');
-const _ = require('lodash');
+import Marty from 'marty';
+import _ from 'lodash';
 
-const { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } = require('../constants/GameSetupConstants');
+import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } from 'constants/GameSetupConstants';
 
-class PlayerStore extends Marty.Store {
+export class PlayerStore extends Marty.Store {
   constructor(options) {
       super(options);
 
@@ -72,7 +72,7 @@ class PlayerStore extends Marty.Store {
 
     for(var index in this.players) {
       let player = this.players[index];
-      
+
       if(!player.name) {
         return this.setError('Player name is empty');
       }
@@ -94,8 +94,4 @@ class PlayerStore extends Marty.Store {
   }
 }
 
-PlayerStore.register = () => {
-  return Marty.register(PlayerStore);
-};
-
-module.exports = PlayerStore;
+export default Marty.register(PlayerStore);

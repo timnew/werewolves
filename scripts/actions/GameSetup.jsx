@@ -1,7 +1,7 @@
 'use strict';
 
-const Marty = require('marty');
-const {UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER} = require('../constants/GameSetupConstants');
+import Marty from 'marty';
+import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } from 'constants/GameSetupConstants';
 
 class GameSetup extends Marty.ActionCreators {
   updatePlayerCount(count) {
@@ -21,4 +21,4 @@ class GameSetup extends Marty.ActionCreators {
   }
 }
 
-module.exports = Marty.register(GameSetup);
+export default Marty.register(GameSetup);

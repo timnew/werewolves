@@ -1,10 +1,10 @@
 'use strict';
 
-const React = require('react');
-const { Row, Col, Panel, Table, ButtonGroup, Button } = require('react-bootstrap');
-const { FaIcon } = require('react-fa-icon');
-const PlayerTableRow = require('./PlayerTableRow');
-const _ = require('lodash');
+import React from 'react';
+import { Row, Col, Panel, Table, ButtonGroup, Button } from 'react-bootstrap';
+import { FaIcon } from 'react-fa-icon';
+import PlayerTableRow from './PlayerTableRow';
+import _ from 'lodash';
 
 class PlayerTable extends React.Component {
   constructor(props) {
@@ -80,4 +80,4 @@ PlayerTable.defaultProps = {
   error: null
 };
 
-module.exports = PlayerTable;
+export default PlayerTable;

@@ -2,13 +2,12 @@
 
 require('./initApp');
 
-const React = require('react');
-const Router = require('react-router');
-const { Route, RouteHandler } = Router;
+import React from 'react';
+import Router, { Route, RouteHandler } from 'react-router';
 
-const AppRoot = require('./components/AppRoot');
-const Setup = require('./components/Setup');
-const Game = require('./components/Game');
+import AppRoot from 'components/AppRoot';
+import Setup from 'components/Setup';
+import Game from 'components/Game';
 
 const routes = (
   <Route handler={AppRoot}>

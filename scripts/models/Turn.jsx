@@ -9,4 +9,4 @@ class Turn {
   get firstNight() { return this.index === 0; }
 }
 
-module.exports = Turn;
+export default Turn;

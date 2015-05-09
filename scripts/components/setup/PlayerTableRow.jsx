@@ -1,12 +1,12 @@
 'use strict';
 
-const _ = require('lodash');
+import _ from 'lodash';
 
-const React = require('react');
-const { FaIcon } = require('react-fa-icon');
-const { ButtonGroup, Button, Input } = require('react-bootstrap');
+import React from 'react';
+import { FaIcon } from 'react-fa-icon';
+import { ButtonGroup, Button, Input } from 'react-bootstrap';
 
-const GameSetup = require('../../actions/GameSetup');
+import GameSetup from 'actions/GameSetup';
 
 class PlayerTableRow extends React.Component {
   constructor(props) {
@@ -133,4 +133,4 @@ PlayerTableRow.defaultProps = {
   player: null
 };
 
-module.exports = PlayerTableRow;
+export default PlayerTableRow;

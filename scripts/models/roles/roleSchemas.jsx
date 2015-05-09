@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+const roleSchema = {
   5: {
     Werewolf: 1,
     Villager: 4
@@ -115,3 +115,5 @@ module.exports = {
     Witch: 1
   }
 };
+
+export default roleSchema;

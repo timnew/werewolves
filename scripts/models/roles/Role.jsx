@@ -1,6 +1,6 @@
 'use strict';
 
-const roleSpecs = require('./roleSpecs');
+import roleSpecs from './roleSpecs';
 
 class Role {
   constructor(roleName, player) {
@@ -41,4 +41,4 @@ class Role {
   }
 }
 
-module.exports = Role;
+export default Role;

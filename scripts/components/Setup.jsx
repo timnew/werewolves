@@ -1,12 +1,12 @@
 'use strict';
 
-const React = require('react');
-const { Grid } = require('react-bootstrap');
-const { ButtonToolbar, ButtonGroup, Button } = require('react-bootstrap');
-const { FaIcon } = require('react-fa-icon');
+import React from 'react';
+import { Grid } from 'react-bootstrap';
+import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
+import { FaIcon } from 'react-fa-icon';
 
-const PlayerTable = require('./setup/PlayerTable');
-const playerStore = global.playerStore;
+import PlayerTable from './setup/PlayerTable';
+import PlayerStore from 'stores/PlayerStore';
 
 class BoundedPlayerTable extends React.Component {
   constructor(props) {
@@ -18,14 +18,14 @@ class BoundedPlayerTable extends React.Component {
 
   onStoreChanged() {
     this.setState({
-      expectedPlayerCount: playerStore.state.expectedPlayerCount,
-      players: playerStore.state.players,
-      validationError: playerStore.state.validationError
+      expectedPlayerCount: PlayerStore.state.expectedPlayerCount,
+      players: PlayerStore.state.players,
+      validationError: PlayerStore.state.validationError
     });
   }
 
   componentDidMount() {
-    this.listener = playerStore.addChangeListener(this.onStoreChanged.bind(this));
+    this.listener = PlayerStore.addChangeListener(this.onStoreChanged.bind(this));
   }
 
   componentWillUnmount() {
@@ -53,4 +53,4 @@ class Setup extends React.Component {
     }
 }
 
-module.exports = Setup;
+export default Setup;

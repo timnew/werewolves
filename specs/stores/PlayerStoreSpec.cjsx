@@ -1,5 +1,5 @@
 describe 'PlayerStore', ->
-  PlayerStore = require(sourceRoot.stores('PlayerStore'))
+  PlayerStore = require(sourceRoot.stores('PlayerStore')).PlayerStore
   GameSetup = require(sourceRoot.actions('GameSetup'))
 
   playerStore = null
