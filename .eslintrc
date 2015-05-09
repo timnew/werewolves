@@ -25,7 +25,8 @@
   },
   "rules": {
     "quotes": [1, "single", "avoid-escape"],
-    "no-underscore-dangle": false
+    "no-underscore-dangle": false,
+    "operator-assignment": [2, "always"]
   },
   "plugins": [
     "react"
