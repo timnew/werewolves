@@ -5,6 +5,7 @@ import _ from 'lodash';
 import React from 'react';
 import { FaIcon } from 'react-fa-icon';
 import { ButtonGroup, Button, Input } from 'react-bootstrap';
+import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GameSetup from 'actions/GameSetup';
 
@@ -14,6 +15,9 @@ class PlayerTableRow extends React.Component {
 
     this.state = { inEditing: false };
   }
+
+  shouldPureComponentUpdate = shouldPureComponentUpdate;
+
   render() {
     if(this.state.inEditing) {
         return this.renderEditing();
