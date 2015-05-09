@@ -1,8 +1,0 @@
-{
-    "es5": true,
-    "browser": true,
-    "node": true,
-    "esnext": true,
-    "predef": [        
-    ]
-}
