@@ -34,7 +34,7 @@ class PlayerTableRow extends React.Component {
   edit() {
     let player = this.props.player || {};
 
-    this.setState({ inEditing: true, name: player.name, seat: player.seat });
+    this.setState({ inEditing: true, name: player.name, seat: player.seat || this.props.index });
   }
 
   remove() {
