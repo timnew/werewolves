@@ -4,11 +4,20 @@ import React from 'react';
 import { Row, Col, Panel, Table, ButtonGroup, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 import PlayerTableRow from './PlayerTableRow';
+import GameSetup from 'actions/GameSetup';
 import _ from 'lodash';
 
 class PlayerTable extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  increasePlayer() {
+    GameSetup.updatePlayerCount(this.props.playerCount + 1);
+  }
+
+  decreasePlayer() {
+    GameSetup.updatePlayerCount(this.props.playerCount - 1);
   }
 
   render() {
