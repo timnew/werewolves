@@ -9,7 +9,7 @@ Config.set devtool: 'source-map'
   .appendPlugins [
       new ExtractTextPlugin('main.css')
       new webpack.optimize.DedupePlugin()
-      new webpack.optimize.UglifyJsPlugin()
+      # new webpack.optimize.UglifyJsPlugin() # Failed due to let keyword is not supported by uglifyjs
     ]
   .appendLoaders [
       { test: /\.(png|svg)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=true' }
