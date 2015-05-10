@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import React from 'react';
 import { Row, Panel, Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
@@ -9,6 +10,10 @@ import GameSetup from 'actions/GameSetup';
 class PlayerTable extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      childrenInEditing: 0
+    };
   }
 
   increasePlayer() {
@@ -17,6 +22,35 @@ class PlayerTable extends React.Component {
 
   decreasePlayer() {
     GameSetup.updatePlayerCount(this.props.playerCount - 1);
+  }
+
+  editAll() {
+    _.forEach(this.refs, (row) => {
+      row.edit();
+    });
+    this.setState({childrenInEditing: this.props.playerCount});
+  }
+
+  confirmAll() {
+    _.forEach(this.refs, (row) => {
+      row.confirmEdit();
+    });
+    this.setState({childrenInEditing: 0});
+  }
+  abortAll() {
+    _.forEach(this.refs, (row) => {
+      row.abortEdit();
+    });
+    this.setState({childrenInEditing: 0});
+  }
+
+  childEditingStatusChanged(index, state) {
+    let children = _(this.refs).values().pluck('state').pluck('inEditing').value();
+    children[index] = state;
+    let newState = {
+      childrenInEditing: _.filter(children, (v)=>v).length
+    };
+    this.setState(newState);
   }
 
   render() {
@@ -35,9 +69,8 @@ class PlayerTable extends React.Component {
                       <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='plus'/></Button>
                       <Button onClick={this.decreasePlayer.bind(this)}><FaIcon icon='minus'/></Button>
                     </ButtonGroup>
-                    <ButtonGroup bsSize='xsmall'>
-                      <Button><FaIcon icon='pencil'/></Button>
-                    </ButtonGroup>
+                    {this.renderEditControl()}
+                    {this.renderChildrenControl()}
                   </ButtonToolbar>
                 </th>
               </tr>
@@ -72,14 +105,46 @@ class PlayerTable extends React.Component {
     }
   }
 
-  renderChildren() {
-    let rows = [];
-    for (var index = 0; index < this.props.playerCount; index++) {
-      let player = this.props.players[index];
-
-      rows.push(<PlayerTableRow index={index} player={player}/>);
+  renderEditControl() {
+    let allChildrenInEditing = this.state.childrenInEditing === this.props.playerCount;
+    if(allChildrenInEditing) {
+      return null;
     }
-    return rows;
+
+    return (
+      <ButtonGroup bsSize='xsmall'>
+        <Button onClick={this.editAll.bind(this)}>
+          <FaIcon icon='pencil'/>
+        </Button>
+      </ButtonGroup>
+    );
+  }
+
+  renderChildrenControl() {
+    let hasChildInEditing = this.state.childrenInEditing > 0;
+    if(!hasChildInEditing) {
+      return null;
+    }
+
+    return (
+      <ButtonGroup bsSize='xsmall'>
+        <Button bsStyle="success" onClick={this.confirmAll.bind(this)}><FaIcon icon="check"/></Button>
+        <Button bsStyle="danger" onClick={this.abortAll.bind(this)}><FaIcon icon="remove"/></Button>
+      </ButtonGroup>
+    );
+  }
+
+  renderChildren() {
+    let {playerCount, players} = this.props;
+    let rowCount = Math.max(playerCount, players.length);
+    return _.map(_.range(rowCount), (index) => {
+      return (
+        <PlayerTableRow ref={index}
+                        index={index}
+                        player={players[index]}
+                        editingStatusChanged={this.childEditingStatusChanged.bind(this)} />
+        );
+    });
   }
 }
 PlayerTable.propTypes = {

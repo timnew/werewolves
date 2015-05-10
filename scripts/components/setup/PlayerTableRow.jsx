@@ -35,6 +35,7 @@ class PlayerTableRow extends React.Component {
     let player = this.props.player || {};
 
     this.setState({ inEditing: true, name: player.name, seat: player.seat || this.props.index });
+    this.props.editingStatusChanged(this.props.index, true);
   }
 
   remove() {
@@ -58,28 +59,22 @@ class PlayerTableRow extends React.Component {
       state.inEditing = false;
       return _.omit(state, 'name', 'seat');
     });
+
+    this.props.editingStatusChanged(this.props.index, false);
   }
 
-  nameValueLink() {
+  createStateLink(stateName) {
     return {
-      value: this.state.name,
-      requestChange: this.nameChanged.bind(this)
+      value: this.state[stateName],
+      requestChange: this[stateName+'Changed'].bind(this)
     };
   }
   nameChanged(name) {
     this.setState({name});
   }
-
-  seatValueLink() {
-    return {
-      value: this.state.seat,
-      requestChange: this.seatChanged.bind(this)
-    };
-  }
   seatChanged(seat) {
     this.setState({seat});
   }
-
 
   renderPlayer() {
     return (
@@ -116,8 +111,8 @@ class PlayerTableRow extends React.Component {
     return (
       <tr>
         <td>{this.props.index + 1}</td>
-        <td><input type='text' className='table-inline' valueLink={this.nameValueLink()}/></td>
-        <td><input type='text' className='table-inline' valueLink={this.seatValueLink()}/></td>
+        <td><input type='text' className='table-inline' valueLink={this.createStateLink('name')}/></td>
+        <td><input type='text' className='table-inline' valueLink={this.createStateLink('seat')}/></td>
         <td>
           <ButtonGroup bsSize='xsmall'>
             <Button bsStyle='success' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
@@ -130,11 +125,13 @@ class PlayerTableRow extends React.Component {
 }
 PlayerTableRow.propTypes = {
   index: React.PropTypes.number.isRequired,
-  player: React.PropTypes.object
+  player: React.PropTypes.object,
+  editingStatusChanged: React.PropTypes.function
 };
 PlayerTableRow.defaultProps = {
   index: 0,
-  player: null
+  player: null,
+  editingStatusChanged: function(){}
 };
 
 export default PlayerTableRow;

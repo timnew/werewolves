@@ -10,6 +10,7 @@ werewolves [![Build Status][ci-image]][ci-url] [![Dependency Status][depstat-ima
 ## Technology Involved
 
 * React.js
+* react.context
 * react-router
 * react-bootstrap
 * react-router-bootstrap
