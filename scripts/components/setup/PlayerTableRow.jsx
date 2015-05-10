@@ -84,8 +84,8 @@ class PlayerTableRow extends React.Component {
         <td>{this.props.player.seat}</td>
         <td>
           <ButtonGroup bsSize='xsmall'>
-            <Button onClick={this.edit.bind(this)}><FaIcon icon='edit'/></Button>
-            <Button onClick={this.remove.bind(this)}><FaIcon icon='remove'/></Button>
+            <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
+            <Button onClick={this.remove.bind(this)}><FaIcon icon='trash'/></Button>
           </ButtonGroup>
         </td>
       </tr>
@@ -100,7 +100,7 @@ class PlayerTableRow extends React.Component {
         <td>--Empty--</td>
         <td>
           <ButtonGroup bsSize='xsmall'>
-            <Button onClick={this.edit.bind(this)}><FaIcon icon='edit'/></Button>
+            <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
           </ButtonGroup>
         </td>
       </tr>
@@ -116,7 +116,7 @@ class PlayerTableRow extends React.Component {
         <td>
           <ButtonGroup bsSize='xsmall'>
             <Button bsStyle='success' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
-            <Button bsStyle='danger' onClick={this.abortEdit.bind(this)}><FaIcon icon='remove'/></Button>
+            <Button bsStyle='danger' onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>
           </ButtonGroup>
         </td>
       </tr>

@@ -66,8 +66,8 @@ class PlayerTable extends React.Component {
                 <th>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
-                      <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='plus'/></Button>
-                      <Button onClick={this.decreasePlayer.bind(this)}><FaIcon icon='minus'/></Button>
+                      <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='user-plus'/></Button>
+                      <Button onClick={this.decreasePlayer.bind(this)}><FaIcon icon='user-times'/></Button>
                     </ButtonGroup>
                     {this.renderEditControl()}
                     {this.renderChildrenControl()}
@@ -129,7 +129,7 @@ class PlayerTable extends React.Component {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button bsStyle="success" onClick={this.confirmAll.bind(this)}><FaIcon icon="check"/></Button>
-        <Button bsStyle="danger" onClick={this.abortAll.bind(this)}><FaIcon icon="remove"/></Button>
+        <Button bsStyle="danger" onClick={this.abortAll.bind(this)}><FaIcon icon="times"/></Button>
       </ButtonGroup>
     );
   }
