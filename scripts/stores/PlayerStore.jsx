@@ -3,7 +3,7 @@
 import Marty from 'marty';
 import _ from 'lodash';
 
-import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } from 'constants/GameSetupConstants';
+import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, REMOVE_ALL_PLAYERS } from 'constants/GameSetupConstants';
 
 export class PlayerStore extends Marty.Store {
   constructor(options) {
@@ -19,7 +19,8 @@ export class PlayerStore extends Marty.Store {
         updateExpectedPlayerCount: UPDATE_PLAYER_COUNT,
         addPlayer: ADD_PLAYER,
         removePlayer: REMOVE_PLAYER,
-        updatePlayer: UPDATE_PLAYER
+        updatePlayer: UPDATE_PLAYER,
+        removeAllPlayers: REMOVE_ALL_PLAYERS
       };
   }
 
@@ -58,6 +59,11 @@ export class PlayerStore extends Marty.Store {
 
   updatePlayer(index, playerDefinition) {
     this.players[index] = playerDefinition;
+    this.validate();
+  }
+
+  removeAllPlayers() {
+    this.players.splice(0, this.players.length);
     this.validate();
   }
 

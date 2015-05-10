@@ -1,7 +1,7 @@
 'use strict';
 
 import Marty from 'marty';
-import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } from 'constants/GameSetupConstants';
+import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, REMOVE_ALL_PLAYERS } from 'constants/GameSetupConstants';
 
 class GameSetup extends Marty.ActionCreators {
   updatePlayerCount(count) {
@@ -18,6 +18,10 @@ class GameSetup extends Marty.ActionCreators {
 
   updatePlayer(index, playerDefinition) {
     this.dispatch(UPDATE_PLAYER, index, playerDefinition);
+  }
+
+  removeAllPlayers() {
+    this.dispatch(REMOVE_ALL_PLAYERS);
   }
 }
 

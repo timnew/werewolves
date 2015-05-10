@@ -65,6 +65,16 @@ describe 'PlayerStore', ->
           { name: 'SemiCircle', seat: 4 }
         ]
 
+    it 'should remove all', ->
+      GameSetup.addPlayer name: 'Tim', seat: 1
+      GameSetup.addPlayer name: 'Dylan', seat: 2
+      GameSetup.addPlayer name: 'Crab', seat: 3
+      GameSetup.addPlayer name: 'SemiCircle', seat: 4
+
+      GameSetup.removeAllPlayers()
+
+      playerStore.players.should.have.length 0
+
   describe 'validation', ->
     beforeEach ->
       GameSetup.addPlayer name: 'Tim', seat: 1

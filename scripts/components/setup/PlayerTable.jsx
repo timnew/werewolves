@@ -31,6 +31,10 @@ class PlayerTable extends React.Component {
     this.setState({childrenInEditing: this.props.playerCount});
   }
 
+  trashAll() {
+    GameSetup.removeAllPlayers();
+  }
+
   confirmAll() {
     _.forEach(this.refs, (row) => {
       row.confirmEdit();
@@ -69,8 +73,9 @@ class PlayerTable extends React.Component {
                       <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='user-plus'/></Button>
                       <Button onClick={this.decreasePlayer.bind(this)}><FaIcon icon='user-times'/></Button>
                     </ButtonGroup>
-                    {this.renderEditControl()}
-                    {this.renderChildrenControl()}
+                    {this.renderEditAll()}
+                    {this.renderTrashAll()}
+                    {this.renderChildrenEditControl()}
                   </ButtonToolbar>
                 </th>
               </tr>
@@ -105,7 +110,7 @@ class PlayerTable extends React.Component {
     }
   }
 
-  renderEditControl() {
+  renderEditAll() {
     let allChildrenInEditing = this.state.childrenInEditing === this.props.playerCount;
     if(allChildrenInEditing) {
       return null;
@@ -120,7 +125,20 @@ class PlayerTable extends React.Component {
     );
   }
 
-  renderChildrenControl() {
+  renderTrashAll() {
+    let hasPlayer = this.props.players.length > 0;
+    if(!hasPlayer) {
+      return null;
+    }
+
+    return (
+      <ButtonGroup bsSize='xsmall'>
+        <Button bsStyle="danger" onClick={this.trashAll.bind(this)}><FaIcon icon="trash"/></Button>
+      </ButtonGroup>
+    );
+  }
+
+  renderChildrenEditControl() {
     let hasChildInEditing = this.state.childrenInEditing > 0;
     if(!hasChildInEditing) {
       return null;
@@ -128,8 +146,8 @@ class PlayerTable extends React.Component {
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button bsStyle="success" onClick={this.confirmAll.bind(this)}><FaIcon icon="check"/></Button>
-        <Button bsStyle="danger" onClick={this.abortAll.bind(this)}><FaIcon icon="times"/></Button>
+        <Button bsStyle="primary" onClick={this.confirmAll.bind(this)}><FaIcon icon="check"/></Button>
+        <Button onClick={this.abortAll.bind(this)}><FaIcon icon="times"/></Button>
       </ButtonGroup>
     );
   }

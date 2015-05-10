@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import React from 'react';
 import { FaIcon } from 'react-fa-icon';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GameSetup from 'actions/GameSetup';
@@ -87,10 +87,14 @@ class PlayerTableRow extends React.Component {
         <td>{this.props.player.name}</td>
         <td>{this.props.player.seat}</td>
         <td>
-          <ButtonGroup bsSize='xsmall'>
-            <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
-            <Button onClick={this.remove.bind(this)}><FaIcon icon='trash'/></Button>
-          </ButtonGroup>
+          <ButtonToolbar>
+            <ButtonGroup bsSize='xsmall'>
+              <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
+            </ButtonGroup>
+            <ButtonGroup bsSize='xsmall'>
+              <Button bsStyle='danger' onClick={this.remove.bind(this)}><FaIcon icon='trash'/></Button>
+            </ButtonGroup>
+          </ButtonToolbar>
         </td>
       </tr>
     );
@@ -119,8 +123,8 @@ class PlayerTableRow extends React.Component {
         <td><input type='text' className='table-inline' valueLink={this.createStateLink('seat')}/></td>
         <td>
           <ButtonGroup bsSize='xsmall'>
-            <Button bsStyle='success' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
-            <Button bsStyle='danger' onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>
+            <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
+            <Button onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>
           </ButtonGroup>
         </td>
       </tr>
