@@ -4,13 +4,14 @@ import Marty from 'marty';
 import _ from 'lodash';
 
 import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, REMOVE_ALL_PLAYERS } from 'constants/GameSetupConstants';
+const MIN_PLAYER_COUNT = 5;
 
 export class PlayerStore extends Marty.Store {
   constructor(options) {
       super(options);
 
       this.state = {
-        expectedPlayerCount: 5,
+        expectedPlayerCount: MIN_PLAYER_COUNT,
         players: [],
         validationError: null
       };
@@ -34,6 +35,10 @@ export class PlayerStore extends Marty.Store {
 
   get isValid() {
     return this.validationError === null;
+  }
+
+  get canReduce() {
+    return this.expectedPlayerCount > MIN_PLAYER_COUNT;
   }
 
   setError(error) {
