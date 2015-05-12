@@ -2,11 +2,10 @@
 
 import _ from 'lodash';
 import React from 'react';
-import {Store} from 'marty';
 
 const { PropTypes } = React;
 
-class StoreBinder extends React.Component {
+class PropertyBinder extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,12 +14,12 @@ class StoreBinder extends React.Component {
   }
 
   onStoreChanged() {
-    let newState = _.mapValues(this.props.binding, (valuePath) => _.get(this.props.store.state, valuePath));
+    let newState = _.mapValues(this.props.binding, (valuePath) => _.get(this.props.source, valuePath));
     this.setState(newState);
   }
 
   componentDidMount() {
-    this.listener = this.props.store.addChangeListener(this.onStoreChanged.bind(this));
+    this.listener = this.props.source.addChangeListener(this.onStoreChanged.bind(this));
   }
 
   componentWillUnmount() {
@@ -32,11 +31,11 @@ class StoreBinder extends React.Component {
     return React.cloneElement(childElement, this.state);
   }
 }
-StoreBinder.propTypes = {
-  store: PropTypes.instanceOf(Store).isRequired,
+PropertyBinder.propTypes = {
+  source: PropTypes.object.isRequired,
   binding: PropTypes.objectOf(PropTypes.string).isRequired
 };
-StoreBinder.defaultProps = {
+PropertyBinder.defaultProps = {
 };
 
-export default StoreBinder;
+export default PropertyBinder;
