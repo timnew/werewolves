@@ -79,15 +79,15 @@ describe 'PlayerStore', ->
 
     it 'should not limit player count when it is in the range', ->
       GameSetup.updatePlayerCount 7
-      playerStore.canReduce.should.be.true
+      playerStore.canDecreasePlayer.should.be.true
 
     it 'should limit down when player count is equal to lower boundry', ->
       GameSetup.updatePlayerCount 5
-      playerStore.canReduce.should.be.false
+      playerStore.canDecreasePlayer.should.be.false
 
     it 'should limit down when player count smaller than lower boundry', ->
       GameSetup.updatePlayerCount 4
-      playerStore.canReduce.should.be.false
+      playerStore.canDecreasePlayer.should.be.false
 
   describe 'validation', ->
     beforeEach ->

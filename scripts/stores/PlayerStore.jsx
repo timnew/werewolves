@@ -37,8 +37,8 @@ export class PlayerStore extends Marty.Store {
     return this.validationError === null;
   }
 
-  get canReduce() {
-    return this.expectedPlayerCount > MIN_PLAYER_COUNT;
+  get canDecreasePlayer() {
+    return this.state.canDecreasePlayer;
   }
 
   setError(error) {
@@ -73,6 +73,8 @@ export class PlayerStore extends Marty.Store {
   }
 
   validate() {
+    this.state.canDecreasePlayer = this.expectedPlayerCount > MIN_PLAYER_COUNT;
+
     if (this.expectedPlayerCount < 5) {
       return this.setError('At least 5 players');
     }

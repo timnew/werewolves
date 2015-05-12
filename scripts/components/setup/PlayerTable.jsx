@@ -71,7 +71,7 @@ class PlayerTable extends React.Component {
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
                       <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='user-plus'/></Button>
-                      <Button onClick={this.decreasePlayer.bind(this)}><FaIcon icon='user-times'/></Button>
+                      <Button onClick={this.decreasePlayer.bind(this)} disabled={!this.props.canDecreasePlayer}><FaIcon icon='user-times'/></Button>
                     </ButtonGroup>
                     {this.renderEditAll()}
                     {this.renderTrashAll()}
@@ -168,12 +168,14 @@ class PlayerTable extends React.Component {
 PlayerTable.propTypes = {
   playerCount: React.PropTypes.number,
   players: React.PropTypes.arrayOf(React.PropTypes.object),
-  error: React.PropTypes.string
+  error: React.PropTypes.string,
+  canDecreasePlayer: React.PropTypes.boolean
 };
 PlayerTable.defaultProps = {
   playerCount: 5,
   players: [],
-  error: null
+  error: null,
+  canDecreasePlayer: false
 };
 
 export default PlayerTable;

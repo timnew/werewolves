@@ -11,7 +11,7 @@ class Setup extends React.Component {
     render() {
         return (
           <Grid>
-            <StoreBinder store={PlayerStore} binding={{playerCount: 'expectedPlayerCount', players: 'players', error: 'validationError'}}>
+            <StoreBinder store={PlayerStore} binding={{playerCount: 'expectedPlayerCount', players: 'players', error: 'validationError', canDecreasePlayer: 'canDecreasePlayer'}}>
               <PlayerTable/>
             </StoreBinder>
           </Grid>
