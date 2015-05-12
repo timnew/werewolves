@@ -1,30 +1,59 @@
 'use strict';
 
 const roleSchema = {
+  default: {
+    Werewolf: 0,
+    Villager: 0,
+    Cupido: 0,
+    Hunter: 0,
+    Idiot: 0,
+    Guardian: 0,
+    Seer: 0,
+    Witch: 0
+  },
   5: {
     Werewolf: 1,
-    Villager: 4
+    Villager: 4,
+    Cupido: 0,
+    Hunter: 0,
+    Idiot: 0,
+    Guardian: 0,
+    Seer: 0,
+    Witch: 0
   },
   6: {
     Werewolf: 1,
     Villager: 4,
+    Cupido: 0,
+    Hunter: 0,
+    Idiot: 0,
+    Guardian: 0,
+    Seer: 0,
     Witch: 1
   },
   7: {
     Werewolf: 2,
     Villager: 3,
+    Cupido: 0,
+    Hunter: 0,
+    Idiot: 0,
+    Guardian: 0,
     Seer: 1,
     Witch: 1
   },
   8: {
-    Werewolf: 2,
-    Villager: 4,
+    Hunter: 0,
+    Idiot: 0,
+    Guardian: 0,
     Seer: 1,
     Witch: 1
   },
   9: {
     Werewolf: 3,
     Villager: 3,
+    Cupido: 0,
+    Hunter: 0,
+    Idiot: 0,
     Guardian: 1,
     Seer: 1,
     Witch: 1
@@ -32,6 +61,8 @@ const roleSchema = {
   10: {
     Werewolf: 3,
     Villager: 3,
+    Cupido: 0,
+    Hunter: 0,
     Idiot: 1,
     Guardian: 1,
     Seer: 1,
@@ -40,6 +71,8 @@ const roleSchema = {
   11: {
     Werewolf: 3,
     Villager: 4,
+    Cupido: 0,
+    Hunter: 0,
     Idiot: 1,
     Guardian: 1,
     Seer: 1,
@@ -48,6 +81,7 @@ const roleSchema = {
   12: {
     Werewolf: 3,
     Villager: 4,
+    Cupido: 0,
     Hunter: 1,
     Idiot: 1,
     Guardian: 1,

@@ -1,7 +1,7 @@
 'use strict';
 
 import Marty from 'marty';
-import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, REMOVE_ALL_PLAYERS } from 'constants/GameSetupConstants';
+import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, REMOVE_ALL_PLAYERS, UPDATE_ROLE_CONFIG } from 'constants/GameSetupConstants';
 
 class GameSetup extends Marty.ActionCreators {
   updatePlayerCount(count) {
@@ -22,6 +22,13 @@ class GameSetup extends Marty.ActionCreators {
 
   removeAllPlayers() {
     this.dispatch(REMOVE_ALL_PLAYERS);
+  }
+
+  updateRoleConfig(roleName, value) {
+    if(typeof value === 'boolean') {
+      value = value ? 1 : 0;
+    }
+    this.dispatch(UPDATE_ROLE_CONFIG, roleName, value);
   }
 }
 
