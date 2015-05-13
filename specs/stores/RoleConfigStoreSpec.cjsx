@@ -109,3 +109,14 @@ describe 'RoleConfigStore', ->
         GameSetup.updateRoleConfig('Witch', true)
 
         roleConfigStore.validationError.should.equal '6 roles enabled for 5 players'
+
+    it 'should reset when issue is fixed', ->
+      roleConfigStore.isValid.should.be.true
+
+      GameSetup.updateRoleConfig('Witch', true)
+
+      roleConfigStore.isValid.should.be.false
+
+      GameSetup.updateRoleConfig('Witch', false)
+
+      roleConfigStore.isValid.should.be.true

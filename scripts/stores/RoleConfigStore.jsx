@@ -51,6 +51,7 @@ export class RoleConfigStore extends Marty.Store {
     if(this.validateName(name)) {
       this.state.roleSchema[name] = count;
       this.validate();
+      this.hasChanged();
     }
   }
 
@@ -79,6 +80,8 @@ export class RoleConfigStore extends Marty.Store {
   }
 
   validate() {
+    this.setError(null);
+
     let roleCount = {
       total: 0,
       villager: 0,
@@ -104,8 +107,6 @@ export class RoleConfigStore extends Marty.Store {
       this.setError(`${roleCount.total} roles enabled for ${this.playerCount} players`);
       return;
     }
-
-    this.setError(null);
   }
 
   setError(error) {
