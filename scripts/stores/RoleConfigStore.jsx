@@ -37,6 +37,14 @@ export class RoleConfigStore extends Marty.Store {
     this.state.roleSchema = _.cloneDeep(this.state.roleSchema);
 
     this.validate();
+
+    let difference = count - this.roleCount.total;
+    if(difference > 0) {
+      this.state.roleSchema.Villager += difference;
+      this.validate();
+    }
+
+    this.hasChanged();
   }
 
   updateRoleConfig(name, count) {

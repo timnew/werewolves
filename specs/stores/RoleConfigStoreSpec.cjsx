@@ -24,10 +24,10 @@ describe 'RoleConfigStore', ->
 
       roleConfigStore.roleSchema.should.deep.equal roleSchemas[10]
 
-    it 'should be set to defaultif specific schema not defined', ->
+    it 'should be try to fit when specific schema not defined', ->
       GameSetup.updatePlayerCount(100)
 
-      roleConfigStore.roleSchema.should.deep.equal roleSchemas.default
+      roleConfigStore.roleCount.total.should.equal 100
 
     describe 'copy schema', ->
       it 'should copy default schema instead of reference it', ->
