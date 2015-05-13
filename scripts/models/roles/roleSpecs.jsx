@@ -1,5 +1,7 @@
 'use strict';
 
+import _ from 'lodash';
+
 const roleSpecs = {
   Cupido: { order: 2, side: 'villager', min: 0, max: 1 },
   Guardian: { order: 3, side: 'villager', min: 0, max: 1 },
@@ -12,3 +14,12 @@ const roleSpecs = {
 };
 
 export default roleSpecs;
+
+export const sides = _(roleSpecs)
+  .mapValues((spec, name)=>{
+    spec.name = name;
+    return spec;
+  })
+  .values()
+  .groupBy('side')
+  .value();
