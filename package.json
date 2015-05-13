@@ -24,6 +24,7 @@
     "bootstrap": "^3.3.4",
     "classnames": "^2.1.1",
     "coffee-script": "^1.9.0",
+    "immutable": "^3.7.2",
     "jquery": "^2.1.4",
     "lodash": "^3.1.0",
     "marty": "^0.9.12",
