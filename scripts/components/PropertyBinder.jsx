@@ -60,7 +60,7 @@ class PropertyBinder extends React.Component {
   }
 
   registerListener(name, source) {
-    this.updateData(data => data.setIn(['listeners', name], source.addChangeListener(this.onSourceChanged.bind(this, name))));
+    this.updateData(data => data.setIn(['listeners', name], source[this.props.listenerHook](this.onSourceChanged.bind(this, name))));
   }
 
   componentWillUnmount() {
@@ -77,8 +77,10 @@ PropertyBinder.propTypes = {
   source: PropTypes.object.isRequired,
   binding: PropTypes.objectOf(PropTypes.string).isRequired,
   multiSource: PropTypes.boolean
+  listenerHook: PropTypes.string,
 };
 PropertyBinder.defaultProps = {
+  listenerHook: 'addChangeListener',
   multiSource: false
 };
 
