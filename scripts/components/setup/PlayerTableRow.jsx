@@ -2,24 +2,33 @@
 
 import _ from 'lodash';
 
-import React, { PropTypes } from 'react';
+import React, { PropTypes, shouldComponentUpdate } from 'reactx';
+
 import { FaIcon } from 'react-fa-icon';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
-import {shouldComponentUpdate} from 'reactx';
 
 import GameSetup from 'actions/GameSetup';
 
 class PlayerTableRow extends React.Component {
   constructor(props) {
-    super(props);
-
-    this.state = { inEditing: false };
+    super(props, {
+      inEditing: false
+    });
   }
+
+  get index() { return this.props.index; }
+  get player() { return this.props.player || {}; }
+  get editingStatusChanged() { return this.props.editingStatusChanged; }
+
+  get inEditing() { return this.data.get('inEditing'); }
+
+  get playerName() { return this.player.name || `Player ${this.props.index + 1}`; }
+  get playerSeat() { return this.player.seat || `Seat ${this.props.index + 1}`; }
 
   shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
-    if(this.state.inEditing) {
+    if(this.inEditing) {
         return this.renderEditing();
     }
 
@@ -32,14 +41,13 @@ class PlayerTableRow extends React.Component {
   }
 
   edit() {
-    let player = this.props.player || {};
-
-    this.setState({
+    this.updateData({
         inEditing: true,
-        name: player.name || `Player ${this.props.index + 1}`,
-        seat: player.seat || `Seat ${this.props.index + 1}`
-      });
-    this.props.editingStatusChanged(this.props.index, true);
+        name: this.playerName,
+        seat: this.playerSeat
+    });
+
+    this.editingStatusChanged(this.props.index, true);
   }
 
   remove() {
@@ -47,11 +55,11 @@ class PlayerTableRow extends React.Component {
   }
 
   confirmEdit() {
-    let playerDefinition = _.pick(this.state, 'name', 'seat');
+    let playerDefinition = _.pick(this.data.toJS(), 'name', 'seat');
 
-    if(this.props.player) {
+    if(this.player) {
       GameSetup.updatePlayer(this.props.index, playerDefinition);
-    }else{
+    } else {
       GameSetup.addPlayer(playerDefinition);
     }
 
@@ -59,21 +67,19 @@ class PlayerTableRow extends React.Component {
   }
 
   abortEdit() {
-    this.setState({ inEditing: false });
-    this.props.editingStatusChanged(this.props.index, false);
+    this.updateData({ inEditing: false });
+    this.editingStatusChanged(this.props.index, false);
   }
 
-  createStateLink(stateName) {
-    return {
-      value: this.state[stateName],
-      requestChange: this[stateName+'Changed'].bind(this)
-    };
+  createStateLink(field) {
+    return super.createStateLink(field, this.updatePlayer.bind(this, field));
   }
-  nameChanged(name) {
-    this.setState({name});
-  }
-  seatChanged(seat) {
-    this.setState({seat});
+
+  updatePlayer(field, value) {
+    this.updateData(data => {
+      let newData = data.set(field, value);
+      return newData;
+    });
   }
 
   renderPlayer() {
@@ -129,7 +135,10 @@ class PlayerTableRow extends React.Component {
 }
 PlayerTableRow.propTypes = {
   index: PropTypes.number,
-  player: PropTypes.object,
+  player: PropTypes.shape({
+    name: PropTypes.string,
+    seat: PropTypes.string
+  }),
   editingStatusChanged: PropTypes.func
 };
 PlayerTableRow.defaultProps = {

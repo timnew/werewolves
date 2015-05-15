@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React, { PropTypes, shouldComponentUpdate } from 'reactx';
 import { FaIcon } from 'react-fa-icon';
 import GameSetup from 'actions/GameSetup';
 
@@ -12,33 +12,37 @@ const ICON_NAMES = {
 class RoleTableRow extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
+
+  get name() { return this.props.name; }
+  get spec() { return this.props.spec; }
+  get count() { return this.props.count; }
 
   countChanged(value) {
     if(typeof value === 'string') {
       value = Number.parseInt(value);
     }
 
-    GameSetup.updateRoleConfig(this.props.name, value);
+    GameSetup.updateRoleConfig(this.name, value);
   }
+
+  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     return (
       <tr>
-        <td><FaIcon icon={this.iconName()}/> {this.props.name}</td>
+        <td><FaIcon icon={this.iconName()}/> {this.name}</td>
         <td>{this.renderValue()}</td>
       </tr>
     );
   }
 
   iconName() {
-    return ICON_NAMES[this.props.spec.side];
+    return ICON_NAMES[this.spec.side];
   }
 
   renderValue() {
-    let spec = this.props.spec;
+    let spec = this.spec;
 
     if(spec.max === spec.min) {
       return this.renderFix();
@@ -53,17 +57,17 @@ class RoleTableRow extends React.Component {
 
   renderFix() {
     return (
-      <span>{this.props.count}</span>
+      <span>{this.count}</span>
     );
   }
 
   renderToggle() {
     return (
       <span>
-        {this.props.count}
+        {this.count}
         <input type='checkbox'
                checkedLink={{
-                 value: !!this.props.count,
+                 value: !!this.count,
                  requestChange: this.countChanged.bind(this)
                }}/>
       </span>
@@ -73,13 +77,13 @@ class RoleTableRow extends React.Component {
   renderNumber() {
     return (
       <span>
-        {this.props.count}
+        {this.count}
         <input type='range'
-               min={this.props.spec.min}
-               max={this.props.spec.max}
+               min={this.spec.min}
+               max={this.spec.max}
                step={1}
                valueLink={{
-                 value: this.props.count,
+                 value: this.count,
                  requestChange: this.countChanged.bind(this)
                }}/>
       </span>

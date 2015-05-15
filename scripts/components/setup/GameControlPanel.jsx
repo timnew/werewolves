@@ -1,14 +1,15 @@
 'use strict';
 
-import React from 'react';
+import React, { shouldComponentUpdate } from 'reactx';
 import { Row, Panel, ButtonToolbar, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 
 class GameControlPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
+
+  shouldComponentUpdate = shouldComponentUpdate;
 
   get isValid() {
     return this.props.isPlayerValid && this.props.isRoleConfigValid;
@@ -33,7 +34,6 @@ class GameControlPanel extends React.Component {
     return this.isValid ? 'info' : 'danger';
   }
 }
-
 GameControlPanel.propTypes = {};
 GameControlPanel.defaultProps = {};
 

@@ -1,7 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React, { PropTypes, shouldComponentUpdate } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
 import RoleTableRow from './RoleTableRow';
 
@@ -10,15 +10,19 @@ import { sides } from 'models/roles/roleSpecs';
 class RoleTable extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-    };
   }
+
+  get playerCount() { return this.props.playerCount; }
+  get roleCount() { return this.props.roleCount; }
+  get roleSchema() { return this.props.roleSchema; }
+  get error() { return this.props.error; }
+
+  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     return (
       <Row>
-        <Panel bsStyle={this.panelStyle()} header={this.renderTitle()} footer={this.renderError()}>
+        <Panel bsStyle={this.panelStyle} header={this.renderTitle()} footer={this.renderError()}>
           <Table condensed hover fill responsive className='setup-table'>
             <thead>
               <tr>
@@ -46,7 +50,7 @@ class RoleTable extends React.Component {
           <RoleTableRow name={spec.name}
                         spec={spec}
                         key={spec.name}
-                        count={this.props.roleSchema[spec.name]} />
+                        count={this.roleSchema[spec.name]} />
         );
       })
       .value();
@@ -56,13 +60,13 @@ class RoleTable extends React.Component {
     return (
       <tr className={className}>
         <th>{caption}</th>
-        <th>{this.props.roleCount[field]}</th>
+        <th>{this.roleCount[field]}</th>
       </tr>
     );
   }
 
-  panelStyle() {
-    if(this.props.error) {
+  get panelStyle() {
+    if(this.error) {
       return 'danger';
     } else {
       return 'info';
@@ -70,13 +74,13 @@ class RoleTable extends React.Component {
   }
 
   renderTitle() {
-    let { villager, werewolf } = this.props.roleCount;
+    let { villager, werewolf } = this.roleCount;
     return <h3>Roles ( Villagers: {villager}, Wereolves: {werewolf} )</h3>;  // eslint-disable-line comma-spacing
   }
 
   renderError() {
-    if(this.props.error) {
-      return <span className="text-danger"><b>ERROR: </b>{this.props.error}</span>;
+    if(this.error) {
+      return <span className="text-danger"><b>ERROR: </b>{this.error}</span>;
     }
     else {
       return null;

@@ -1,7 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
-import React from 'react';
+import React, { shouldComponentUpdate, PropTypes } from 'reactx';
 import { Row, Panel, Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 import PlayerTableRow from './PlayerTableRow';
@@ -9,26 +9,30 @@ import GameSetup from 'actions/GameSetup';
 
 class PlayerTable extends React.Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
+    super(props, {
       childrenInEditing: 0
-    };
+    });
   }
 
+  get playerCount() { return this.props.playerCount; }
+  get canDecreasePlayer() { return this.props.canDecreasePlayer; }
+  get players() { return this.props.players; }
+  get error() { return this.props.error; }
+
+  get childrenInEditing() { return this.data.get('childrenInEditing'); }
+  setChildrenInEditing(value) { this.updateData(data => data.set('childrenInEditing', value)); }
+
   increasePlayer() {
-    GameSetup.updatePlayerCount(this.props.playerCount + 1);
+    GameSetup.updatePlayerCount(this.playerCount + 1);
   }
 
   decreasePlayer() {
-    GameSetup.updatePlayerCount(this.props.playerCount - 1);
+    GameSetup.updatePlayerCount(this.playerCount - 1);
   }
 
   editAll() {
-    _.forEach(this.refs, (row) => {
-      row.edit();
-    });
-    this.setState({childrenInEditing: this.props.playerCount});
+    _.forEach(this.refs, (row) => row.edit());
+    this.setChildrenInEditing(this.playerCount);
   }
 
   trashAll() {
@@ -36,31 +40,26 @@ class PlayerTable extends React.Component {
   }
 
   confirmAll() {
-    _.forEach(this.refs, (row) => {
-      row.confirmEdit();
-    });
-    this.setState({childrenInEditing: 0});
+    _.forEach(this.refs, (row) => row.confirmEdit());
+    this.setChildrenInEditing(0);
   }
   abortAll() {
-    _.forEach(this.refs, (row) => {
-      row.abortEdit();
-    });
-    this.setState({childrenInEditing: 0});
+    _.forEach(this.refs, (row) => row.abortEdit());
+    this.setChildrenInEditing(0);
   }
 
   childEditingStatusChanged(index, state) {
     let children = _(this.refs).values().pluck('state').pluck('inEditing').value();
     children[index] = state;
-    let newState = {
-      childrenInEditing: _.filter(children, (v)=>v).length
-    };
-    this.setState(newState);
+    this.setChildrenInEditing(_.filter(children, (v)=>v).length);
   }
+
+  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     return (
       <Row>
-        <Panel bsStyle={this.panelStyle()} header={this.renderTitle()} footer={this.renderError()}>
+        <Panel bsStyle={this.panelStyle} header={this.renderTitle()} footer={this.renderError()}>
           <Table striped condensed hover fill>
             <thead>
               <tr>
@@ -71,7 +70,7 @@ class PlayerTable extends React.Component {
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
                       <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='user-plus'/></Button>
-                      <Button onClick={this.decreasePlayer.bind(this)} disabled={!this.props.canDecreasePlayer}><FaIcon icon='user-times'/></Button>
+                      <Button onClick={this.decreasePlayer.bind(this)} disabled={!this.canDecreasePlayer}><FaIcon icon='user-times'/></Button>
                     </ButtonGroup>
                     {this.renderEditAll()}
                     {this.renderTrashAll()}
@@ -89,8 +88,8 @@ class PlayerTable extends React.Component {
     );
   }
 
-  panelStyle() {
-    if(this.props.error) {
+  get panelStyle() {
+    if(this.error) {
       return 'danger';
     } else {
       return 'info';
@@ -98,12 +97,12 @@ class PlayerTable extends React.Component {
   }
 
   renderTitle() {
-    return <h3>Players: {this.props.playerCount}</h3>;
+    return <h3>Players: {this.playerCount}</h3>;
   }
 
   renderError() {
-    if(this.props.error) {
-      return <span className="text-danger"><b>ERROR: </b>{this.props.error}</span>;
+    if(this.error) {
+      return <span className="text-danger"><b>ERROR: </b>{this.error}</span>;
     }
     else {
       return null;
@@ -111,7 +110,7 @@ class PlayerTable extends React.Component {
   }
 
   renderEditAll() {
-    let allChildrenInEditing = this.state.childrenInEditing === this.props.playerCount;
+    let allChildrenInEditing = this.childrenInEditing === this.playerCount;
     if(allChildrenInEditing) {
       return null;
     }
@@ -126,7 +125,7 @@ class PlayerTable extends React.Component {
   }
 
   renderTrashAll() {
-    let hasPlayer = this.props.players.length > 0;
+    let hasPlayer = this.players.length > 0;
     if(!hasPlayer) {
       return null;
     }
@@ -139,7 +138,7 @@ class PlayerTable extends React.Component {
   }
 
   renderChildrenEditControl() {
-    let hasChildInEditing = this.state.childrenInEditing > 0;
+    let hasChildInEditing = this.childrenInEditing > 0;
     if(!hasChildInEditing) {
       return null;
     }
@@ -167,10 +166,10 @@ class PlayerTable extends React.Component {
   }
 }
 PlayerTable.propTypes = {
-  playerCount: React.PropTypes.number,
-  players: React.PropTypes.arrayOf(React.PropTypes.object),
-  error: React.PropTypes.string,
-  canDecreasePlayer: React.PropTypes.bool
+  playerCount: PropTypes.number,
+  players: PropTypes.arrayOf(PropTypes.object),
+  error: PropTypes.string,
+  canDecreasePlayer: PropTypes.bool
 };
 PlayerTable.defaultProps = {
   playerCount: 5,
