@@ -27,7 +27,7 @@
     "immutable": "^3.7.2",
     "jquery": "^2.1.4",
     "lodash": "^3.1.0",
-    "marty": "^0.9.12",
+    "marty": "^0.9.14",
     "react": "^0.13.3",
     "react-bootstrap": "^0.21.1",
     "react-fa-icon": "^0.1.0",
