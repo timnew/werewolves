@@ -169,7 +169,7 @@ PlayerTable.propTypes = {
   playerCount: React.PropTypes.number,
   players: React.PropTypes.arrayOf(React.PropTypes.object),
   error: React.PropTypes.string,
-  canDecreasePlayer: React.PropTypes.boolean
+  canDecreasePlayer: React.PropTypes.bool
 };
 PlayerTable.defaultProps = {
   playerCount: 5,

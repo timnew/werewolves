@@ -87,9 +87,13 @@ class RoleTableRow extends React.Component {
   }
 }
 RoleTableRow.propTypes = {
-  name: PropTypes.name,
-  spec: PropTypes.object,
-  count: PropTypes.count
+  name: PropTypes.string.isRequired,
+  spec: PropTypes.shape({
+    min: PropTypes.number,
+    max: PropTypes.number,
+    side: PropTypes.string
+  }).isRequired,
+  count: PropTypes.number.isRequired
 };
 RoleTableRow.defaultProps = {
   name: 'Villager',

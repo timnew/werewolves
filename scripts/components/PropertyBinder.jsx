@@ -75,9 +75,12 @@ class PropertyBinder extends React.Component {
 }
 PropertyBinder.propTypes = {
   source: PropTypes.object.isRequired,
-  binding: PropTypes.objectOf(PropTypes.string).isRequired,
-  multiSource: PropTypes.boolean
+  binding: PropTypes.oneOfType([
+    PropTypes.objectOf(PropTypes.string),
+    PropTypes.objectOf(PropTypes.objectOf(PropTypes.string))
+  ]).isRequired,
   listenerHook: PropTypes.string,
+  multiSource: PropTypes.bool
 };
 PropertyBinder.defaultProps = {
   listenerHook: 'addChangeListener',

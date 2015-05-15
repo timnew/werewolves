@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { FaIcon } from 'react-fa-icon';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import shouldPureComponentUpdate from 'react-pure-render/function';
@@ -128,9 +128,9 @@ class PlayerTableRow extends React.Component {
   }
 }
 PlayerTableRow.propTypes = {
-  index: React.PropTypes.number.isRequired,
-  player: React.PropTypes.object,
-  editingStatusChanged: React.PropTypes.function
+  index: PropTypes.number,
+  player: PropTypes.object,
+  editingStatusChanged: PropTypes.func
 };
 PlayerTableRow.defaultProps = {
   index: 0,
