@@ -5,7 +5,7 @@ import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import { FaIcon } from 'react-fa-icon';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import {shouldComponentUpdate} from 'reactx';
 
 import GameSetup from 'actions/GameSetup';
 
@@ -16,7 +16,7 @@ class PlayerTableRow extends React.Component {
     this.state = { inEditing: false };
   }
 
-  shouldPureComponentUpdate = shouldPureComponentUpdate;
+  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     if(this.state.inEditing) {

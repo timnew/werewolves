@@ -3,14 +3,13 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 
-import PropertyBinder from './PropertyBinder';
+import {PropertyBinder} from 'reactx';
 
-import PlayerTable from './setup/PlayerTable';
 import PlayerStore from 'stores/PlayerStore';
-
-import RoleTable from './setup/RoleTable';
 import RoleConfigStore from 'stores/RoleConfigStore';
 
+import PlayerTable from './setup/PlayerTable';
+import RoleTable from './setup/RoleTable';
 import GameControlPanel from './setup/GameControlPanel';
 
 class Setup extends React.Component {
