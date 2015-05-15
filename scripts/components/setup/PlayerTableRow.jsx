@@ -59,11 +59,7 @@ class PlayerTableRow extends React.Component {
   }
 
   abortEdit() {
-    this.setState((state) => {
-      state.inEditing = false;
-      return _.omit(state, 'name', 'seat');
-    });
-
+    this.setState({ inEditing: false });
     this.props.editingStatusChanged(this.props.index, false);
   }
 
