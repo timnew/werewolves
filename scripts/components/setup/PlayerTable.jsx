@@ -158,6 +158,7 @@ class PlayerTable extends React.Component {
     return _.map(_.range(rowCount), (index) => {
       return (
         <PlayerTableRow ref={index}
+                        key={index}
                         index={index}
                         player={players[index]}
                         editingStatusChanged={this.childEditingStatusChanged.bind(this)} />

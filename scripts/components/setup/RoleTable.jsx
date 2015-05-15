@@ -45,6 +45,7 @@ class RoleTable extends React.Component {
         return (
           <RoleTableRow name={spec.name}
                         spec={spec}
+                        key={spec.name}
                         count={this.props.roleSchema[spec.name]} />
         );
       })
