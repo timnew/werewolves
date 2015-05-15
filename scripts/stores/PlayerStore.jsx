@@ -23,6 +23,8 @@ export class PlayerStore extends Marty.Store {
         updatePlayer: UPDATE_PLAYER,
         removeAllPlayers: REMOVE_ALL_PLAYERS
       };
+
+      this.validate();
   }
 
   get expectedPlayerCount() { return this.state.expectedPlayerCount; }

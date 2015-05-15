@@ -97,8 +97,8 @@ describe 'PlayerStore', ->
       GameSetup.addPlayer name: 'SemiCircle', seat: 4
       GameSetup.addPlayer name: '007', seat: 5
 
-    it 'should be valid by default', ->
-      new PlayerStore({}).isValid.should.be.true
+    it 'should be invalid by default', ->
+      new PlayerStore({}).isValid.should.be.false
 
     it 'should check expected player count less less then 5', ->
       GameSetup.updatePlayerCount 3
