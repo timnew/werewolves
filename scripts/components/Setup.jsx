@@ -11,10 +11,20 @@ import PlayerStore from 'stores/PlayerStore';
 import RoleTable from './setup/RoleTable';
 import RoleConfigStore from 'stores/RoleConfigStore';
 
+import GameControlPanel from './setup/GameControlPanel';
+
 class Setup extends React.Component {
     render() {
         return (
           <Grid>
+            <PropertyBinder multiSource
+                            source={{PlayerStore, RoleConfigStore}}
+                            binding={{
+                              PlayerStore: { isPlayerValid: 'isValid' },
+                              RoleConfigStore: { isRoleConfigValid: 'isValid' }
+                            }}>
+              <GameControlPanel />
+            </PropertyBinder>
             <PropertyBinder source={PlayerStore}
                             binding={{
                               playerCount: 'expectedPlayerCount',
@@ -33,7 +43,14 @@ class Setup extends React.Component {
                             }}>
               <RoleTable/>
             </PropertyBinder>
-
+            <PropertyBinder multiSource
+                            source={{PlayerStore, RoleConfigStore}}
+                            binding={{
+                              PlayerStore: { isPlayerValid: 'isValid' },
+                              RoleConfigStore: { isRoleConfigValid: 'isValid' }
+                            }}>
+               <GameControlPanel />
+            </PropertyBinder>
           </Grid>
         );
     }
