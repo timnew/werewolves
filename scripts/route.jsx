@@ -3,7 +3,7 @@
 require('./initApp');
 
 import React from 'react';
-import Router, { Route } from 'react-router';
+import Router, { Route, DefaultRoute } from 'react-router';
 
 import AppRoot from 'components/AppRoot';
 import Setup from 'components/Setup';
@@ -11,6 +11,7 @@ import Game from 'components/Game';
 
 const routes = (
   <Route handler={AppRoot}>
+    <DefaultRoute handler={Setup}/>
     <Route name="Setup" path="setup" handler={Setup}/>
     <Route name="Play" path="play" handler={Game}/>
   </Route>
