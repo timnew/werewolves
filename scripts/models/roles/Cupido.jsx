@@ -4,7 +4,7 @@ import Role from './Role';
 
 class Cupido extends Role {
   constructor(player) {
-    super('Cupido', player);
+    super(player);
   }
 
   inNightTurn(turn) {

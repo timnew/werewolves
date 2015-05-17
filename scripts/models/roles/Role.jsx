@@ -3,24 +3,23 @@
 import roleSpecs from './roleSpecs';
 
 class Role {
-  constructor(roleName, player) {
-    this._roleName = roleName;
-    this._nightTurnOrder = roleSpecs[roleName].order;
-
+  constructor(player) {
     this._player = player;
     this._alive = true;
-    this._side = roleSpecs[roleName].side;
+    this._side = roleSpecs[this.roleName].side;
   }
 
   get roleName() {
-    return this._roleName;
+    return this.constructor.name;
   }
 
   get nightTurnOrder(){
-    return this._nightTurnOrder;
+    return roleSpecs[this.roleName].order;
   }
 
   get player() { return this._player; }
+  get name(){ return this.player.name; }
+  get seat() { return this.player.seat; }
 
   get side() {
     return this._side;

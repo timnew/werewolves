@@ -4,7 +4,7 @@ import Role from './Role';
 
 class Hunter extends Role {
   constructor(player) {
-    super('Hunter', player);
+    super(player);
   }
 }
 
