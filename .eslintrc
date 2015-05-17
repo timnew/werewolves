@@ -26,7 +26,14 @@
   "rules": {
     "quotes": [1, "single", "avoid-escape"],
     "no-underscore-dangle": false,
-    "operator-assignment": [2, "always"]
+    "operator-assignment": [2, "always"],
+
+    "no-shadow": 0, // Seems a bug of babel or eslint or eslint-plugin-react
+
+    "react/self-closing-comp": 1,
+    "react/wrap-multilines": 1,
+    "react/prop-types": 1,
+    "react/no-unknown-property": 1,
   },
   "plugins": [
     "react"
