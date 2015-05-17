@@ -4,7 +4,12 @@ import _ from 'lodash';
 import Marty from 'marty';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
-import { UPDATE_PLAYER_COUNT, UPDATE_ROLE_CONFIG, SAVE_CONFIG, LOAD_CONFIG } from 'constants/GameSetupConstants';
+import {
+    UPDATE_PLAYER_COUNT,
+    UPDATE_ROLE_CONFIG,
+    SAVE_CONFIG,
+    LOAD_CONFIG
+  } from 'constants/GameSetupConstants';
 
 import roleSpecs from 'models/roles/roleSpecs';
 import defaultRoleSchemas from 'models/roles/roleSchemas';

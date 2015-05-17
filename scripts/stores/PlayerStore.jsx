@@ -5,7 +5,15 @@ import _ from 'lodash';
 
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
-import { UPDATE_PLAYER_COUNT, ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, REMOVE_ALL_PLAYERS, SAVE_CONFIG, LOAD_CONFIG } from 'constants/GameSetupConstants';
+import {
+    UPDATE_PLAYER_COUNT,
+    ADD_PLAYER,
+    REMOVE_PLAYER,
+    UPDATE_PLAYER,
+    REMOVE_ALL_PLAYERS,
+    SAVE_CONFIG,
+    LOAD_CONFIG
+  } from 'constants/GameSetupConstants';
 const MIN_PLAYER_COUNT = 5;
 
 export class PlayerStore extends Marty.Store {
