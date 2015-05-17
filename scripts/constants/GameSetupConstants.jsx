@@ -9,7 +9,12 @@ var GameSetupConstants = Marty.createConstants([
         'UPDATE_PLAYER',
         'REMOVE_ALL_PLAYERS',
 
-        'UPDATE_ROLE_CONFIG'
+        'UPDATE_ROLE_CONFIG',
+
+        'LOAD_CONFIG',
+        'SAVE_CONFIG',
+
+        'CREATE_GAME'
     ]);
 
 export default GameSetupConstants;

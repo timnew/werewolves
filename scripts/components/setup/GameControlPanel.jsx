@@ -4,6 +4,8 @@ import React from 'reactx';
 import { Row, Panel, ButtonToolbar, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 
+import GameSetup from 'actions/GameSetup';
+
 class GameControlPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -13,15 +15,37 @@ class GameControlPanel extends React.Component {
     return this.props.isPlayerValid && this.props.isRoleConfigValid;
   }
 
+  startGame() {
+    GameSetup.createGame();
+    this.router.transitionTo('Play');
+  }
+
+  loadConfig() {
+    GameSetup.loadConfig('default');
+  }
+
+  saveConfig() {
+    GameSetup.saveConfig('default');
+  }
+
   render() {
     return (
       <Row>
         <Panel bsStyle={this.panelStyle} header='Game Control'>
           <ButtonToolbar>
-            <Button bsStyle='primary' disabled={!this.isValid}><FaIcon icon='flag-checkered'/> Start Game</Button>
+            <Button bsStyle='primary'
+                    disabled={!this.isValid}
+                    onClick={this.startGame.bind(this)}>
+              <FaIcon icon='flag-checkered'/> Start Game
+            </Button>
 
-            <Button disabled={!this.isValid}><FaIcon icon='save'/> Save</Button>
-            <Button><FaIcon icon='folder-open'/> Load</Button>
+            <Button disabled={!this.isValid}
+                    onClick={this.saveConfig.bind(this)}>
+              <FaIcon icon='save'/> Save
+            </Button>
+            <Button onClick={this.loadConfig.bind(this)}>
+              <FaIcon icon='folder-open'/> Load
+            </Button>
           </ButtonToolbar>
         </Panel>
       </Row>
@@ -36,4 +60,6 @@ GameControlPanel.propTypes = {};
 GameControlPanel.defaultProps = {};
 
 GameControlPanel.enablePureRender();
+GameControlPanel.enableReactRouter();
+
 export default GameControlPanel;

@@ -2,7 +2,10 @@
 
 import _ from 'lodash';
 import Marty from 'marty';
-import { UPDATE_PLAYER_COUNT, UPDATE_ROLE_CONFIG } from 'constants/GameSetupConstants';
+import GameConfigStorage from 'stateSources/GameConfigStorage';
+
+import { UPDATE_PLAYER_COUNT, UPDATE_ROLE_CONFIG, SAVE_CONFIG, LOAD_CONFIG } from 'constants/GameSetupConstants';
+
 import roleSpecs from 'models/roles/roleSpecs';
 import defaultRoleSchemas from 'models/roles/roleSchemas';
 
@@ -17,7 +20,9 @@ export class RoleConfigStore extends Marty.Store {
 
       this.handlers = {
         updateSchema: UPDATE_PLAYER_COUNT,
-        updateRoleConfig: UPDATE_ROLE_CONFIG
+        updateRoleConfig: UPDATE_ROLE_CONFIG,
+        saveConfig: SAVE_CONFIG,
+        loadConfig: LOAD_CONFIG
       };
   }
 
@@ -69,14 +74,10 @@ export class RoleConfigStore extends Marty.Store {
 
     if(count > spec.max) {
       this.setError(`You have more than ${spec.max} ${roleName}, which is not allowed.`); // eslint-disable-line comma-spacing
-      return false;
     }
     if(count < spec.min) {
       this.setError(`You need at least ${spec.min} ${roleName} to start the game.`);
-      return false;
     }
-
-    return true;
   }
 
   validate() {
@@ -100,17 +101,39 @@ export class RoleConfigStore extends Marty.Store {
     this.state.roleCount = roleCount;
 
     if(!this.isValid) {
-      return;
+      return false;
     }
 
     if(roleCount.total !== this.playerCount) {
       this.setError(`${roleCount.total} roles enabled for ${this.playerCount} players`);
-      return;
+      return false;
     }
+
+    return true;
   }
 
   setError(error) {
     this.setState({validationError: error});
+  }
+
+  saveConfig(name) {
+    if(!this.validate()) {
+      return;
+    }
+
+    GameConfigStorage.saveConfig(name, 'roleConfig', this.state);
+  }
+
+  loadConfig(name) {
+    let currentConfig = this.state;
+
+    this.state = GameConfigStorage.loadConfig(name, 'roleConfig');
+
+    if(!this.validate()) {
+      console.error('Loaded config is invalid, restore to previous one');
+      this.state = currentConfig;
+      this.validate();
+    }
   }
 }
 
