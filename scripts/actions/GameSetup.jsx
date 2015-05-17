@@ -10,7 +10,8 @@ import {
   UPDATE_ROLE_CONFIG,
   LOAD_CONFIG,
   SAVE_CONFIG,
-  CREATE_GAME
+  CREATE_GAME,
+  CURRENT_GAME
 } from 'constants/GameSetupConstants';
 
 class GameSetup extends Marty.ActionCreators {
@@ -51,6 +52,10 @@ class GameSetup extends Marty.ActionCreators {
 
   createGame() {
     this.dispatch(CREATE_GAME);
+  }
+
+  submitConfig() {
+    this.saveConfig(CURRENT_GAME);
   }
 }
 
