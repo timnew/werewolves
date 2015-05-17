@@ -1,7 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
-import React, { PropTypes, shouldComponentUpdate } from 'reactx';
+import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
 import RoleTableRow from './RoleTableRow';
 
@@ -16,8 +16,6 @@ class RoleTable extends React.Component {
   get roleCount() { return this.props.roleCount; }
   get roleSchema() { return this.props.roleSchema; }
   get error() { return this.props.error; }
-
-  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     return (
@@ -112,5 +110,6 @@ RoleTable.defaultProps = {
   },
   error: null
 };
+RoleTable.enablePureRender();
 
 export default RoleTable;

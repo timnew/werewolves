@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import React, { PropTypes, shouldComponentUpdate } from 'reactx';
+import React, { PropTypes } from 'reactx';
 
 import { FaIcon } from 'react-fa-icon';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
@@ -24,8 +24,6 @@ class PlayerTableRow extends React.Component {
 
   get playerName() { return this.player.name || `Player ${this.props.index + 1}`; }
   get playerSeat() { return this.player.seat || `Seat ${this.props.index + 1}`; }
-
-  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     if(this.inEditing) {
@@ -72,7 +70,7 @@ class PlayerTableRow extends React.Component {
   }
 
   createStateLink(field) {
-    return super.createStateLink(field, this.updatePlayer.bind(this, field));
+    return super.createStateLink(field, this.updatePlayer, true);
   }
 
   updatePlayer(field, value) {
@@ -146,5 +144,6 @@ PlayerTableRow.defaultProps = {
   player: null,
   editingStatusChanged: function(){}
 };
+PlayerTableRow.enablePureRender();
 
 export default PlayerTableRow;

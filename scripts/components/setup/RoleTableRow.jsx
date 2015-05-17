@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PropTypes, shouldComponentUpdate } from 'reactx';
+import React, { PropTypes } from 'reactx';
 import { FaIcon } from 'react-fa-icon';
 import GameSetup from 'actions/GameSetup';
 
@@ -25,8 +25,6 @@ class RoleTableRow extends React.Component {
 
     GameSetup.updateRoleConfig(this.name, value);
   }
-
-  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     return (
@@ -66,10 +64,7 @@ class RoleTableRow extends React.Component {
       <span>
         {this.count}
         <input type='checkbox'
-               checkedLink={{
-                 value: !!this.count,
-                 requestChange: this.countChanged.bind(this)
-               }}/>
+               checkedLink={this.createStateLink('count', this.countChanged)}/>
       </span>
     );
   }
@@ -82,10 +77,7 @@ class RoleTableRow extends React.Component {
                min={this.spec.min}
                max={this.spec.max}
                step={1}
-               valueLink={{
-                 value: this.count,
-                 requestChange: this.countChanged.bind(this)
-               }}/>
+               valueLink={this.createStateLink('count', this.countChanged)}/>
       </span>
     );
   }
@@ -106,5 +98,6 @@ RoleTableRow.defaultProps = {
   },
   count: 1
 };
+RoleTableRow.enablePureRender();
 
 export default RoleTableRow;

@@ -1,7 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
-import React, { shouldComponentUpdate, PropTypes } from 'reactx';
+import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 import PlayerTableRow from './PlayerTableRow';
@@ -53,8 +53,6 @@ class PlayerTable extends React.Component {
     children[index] = state;
     this.setChildrenInEditing(_.filter(children, (v)=>v).length);
   }
-
-  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     return (
@@ -177,5 +175,7 @@ PlayerTable.defaultProps = {
   error: null,
   canDecreasePlayer: false
 };
+
+PlayerTable.enablePureRender();
 
 export default PlayerTable;
