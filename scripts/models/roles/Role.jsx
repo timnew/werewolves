@@ -18,8 +18,13 @@ class Role {
   }
 
   get player() { return this._player; }
-  get name(){ return this.player.name; }
-  get seat() { return this.player.seat; }
+  set bindPlayer(player) {
+    this._player = player;
+    return this;
+  }
+  get hasPlayer() { return this.player != null; }
+  get name(){ return this.hasPlayer ? this.player.name : '<Unknown>'; }
+  get seat() { return this.hasPlayer ? this.player.seat : '<Unknown>'; }
 
   get side() {
     return this._side;

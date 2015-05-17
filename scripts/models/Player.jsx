@@ -6,11 +6,11 @@ class Player {
         this._seat = seat;
     }
 
-    get name(){ return this._name; }
+    get name() { return this._name; }
     get seat() { return this._seat; }
 
-    settleRole(Role) {
-      return new Role(this);
+    settleRole(role) {
+      return role.bindPlayer(this);
     }
 }
 
