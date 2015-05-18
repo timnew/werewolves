@@ -1,15 +1,17 @@
 'use strict';
 
 import React from 'react';
-import { FaIcon, FaStack } from 'react-fa-icon';
+import {Grid} from 'react-bootstrap';
+import Phase from './game/Phase';
+import GameStatus from './game/GameStatus';
 
 class Game extends React.Component {
     render() {
         return (
-            <FaStack>
-                <FaIcon icon='square-o' stack='2x'/>
-                <FaIcon icon='twitter' stack='1x'/>
-            </FaStack>
+          <Grid>
+            <Phase description="Night is comming" canMoveNext={true}/>
+            <GameStatus/>
+          </Grid>
         );
     }
 }

@@ -2,7 +2,7 @@
 
 import Marty from 'marty';
 
-var GameSetupConstants = Marty.createConstants([
+const GameSetupConstants = Marty.createConstants([
       'UPDATE_PLAYER_COUNT',
       'ADD_PLAYER',
       'REMOVE_PLAYER',
