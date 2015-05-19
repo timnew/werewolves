@@ -11,6 +11,7 @@ import GameConfigStorage from 'stateSources/GameConfigStorage';
 import Player from 'models/Player';
 import Roles, { Uncertain } from 'models/roles';
 import { Phase, SunSetPhase, SunRisePhase, VotePhase } from 'models/phases';
+import Turn from 'models/Turn';
 
 export class GameEngine extends Marty.Store {
   constructor(options) {
@@ -28,9 +29,10 @@ export class GameEngine extends Marty.Store {
   get players() { return this.state.players; }
   get unassignedRoles() { return this.state.unassignedRoles; }
   get nightPhases() { return this.state.nightPhases; }
-  get dayIndex() { return this.state.dayIndex; }
+  get dayIndex() { return this.currentTurn.dayIndex; }
   get phaseGenerator() { return this.state.phaseGenerator; }
   get currentPhase() { return this.state.currentPhase; }
+  get currentTurn() { return this.state.currentTurn; }
 
   createGame() {
     this.initGame(GameConfigStorage.loadCurrentConfig());
@@ -45,7 +47,7 @@ export class GameEngine extends Marty.Store {
       nightPhases: this.populateNightPhases(roleSchema),
       phaseGenerator: this.gamePhaseGenerator(),
       currentPhase: new Phase(),
-      dayIndex: 1
+      currentTurn: new Turn(0)
     };
 
     this.nextStep();
@@ -58,9 +60,13 @@ export class GameEngine extends Marty.Store {
       .value();
   }
 
+  nextTurn() {
+    this.state.currentTurn = new Turn(this.dayIndex + 1);
+  }
+
   populateNightPhases(roleSchema) {
     return _(roleSchema)
-      .pick((count)=>count > 0)      
+      .pick((count)=>count > 0)
       .keys()
       .map((roleName) => Roles[roleName])
       .filter('hasActiveAction')
@@ -84,7 +90,17 @@ export class GameEngine extends Marty.Store {
   }
 
   nextStep() {
-    this.setState({currentPhase: this.phaseGenerator.next().value});
+    this.gotoPhase(this.phaseGenerator.next().value);
+  }
+
+  gotoPhase(phase) {
+    this.currentPhase.onPhaseCompleted(this);
+
+    this.state.currentPhase = phase;
+
+    this.currentPhase.onPhaseBegin(this);
+
+    this.hasChanged();
   }
 }
 

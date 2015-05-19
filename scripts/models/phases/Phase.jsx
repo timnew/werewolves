@@ -9,6 +9,9 @@ class Phase {
 
   get description() { return '-- Game Not Started --'; }
   get canMoveNext() { return true; }
+
+  onPhaseCompleted() { }
+  onPhaseBegin() { }
 }
 
 export default Phase;
