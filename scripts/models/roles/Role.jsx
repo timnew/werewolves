@@ -5,43 +5,27 @@ import roleSpecs from './roleSpecs';
 class Role {
   constructor(player) {
     this._player = player;
-    this._alive = true;
-    this._side = roleSpecs[this.roleName].side;
-  }
-
-  get roleName() {
-    return this.constructor.name;
-  }
-
-  get nightTurnOrder(){
-    return roleSpecs[this.roleName].order;
   }
 
   get player() { return this._player; }
-  set bindPlayer(player) {
-    this._player = player;
-    return this;
-  }
-  get hasPlayer() { return this.player != null; }
-  get name(){ return this.hasPlayer ? this.player.name : '<Unknown>'; }
-  get seat() { return this.hasPlayer ? this.player.seat : '<Unknown>'; }
+  get name() { return this.player.name; }
+  get seat() { return this.player.seat; }
+  get alive() { return this.player.alive; }
 
-  get side() {
-    return this._side;
+  static get roleName() {
+    return this.name;
   }
 
-  get alive() {
-    return this._alive;
+  static get actionInNightTurn() {
+    return this.nightTurnOrder > 0;
   }
 
-  inNightTurn(turn) {
-    return this.nightTurnOrder > 0 && this.alive;
+  static get nightTurnOrder(){
+    return roleSpecs[this.roleName].order;
   }
 
-  playNightTurn(turn){
-  }
-
-  playDayTurn(turn) {
+  static get defaultSide() {
+    return roleSpecs[this.roleName].side;
   }
 }
 

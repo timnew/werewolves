@@ -5,30 +5,30 @@ import Marty from 'marty';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import {
-    UPDATE_PLAYER_COUNT,
-    UPDATE_ROLE_CONFIG,
-    SAVE_CONFIG,
-    LOAD_CONFIG
-  } from 'constants/GameSetupConstants';
+  UPDATE_PLAYER_COUNT,
+  UPDATE_ROLE_CONFIG,
+  SAVE_CONFIG,
+  LOAD_CONFIG
+} from 'constants/GameSetupConstants';
 
 import roleSpecs from 'models/roles/roleSpecs';
 import defaultRoleSchemas from 'models/roles/roleSchemas';
 
 export class RoleConfigStore extends Marty.Store {
   constructor(options) {
-      super(options);
+    super(options);
 
-      this.state = {
-      };
+    this.state = {
+    };
 
-      this.updateSchema(5);
+    this.updateSchema(5);
 
-      this.handlers = {
-        updateSchema: UPDATE_PLAYER_COUNT,
-        updateRoleConfig: UPDATE_ROLE_CONFIG,
-        saveConfig: SAVE_CONFIG,
-        loadConfig: LOAD_CONFIG
-      };
+    this.handlers = {
+      updateSchema: UPDATE_PLAYER_COUNT,
+      updateRoleConfig: UPDATE_ROLE_CONFIG,
+      saveConfig: SAVE_CONFIG,
+      loadConfig: LOAD_CONFIG
+    };
   }
 
   get playerCount() { return this.state.playerCount; }

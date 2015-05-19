@@ -1,11 +1,23 @@
 'use strict';
 
-export * from './Role';
-export * from './Cupido';
-export * from './Guardian';
-export * from './Werewolf';
-export * from './Witch';
-export * from './Seer';
-export * from './Hunter';
-export * from './Idiot';
-export * from './Villager';
+import Cupido from './Cupido';
+import Guardian from './Guardian';
+import Werewolf from './Werewolf';
+import Witch from './Witch';
+import Seer from './Seer';
+import Hunter from './Hunter';
+import Idiot from './Idiot';
+import Villager from './Villager';
+import UncertainRole from './UncertainRole';
+
+export default {
+  Cupido,
+  Guardian,
+  Werewolf,
+  Witch,
+  Seer,
+  Hunter,
+  Idiot,
+  Villager,
+  UncertainRole
+};

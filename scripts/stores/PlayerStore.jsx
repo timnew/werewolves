@@ -6,37 +6,37 @@ import _ from 'lodash';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import {
-    UPDATE_PLAYER_COUNT,
-    ADD_PLAYER,
-    REMOVE_PLAYER,
-    UPDATE_PLAYER,
-    REMOVE_ALL_PLAYERS,
-    SAVE_CONFIG,
-    LOAD_CONFIG
-  } from 'constants/GameSetupConstants';
+  UPDATE_PLAYER_COUNT,
+  ADD_PLAYER,
+  REMOVE_PLAYER,
+  UPDATE_PLAYER,
+  REMOVE_ALL_PLAYERS,
+  SAVE_CONFIG,
+  LOAD_CONFIG
+} from 'constants/GameSetupConstants';
 const MIN_PLAYER_COUNT = 5;
 
 export class PlayerStore extends Marty.Store {
   constructor(options) {
-      super(options);
+    super(options);
 
-      this.state = {
-        expectedPlayerCount: MIN_PLAYER_COUNT,
-        players: [],
-        validationError: null
-      };
+    this.state = {
+      expectedPlayerCount: MIN_PLAYER_COUNT,
+      players: [],
+      validationError: null
+    };
 
-      this.handlers = {
-        updateExpectedPlayerCount: UPDATE_PLAYER_COUNT,
-        addPlayer: ADD_PLAYER,
-        removePlayer: REMOVE_PLAYER,
-        updatePlayer: UPDATE_PLAYER,
-        removeAllPlayers: REMOVE_ALL_PLAYERS,
-        saveConfig: SAVE_CONFIG,
-        loadConfig: LOAD_CONFIG
-      };
+    this.handlers = {
+      updateExpectedPlayerCount: UPDATE_PLAYER_COUNT,
+      addPlayer: ADD_PLAYER,
+      removePlayer: REMOVE_PLAYER,
+      updatePlayer: UPDATE_PLAYER,
+      removeAllPlayers: REMOVE_ALL_PLAYERS,
+      saveConfig: SAVE_CONFIG,
+      loadConfig: LOAD_CONFIG
+    };
 
-      this.validate();
+    this.validate();
   }
 
   get expectedPlayerCount() { return this.state.expectedPlayerCount; }
