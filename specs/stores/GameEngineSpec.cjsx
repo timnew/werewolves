@@ -2,7 +2,7 @@ describe 'GameEngine', ->
   GameEngine = require(sourceRoot.stores('GameEngine')).GameEngine
   GamePlay = require(sourceRoot.actions('GamePlay'))
   Roles = require(sourceRoot.models('roles'))
-  {UncertainRole} = Roles
+  { Uncertain } = Roles
 
   gameEngine = null
 
@@ -27,7 +27,7 @@ describe 'GameEngine', ->
     it 'should create players', ->
       gameEngine.players.should.have.length 9
       gameEngine.players.forEach (player) ->
-        player.should.be.an.instanceOf UncertainRole
+        player.should.be.an.instanceOf Uncertain
         player.name.should.be.a 'string'
         player.seat.should.be.a 'string'
         player.alive.should.be.true
@@ -48,4 +48,3 @@ describe 'GameEngine', ->
         Witch: 1
 
   describe '', ->
-    

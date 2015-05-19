@@ -10,19 +10,39 @@ class GameStatusRow extends React.Component {
     });
   }
 
+  get player() { return this.props.player; }
+
   render() {
     return (
       <tr>
         <td>
-          <StatusIcon prefix='status' icon='dead'/>
-          <StatusIcon prefix='status' icon='sheriff'/>
-          <StatusIcon prefix='status' icon='lover'/>
-          <StatusIcon prefix='role' icon='werewolf'/>
+          {this.renderDeadStatus()}
+          {this.renderSheriffStatus()}
+          {this.renderLoverStatus()}
+          <StatusIcon prefix='role' icon={this.player.roleName.toLowerCase()}/>
         </td>
-        <td>Player1 (Seat 1)</td>
+        <td>{this.player.name} (this.player.seat)</td>
         <td></td>
       </tr>
     );
+  }
+
+  renderDeadStatus() {
+    if(!this.player.alive) {
+      return <StatusIcon prefix='status' icon='dead'/>;
+    }
+  }
+
+  renderSheriffStatus() {
+    if(this.player.sheriff) {
+      return <StatusIcon prefix='status' icon='sheriff'/>;
+    }
+  }
+
+  renderLoverStatus() {
+    if(this.player.lover) {
+      return <StatusIcon prefix='status' icon='lover'/>;
+    }
   }
 }
 GameStatusRow.propTypes = {

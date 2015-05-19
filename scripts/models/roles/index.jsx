@@ -8,7 +8,7 @@ import Seer from './Seer';
 import Hunter from './Hunter';
 import Idiot from './Idiot';
 import Villager from './Villager';
-import UncertainRole from './UncertainRole';
+import Uncertain from './Uncertain';
 
 export default {
   Cupido,
@@ -19,5 +19,5 @@ export default {
   Hunter,
   Idiot,
   Villager,
-  UncertainRole
+  Uncertain
 };

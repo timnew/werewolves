@@ -2,11 +2,14 @@
 
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
+import GameStatusRow from './GameStatusRow';
 
 class GameStatus extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  get players() { return this.props.players; }
 
   render() {
     return (
@@ -30,14 +33,17 @@ class GameStatus extends React.Component {
   }
 
   renderChildren() {
-
+    return this.players.map((player) =>
+      <GameStatusRow player={player} key={player.name}/>
+    );
   }
 }
 GameStatus.propTypes = {
-  players: PropTypes.array.isRequired,
-  turn: PropTypes.object.isRequired
+  players: PropTypes.array.isRequired
 };
-GameStatus.defaultProps = {};
+GameStatus.defaultProps = {
+  players: []
+};
 GameStatus.enablePureRender();
 
 export default GameStatus;

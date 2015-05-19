@@ -7,7 +7,7 @@ import GameSetup from 'actions/GameSetup';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import Player from 'models/Player';
-import Roles, { UncertainRole } from 'models/roles';
+import Roles, { Uncertain } from 'models/roles';
 
 export class GameEngine extends Marty.Store {
   constructor(options) {
@@ -45,7 +45,7 @@ export class GameEngine extends Marty.Store {
   createPlayers(players) {
     return _(players)
       .map((playerDef) => new Player(playerDef.name, playerDef.seat))
-      .map((player) => new UncertainRole(player))
+      .map((player) => new Uncertain(player))
       .value();
   }
 

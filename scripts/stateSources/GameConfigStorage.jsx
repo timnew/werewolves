@@ -24,7 +24,7 @@ export class GameConfigStorage extends Marty.LocalStorageStateSource {
 
   loadCurrentGameConfig() {
     return {
-      'players': this.loadConfig(CURRENT_GAME, 'players'),
+      'players': this.loadConfig(CURRENT_GAME, 'players').players,
       'roleSchema': this.loadConfig(CURRENT_GAME, 'roleConfig').roleSchema
     };
   }
