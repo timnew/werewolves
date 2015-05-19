@@ -8,7 +8,9 @@ import {
   UPDATE_PLAYER_COUNT,
   UPDATE_ROLE_CONFIG,
   SAVE_CONFIG,
-  LOAD_CONFIG
+  LOAD_CONFIG,
+  INIT_CONFIG,
+  CURRENT_CONFIG
 } from 'constants/GameSetupConstants';
 
 import roleSpecs from 'models/roles/roleSpecs';
@@ -27,7 +29,8 @@ export class RoleConfigStore extends Marty.Store {
       updateSchema: UPDATE_PLAYER_COUNT,
       updateRoleConfig: UPDATE_ROLE_CONFIG,
       saveConfig: SAVE_CONFIG,
-      loadConfig: LOAD_CONFIG
+      loadConfig: LOAD_CONFIG,
+      initConfig: INIT_CONFIG
     };
   }
 
@@ -130,6 +133,11 @@ export class RoleConfigStore extends Marty.Store {
   }
 
   loadConfig(name) {
+    if(!GameConfigStorage.hasConfig(name, 'roleConfig')) {
+      console.error(`Config ${name} doesn't exist`);
+      return;
+    }
+
     let currentConfig = this.state;
 
     this.state = GameConfigStorage.loadConfig(name, 'roleConfig');
@@ -139,6 +147,10 @@ export class RoleConfigStore extends Marty.Store {
       this.state = currentConfig;
       this.validate();
     }
+  }
+
+  initConfig() {
+    this.loadConfig(CURRENT_CONFIG);
   }
 }
 

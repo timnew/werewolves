@@ -2,7 +2,7 @@
 
 import Marty from 'marty';
 
-import { CURRENT_GAME } from 'constants/GameSetupConstants';
+import { CURRENT_CONFIG } from 'constants/GameSetupConstants';
 
 function buildName(...args) {
   return args.join(':');
@@ -22,10 +22,14 @@ export class GameConfigStorage extends Marty.LocalStorageStateSource {
     return JSON.parse(this.get(buildName(name, spec)));
   }
 
-  loadCurrentGameConfig() {
+  hasConfig(name, spec) {
+    return !!this.get(buildName(name, spec));
+  }
+
+  loadCurrentConfig() {
     return {
-      'players': this.loadConfig(CURRENT_GAME, 'players').players,
-      'roleSchema': this.loadConfig(CURRENT_GAME, 'roleConfig').roleSchema
+      'players': this.loadConfig(CURRENT_CONFIG, 'players').players,
+      'roleSchema': this.loadConfig(CURRENT_CONFIG, 'roleConfig').roleSchema
     };
   }
 }

@@ -12,7 +12,9 @@ import {
   UPDATE_PLAYER,
   REMOVE_ALL_PLAYERS,
   SAVE_CONFIG,
-  LOAD_CONFIG
+  LOAD_CONFIG,
+  INIT_CONFIG,
+  CURRENT_CONFIG
 } from 'constants/GameSetupConstants';
 const MIN_PLAYER_COUNT = 5;
 
@@ -33,7 +35,8 @@ export class PlayerStore extends Marty.Store {
       updatePlayer: UPDATE_PLAYER,
       removeAllPlayers: REMOVE_ALL_PLAYERS,
       saveConfig: SAVE_CONFIG,
-      loadConfig: LOAD_CONFIG
+      loadConfig: LOAD_CONFIG,
+      initConfig: INIT_CONFIG
     };
 
     this.validate();
@@ -129,8 +132,24 @@ export class PlayerStore extends Marty.Store {
   }
 
   loadConfig(name) {
+    if(!GameConfigStorage.hasConfig(name, 'players')) {
+      console.error(`Config ${name} doesn't exist`);
+      return;
+    }
+
+    let currentConfig = this.state;
+
     this.state = GameConfigStorage.loadConfig(name, 'players');
-    this.validate();
+
+    if(!this.validate()) {
+      console.error('Loaded config is invalid, restore to previous one');
+      this.state = currentConfig;
+      this.validate();
+    }
+  }
+
+  initConfig() {
+    this.loadConfig(CURRENT_CONFIG);
   }
 }
 

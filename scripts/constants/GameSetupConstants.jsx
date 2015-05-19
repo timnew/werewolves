@@ -13,9 +13,9 @@ const GameSetupConstants = Marty.createConstants([
 
       'LOAD_CONFIG',
       'SAVE_CONFIG',
+      'INIT_CONFIG',
 
-      'CREATE_GAME',
-      'CURRENT_GAME'
+      'CURRENT_CONFIG'
   ]);
 
 export default GameSetupConstants;
