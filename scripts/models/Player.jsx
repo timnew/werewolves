@@ -13,10 +13,6 @@ class Player {
   get alive() { return this._alive; }
   get sheriff() { return this._sheriff; }
   get lover() { return this._lover; }
-
-  toString() {
-    return `${this.name}(${this.seat})`;
-  }
 }
 
 export default Player;

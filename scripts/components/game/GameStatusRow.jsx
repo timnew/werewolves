@@ -21,7 +21,7 @@ class GameStatusRow extends React.Component {
           {this.renderLoverStatus()}
           <StatusIcon prefix='role' icon={this.player.roleName.toLowerCase()}/>
         </td>
-        <td>{this.player.name} (this.player.seat)</td>
+        <td>{this.player.name} ({this.player.seat})</td>
         <td></td>
       </tr>
     );
