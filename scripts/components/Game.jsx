@@ -14,7 +14,8 @@ class Game extends React.Component {
         return (
           <Grid>
             <PropertyBinder source={GameEngine} binding={{
-                dayIndex: 'dayIndex'
+                dayIndex: 'dayIndex',
+                phase: 'currentPhase'
               }}>
               <GamePhase description="Night is comming" canMoveNext={true}/>
             </PropertyBinder>

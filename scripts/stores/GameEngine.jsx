@@ -9,7 +9,8 @@ import {
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import Player from 'models/Player';
-import Roles, { Villager, Uncertain } from 'models/roles';
+import Roles, { Uncertain } from 'models/roles';
+import { Phase, SunSetPhase, SunRisePhase, VotePhase } from 'models/phases';
 
 export class GameEngine extends Marty.Store {
   constructor(options) {
@@ -43,7 +44,7 @@ export class GameEngine extends Marty.Store {
       unassignedRoles: _.cloneDeep(roleSchema),
       nightPhases: this.populateNightPhases(roleSchema),
       phaseGenerator: this.gamePhaseGenerator(),
-      currentPhase: null,
+      currentPhase: new Phase(),
       dayIndex: 1
     };
 
@@ -68,12 +69,17 @@ export class GameEngine extends Marty.Store {
   }
 
   *turnPhaseGenerator() {
+    yield new SunSetPhase();
     yield* this.nightPhases;
-    yield Villager.createPhase();
+    yield new SunRisePhase();
+    yield new VotePhase();
   }
 
   *gamePhaseGenerator() {
-    yield* this.turnPhaseGenerator();
+    do {
+      yield* this.turnPhaseGenerator();
+    } while(true);
+
   }
 
   nextStep() {

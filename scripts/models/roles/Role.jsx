@@ -1,6 +1,7 @@
 'use strict';
 
 import roleSpecs from './roleSpecs';
+import Phase from 'models/phases/Phase';
 
 class Role {
   constructor(player) {
@@ -33,7 +34,7 @@ class Role {
   }
 
   static createPhase() {
-    return { name: this.roleName };
+    return new Phase(this.roleName);
   }
 }
 
