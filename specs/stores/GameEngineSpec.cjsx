@@ -1,10 +1,20 @@
 describe 'GameEngine', ->
+  _ = require('lodash')
   GameEngine = require(sourceRoot.stores('GameEngine')).GameEngine
   GamePlay = require(sourceRoot.actions('GamePlay'))
   Roles = require(sourceRoot.models('roles'))
   { Uncertain } = Roles
 
   gameEngine = null
+
+  populateIterator = (iterator) ->
+    result = []
+
+    until current?.done
+      current = iterator.next()
+      result.push current.value unless current.done
+
+    result
 
   beforeEach ->
     gameEngine = new GameEngine({})
@@ -32,9 +42,9 @@ describe 'GameEngine', ->
         player.seat.should.be.a 'string'
         player.alive.should.be.true
 
-    it 'should create night sequence', ->
-      gameEngine.nightSequence.should.have.length 5
-      gameEngine.nightSequence.map((r)->r.name).should.deep.equal [ 'Cupido', 'Guardian', 'Werewolf', 'Witch', 'Seer' ]
+    it 'should create phases', ->
+      gameEngine.nightPhases.should.have.length 5
+      gameEngine.nightPhases.map((p) -> p.name).should.deep.equal [ 'Cupido', 'Guardian', 'Werewolf', 'Witch', 'Seer' ]
 
     it 'should prepare unassigned roles', ->
       gameEngine.unassignedRoles.should.deep.equal
@@ -47,4 +57,8 @@ describe 'GameEngine', ->
         Seer: 1,
         Witch: 1
 
-  describe '', ->
+  describe 'game rules', ->
+
+    it 'should iterate through phases', ->
+      phases = populateIterator gameEngine.turnPhaseGenerator()
+      phases.map((p)->p.name).should.have.members [ 'Cupido', 'Guardian', 'Werewolf', 'Witch', 'Seer', 'Villager' ]

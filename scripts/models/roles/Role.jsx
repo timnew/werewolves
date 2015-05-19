@@ -20,16 +20,20 @@ class Role {
     return this.name;
   }
 
-  static get actionInNightTurn() {
-    return this.nightTurnOrder > 0;
+  static get hasActiveAction() {
+    return this.actionOrder > 0;
   }
 
-  static get nightTurnOrder(){
+  static get actionOrder(){
     return roleSpecs[this.roleName].order;
   }
 
   static get defaultSide() {
     return roleSpecs[this.roleName].side;
+  }
+
+  static createPhase() {
+    return { name: this.roleName };
   }
 }
 

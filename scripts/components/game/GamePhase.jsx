@@ -5,7 +5,7 @@ import { Row, Panel, Button } from 'react-bootstrap';
 
 import GamePlay from 'actions/GamePlay';
 
-class Phase extends React.Component {
+class GamePhase extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -14,30 +14,38 @@ class Phase extends React.Component {
     GamePlay.nextStep();
   }
 
+  get dayIndex() { return this.props.dayIndex; }
   get description() { return this.props.description; }
   get canMoveNext() { return this.props.canMoveNext; }
 
   render() {
     return (
       <Row>
-        <Panel bsStyle='info' header='Phase' footer={this.renderFooter()}>
+        <Panel bsStyle='info' header={this.renderHeader()} footer={this.renderFooter()}>
           {this.description}
         </Panel>
       </Row>
     );
   }
 
+  renderHeader() {
+    return `Description ( Day ${this.dayIndex} )`;
+  }
+
   renderFooter() {
     return <Button bsStyle='primary' disabled={!this.canMoveNext} onClick={this.nextStep.bind(this)}>Next Step</Button>;
   }
 }
-Phase.propTypes = {
-  description: PropTypes.string.isRequired,
+GamePhase.propTypes = {
+  dayIndex: PropTypes.number,
+  description: PropTypes.string,
   canMoveNext: PropTypes.bool
 };
-Phase.defaultProps = {
+GamePhase.defaultProps = {
+  dayIndex: 1,
+  description: '',
   canMoveNext: true
 };
-Phase.enablePureRender();
+GamePhase.enablePureRender();
 
-export default Phase;
+export default GamePhase;
