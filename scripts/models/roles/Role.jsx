@@ -17,6 +17,12 @@ class Role {
 
   get roleName() { return this.constructor.name; }
 
+  killBy(reason) {
+    this.player.killBy(reason);
+
+    return true;
+  }
+
   static get roleName() {
     return this.name;
   }
@@ -34,7 +40,7 @@ class Role {
   }
 
   static createPhase() {
-    return new Phase(this.roleName);
+    return new Phase(this.roleName + 'Phase');
   }
 }
 

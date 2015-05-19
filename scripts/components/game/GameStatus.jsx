@@ -4,12 +4,15 @@ import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
 import GameStatusRow from './GameStatusRow';
 
+import Phase from 'models/phases/Phase';
+
 class GameStatus extends React.Component {
   constructor(props) {
     super(props);
   }
 
   get players() { return this.props.players; }
+  get phase() { return this.props.phase; }
 
   render() {
     return (
@@ -34,15 +37,17 @@ class GameStatus extends React.Component {
 
   renderChildren() {
     return this.players.map((player) =>
-      <GameStatusRow player={player} key={player.name}/>
+      <GameStatusRow key={player.name} player={player} phase={this.phase}/>
     );
   }
 }
 GameStatus.propTypes = {
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  phase: PropTypes.instanceOf(Phase)
 };
 GameStatus.defaultProps = {
-  players: []
+  players: [],
+  phase: new Phase()
 };
 GameStatus.enablePureRender();
 

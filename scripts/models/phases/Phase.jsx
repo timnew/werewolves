@@ -7,8 +7,8 @@ class Phase {
 
   get name() { return this._name; }
 
-  get description() { return '-- Game Not Started --'; }
-  get canMoveNext() { return true; }
+  getDescription() { return '-- Game Not Started --'; }
+  canMoveNext() { return true; }
 
   onPhaseCompleted() { }
   onPhaseBegin() { }

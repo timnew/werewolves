@@ -59,11 +59,11 @@ describe 'GameEngine', ->
       phases = populateIterator gameEngine.turnPhaseGenerator()
       phases.map((p)->p.name).should.have.members [
         'SunRisePhase'
-        'Cupido'
-        'Guardian'
-        'Werewolf'
-        'Witch'
-        'Seer'
+        'CupidoPhase'
+        'GuardianPhase'
+        'WerewolfPhase'
+        'WitchPhase'
+        'SeerPhase'
         'SunSetPhase'
         'VotePhase'
       ]

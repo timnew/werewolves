@@ -15,11 +15,15 @@ class Game extends React.Component {
           <Grid>
             <PropertyBinder source={GameEngine} binding={{
                 dayIndex: 'dayIndex',
-                phase: 'currentPhase'
+                phase: 'currentPhase',
+                turn: 'currentTurn'
               }}>
               <GamePhase description="Night is comming" canMoveNext={true}/>
             </PropertyBinder>
-            <PropertyBinder source={GameEngine} binding={{players: 'players'}}>
+            <PropertyBinder source={GameEngine} binding={{
+                players: 'players',
+                phase: 'currentPhase'
+              }}>
               <GameStatus/>
             </PropertyBinder>
           </Grid>

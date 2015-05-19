@@ -4,7 +4,10 @@ import _ from 'lodash';
 
 import {
   CREATE_GAME,
-  NEXT_STEP
+  NEXT_STEP,
+
+  SETTLE_ROLE,
+  KILL_PLAYER
 } from 'constants/GamePlayConstants';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
@@ -22,11 +25,13 @@ export class GameEngine extends Marty.Store {
 
     this.handlers = {
       createGame: CREATE_GAME,
-      nextStep: NEXT_STEP
+      nextStep: NEXT_STEP,
+      settleRole: SETTLE_ROLE,
+      killPlayer: KILL_PLAYER
     };
   }
 
-  get players() { return this.state.players; }
+  get players() { return _.values(this.state.players); }
   get unassignedRoles() { return this.state.unassignedRoles; }
   get nightPhases() { return this.state.nightPhases; }
   get dayIndex() { return this.currentTurn.dayIndex; }
@@ -57,6 +62,8 @@ export class GameEngine extends Marty.Store {
     return _(players)
       .map((playerDef) => new Player(playerDef.name, playerDef.seat))
       .map((player) => new Uncertain(player))
+      .map((player) => [player.name, player])
+      .zipObject()
       .value();
   }
 
@@ -101,6 +108,18 @@ export class GameEngine extends Marty.Store {
     this.currentPhase.onPhaseBegin(this);
 
     this.hasChanged();
+  }
+
+  settleRole(player, role) {
+    this.state.players[player.name] = this.state.players[player.name].settleRole(role);
+    this.hasChanged();
+  }
+
+  killPlayer(player, reason) {
+    if(player.killBy(reason)) {
+      this.currentTurn.deadPlayers.push(player);
+      this.hasChanged();
+    }
   }
 }
 
