@@ -42,10 +42,6 @@ describe 'GameEngine', ->
         player.seat.should.be.a 'string'
         player.alive.should.be.true
 
-    it 'should create phases', ->
-      gameEngine.nightPhases.should.have.length 5
-      gameEngine.nightPhases.map((p) -> p.name).should.deep.equal [ 'Cupido', 'Guardian', 'Werewolf', 'Witch', 'Seer' ]
-
     it 'should prepare unassigned roles', ->
       gameEngine.unassignedRoles.should.deep.equal
         Werewolf: 2,
@@ -61,4 +57,13 @@ describe 'GameEngine', ->
 
     it 'should iterate through phases', ->
       phases = populateIterator gameEngine.turnPhaseGenerator()
-      phases.map((p)->p.name).should.have.members [ 'Cupido', 'Guardian', 'Werewolf', 'Witch', 'Seer', 'Villager' ]
+      phases.map((p)->p.name).should.have.members [
+        'SunRisePhase'
+        'Cupido'
+        'Guardian'
+        'Werewolf'
+        'Witch'
+        'Seer'
+        'SunSetPhase'
+        'VotePhase'
+      ]

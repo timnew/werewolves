@@ -60,6 +60,7 @@ export class GameEngine extends Marty.Store {
 
   populateNightPhases(roleSchema) {
     return _(roleSchema)
+      .pick((count)=>count > 0)      
       .keys()
       .map((roleName) => Roles[roleName])
       .filter('hasActiveAction')

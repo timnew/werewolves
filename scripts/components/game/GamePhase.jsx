@@ -25,7 +25,6 @@ class GamePhase extends React.Component {
     return (
       <Row>
         <Panel bsStyle='info' header={this.renderHeader()} footer={this.renderFooter()}>
-          {this.phase.name}
           {this.description}
         </Panel>
       </Row>
@@ -33,7 +32,7 @@ class GamePhase extends React.Component {
   }
 
   renderHeader() {
-    return `Description ( Day ${this.dayIndex} )`;
+    return `Description ( Day ${this.dayIndex} ): ${this.phase.name}`;
   }
 
   renderFooter() {
