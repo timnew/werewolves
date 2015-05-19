@@ -21,6 +21,10 @@ class Game extends React.Component {
           </Grid>
         );
     }
+
+    componentWillMount() {
+      GamePlay.createGame();
+    }
 }
 
 export default Game;

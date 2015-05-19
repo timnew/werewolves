@@ -16,7 +16,7 @@ class GameControlPanel extends React.Component {
   }
 
   startGame() {
-    GameSetup.createGame();
+    GameSetup.submitConfig();
     this.router.transitionTo('Play');
   }
 

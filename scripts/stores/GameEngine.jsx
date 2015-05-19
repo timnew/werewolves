@@ -3,7 +3,6 @@ import Marty from 'marty';
 import _ from 'lodash';
 
 import {CREATE_GAME} from 'constants/GameSetupConstants';
-import GameSetup from 'actions/GameSetup';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import Player from 'models/Player';
@@ -26,7 +25,6 @@ export class GameEngine extends Marty.Store {
   get nightSequence() { return this.state.nightSequence; }
 
   createGame() {
-    GameSetup.submitConfig();
     this.initGame(GameConfigStorage.loadCurrentGameConfig());
   }
 
