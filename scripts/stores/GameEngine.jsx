@@ -28,6 +28,8 @@ export class GameEngine extends Marty.Store {
   get unassignedRoles() { return this.state.unassignedRoles; }
   get nightPhases() { return this.state.nightPhases; }
   get dayIndex() { return this.state.dayIndex; }
+  get phaseGenerator() { return this.state.phaseGenerator; }
+  get currentPhase() { return this.state.currentPhase; }
 
   createGame() {
     this.initGame(GameConfigStorage.loadCurrentConfig());
@@ -40,10 +42,12 @@ export class GameEngine extends Marty.Store {
       players: this.createPlayers(players),
       unassignedRoles: _.cloneDeep(roleSchema),
       nightPhases: this.populateNightPhases(roleSchema),
-      dayIndex: 0
+      phaseGenerator: this.gamePhaseGenerator(),
+      currentPhase: null,
+      dayIndex: 1
     };
 
-    this.nextDay();
+    this.nextStep();
   }
 
   createPlayers(players) {
@@ -68,14 +72,12 @@ export class GameEngine extends Marty.Store {
     yield Villager.createPhase();
   }
 
-  nextStep() {
-
+  *gamePhaseGenerator() {
+    yield* this.turnPhaseGenerator();
   }
 
-  nextDay() {
-    this.state.dayIndex++;
-
-    this.hasChanged();
+  nextStep() {
+    this.setState({currentPhase: this.phaseGenerator.next().value});
   }
 }
 
