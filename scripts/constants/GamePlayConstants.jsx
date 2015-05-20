@@ -1,8 +1,17 @@
 'use strict';
 
-import Marty from 'marty';
+import _ from 'lodash';
 
-const GamePlayConstants = Marty.createConstants([
+const React = {
+  createConstants(constants) {
+    return _(constants)
+            .map(c => [c, c])
+            .zipObject()
+            .value();
+  }
+};
+
+const GamePlayConstants = React.createConstants([
     'CREATE_GAME',
     'NEXT_STEP',
 
@@ -11,4 +20,4 @@ const GamePlayConstants = Marty.createConstants([
     'VERIFY_PLAYER'
   ]);
 
-  export default GamePlayConstants;
+export default GamePlayConstants;
