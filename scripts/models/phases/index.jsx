@@ -7,6 +7,7 @@ import VotePhase from './VotePhase';
 
 export default {
   Phase,
+  EMPTY_PHASE: Phase.EMPTY,
   SunRisePhase,
   SunSetPhase,
   VotePhase

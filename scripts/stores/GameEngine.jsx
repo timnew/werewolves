@@ -13,7 +13,7 @@ import {
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import Roles, { Uncertain } from 'models/roles';
-import { Phase, SunSetPhase, SunRisePhase, VotePhase } from 'models/phases';
+import { EMPTY_PHASE, Phase, SunSetPhase, SunRisePhase, VotePhase } from 'models/phases';
 import Turn from 'models/Turn';
 
 export class GameEngine extends Marty.Store {
@@ -52,9 +52,11 @@ export class GameEngine extends Marty.Store {
       roleSchema: _.cloneDeep(roleSchema),
       nightPhases: this.populateNightPhases(roleSchema),
       phaseGenerator: this.gamePhaseGenerator(),
-      currentPhase: new Phase(),
-      currentTurn: new Turn(0)
+      currentPhase: EMPTY_PHASE
     };
+
+    this.state.initialTurn = this.createInitialTurn();
+    this.state.currentTurn = this.state.initialTurn;
 
     this.nextStep();
   }
@@ -65,6 +67,10 @@ export class GameEngine extends Marty.Store {
       .map((player) => [player.name, player])
       .zipObject()
       .value();
+  }
+
+  createInitialTurn() {
+    return new Turn(0);
   }
 
   nextTurn() {

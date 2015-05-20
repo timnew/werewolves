@@ -12,6 +12,10 @@ class Phase {
 
   onPhaseCompleted() { }
   onPhaseBegin() { }
+
+  static get EMPTY() {
+    return new Phase('EMPTY_PHASE');
+  }
 }
 
 export default Phase;
