@@ -1,33 +1,30 @@
 'use strict';
 
-import _ from 'lodash';
-
 class Player {
   constructor(name, seat) {
     this._name = name;
     this._seat = seat;
-    this._deathReason = null;
-    this._statusTags = [];
+    this._status = {};
   }
 
   get name() { return this._name; }
   get seat() { return this._seat; }
-  get alive() { return !this.deathReason; }
-  get deathReason() { return this._deathReason; }
-  get statusTags() { return this._statusTags; }
+  get status() { return this._status; }
+  get alive() { return !this.status.dead; }
+  get deathReason() { return this.status.dead; }
 
   killBy(reason) {
-    this._deathReason = reason;
+    this.status.dead = reason;
   }
 
-  addStatus(tag) {
-    return this.statusTags.push(tag);
+  addStatus(tag, value = true) {
+    this.status[tag] = value;
   }
   removeStatus(tag) {
-    return _.pull(this.statusTags, tag);
+    delete this.status[tag];
   }
   hasStatus(tag) {
-    return _.includes(this.statusTags, tag);
+    return !!this.status[tag];
   }
 }
 
