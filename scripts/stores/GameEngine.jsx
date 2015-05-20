@@ -132,13 +132,18 @@ export class GameEngine extends Marty.Store {
 
   attackPlayer(player) {
     player.addStatus('attacked');
-    this.currentTurn.logEvent(ATTACK_PLAYER, player);
+    this.currentTurn.logEvent(ATTACK_PLAYER, player.name);
     this.hasChanged();
   }
 
   verifyPlayer(player) {
     player.addStatus('verified');
-    this.currentTurn.logEvent(VERIFY_PLAYER, player);
+    this.currentTurn.logEvent(VERIFY_PLAYER, player.name);
+    this.hasChanged();
+  }
+
+  makeDeath() {
+    this.currentTurn.makeDeath();
     this.hasChanged();
   }
 }

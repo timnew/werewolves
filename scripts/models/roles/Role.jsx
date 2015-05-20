@@ -42,10 +42,9 @@ class Role {
     return this.status.has(tag);
   }
 
-  killBy(reason) {
+  kill(reason) {
+    this.removeStatus(reason);
     this.addStatus('dead', reason);
-
-    return true;
   }
 
   clone() {

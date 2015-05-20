@@ -7,7 +7,11 @@ class SunRisePhase extends Phase {
     super();
   }
 
-  getDescription() { return 'The sun goes up'; }
+  getDescription(turn) { return 'The sun goes up'; }
+
+  onPhaseBegin(GameEngine) {
+    GameEngine.makeDeath();
+  }
 }
 
 export default SunRisePhase;

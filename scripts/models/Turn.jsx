@@ -3,6 +3,15 @@
 import _ from 'lodash';
 import Immutable from 'immutable';
 
+import {ATTACK_PLAYER} from 'constants/GamePlayConstants';
+
+const STATUS_MAPPING = {
+  ATTACK_PLAYER: 'attacked'
+};
+const DEATH_ACTIONS = [
+  ATTACK_PLAYER
+];
+
 class Turn {
   constructor(turn) {
     this._players = Immutable.fromJS(turn.players).map(player => player.clone());
@@ -40,12 +49,19 @@ class Turn {
     this._players = this.players.set(player.name, player.changeRole(roleName));
   }
 
-  playerKilled(player, reason) {
-    this.logEvent(`${reason}Killed`, player);
-  }
-
   logEvent(event, value) {
     this._events = this.events.set(event, value);
+  }
+
+  makeDeath() {
+    DEATH_ACTIONS
+      .filter(action => this.events.has(action))
+      .map(action => [action, this.events.get(action)])
+      .forEach( actionData => {
+        let [action, playerName] = actionData;
+        let player = this.players.get(playerName);
+        player.kill(STATUS_MAPPING[action]);
+      });
   }
 }
 
