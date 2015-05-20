@@ -31,8 +31,8 @@ export class GameEngine extends Marty.Store {
     };
   }
 
-  get players() { return _.values(this.state.players); }
-  get unassignedRoles() { return this.state.unassignedRoles; }
+  get players() { return this.state.players; }
+  get roleSchema() { return this.state.roleSchema; }
   get nightPhases() { return this.state.nightPhases; }
   get dayIndex() { return this.currentTurn.dayIndex; }
   get phaseGenerator() { return this.state.phaseGenerator; }
@@ -48,7 +48,7 @@ export class GameEngine extends Marty.Store {
 
     this.state = {
       players: this.createPlayers(players),
-      unassignedRoles: _.cloneDeep(roleSchema),
+      roleSchema: _.cloneDeep(roleSchema),
       nightPhases: this.populateNightPhases(roleSchema),
       phaseGenerator: this.gamePhaseGenerator(),
       currentPhase: new Phase(),
@@ -68,7 +68,7 @@ export class GameEngine extends Marty.Store {
   }
 
   nextTurn() {
-    this.state.currentTurn = new Turn(this.dayIndex + 1);
+    this.state.currentTurn = new Turn(this.dayIndex + 1, this.players, this.roleSchema);
   }
 
   populateNightPhases(roleSchema) {
@@ -93,7 +93,6 @@ export class GameEngine extends Marty.Store {
     do {
       yield* this.turnPhaseGenerator();
     } while(true);
-
   }
 
   nextStep() {
@@ -112,12 +111,13 @@ export class GameEngine extends Marty.Store {
 
   settleRole(player, role) {
     this.state.players[player.name] = this.state.players[player.name].settleRole(role);
+
     this.hasChanged();
   }
 
   killPlayer(player, reason) {
     if(player.killBy(reason)) {
-      this.currentTurn.deadPlayers.push(player);
+      this.currentTurn.playerKilled(player, reason);
       this.hasChanged();
     }
   }

@@ -14,7 +14,7 @@ class WerewolfPhase extends Phase {
   }
 
   canMoveNext(turn) {
-    return turn.deadPlayers.length > 0;
+    return !!turn.deadPlayers.werewolf;
   }
   getDescription() {
     return (
@@ -33,8 +33,14 @@ class WerewolfPhase extends Phase {
     GamePlay.killPlayer(player, 'werewolf');
   }
 
-  renderUncertainActions(player) {
+  renderUncertainActions(player, turn) {
     if(!player.alive) {
+      return null;
+    }
+
+    console.log(turn.unassignedRoles);
+
+    if(!turn.unassignedRoles.Werewolf) {
       return null;
     }
 
@@ -47,8 +53,12 @@ class WerewolfPhase extends Phase {
     );
   }
 
-  renderDefaultActions(player) {
+  renderDefaultActions(player, turn) {
     if(!player.alive) {
+      return null;
+    }
+
+    if(turn.deadPlayers.werewolf) {
       return null;
     }
 

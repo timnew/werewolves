@@ -5,6 +5,7 @@ import StatusIcon from 'components/StatusIcon';
 import { ButtonToolbar } from 'react-bootstrap';
 
 import Phase from 'models/phases/Phase';
+import Turn from 'models/Turn';
 
 class GameStatusRow extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class GameStatusRow extends React.Component {
 
   get player() { return this.props.player; }
   get phase() { return this.props.phase; }
+  get turn() { return this.props.turn; }
 
   render() {
     return (
@@ -31,7 +33,7 @@ class GameStatusRow extends React.Component {
     );
   }
 
-  renderDeadStatus() {    
+  renderDeadStatus() {
     if(!this.player.alive) {
       return <StatusIcon prefix='status' icon='dead'/>;
     }
@@ -61,7 +63,7 @@ class GameStatusRow extends React.Component {
   tryRender(methodName) {
     let method = this.phase[methodName];
     if(method) {
-      return method.call(this.phase, this.player);
+      return method.call(this.phase, this.player, this.turn);
     }
   }
 
@@ -75,7 +77,8 @@ class GameStatusRow extends React.Component {
 }
 GameStatusRow.propTypes = {
   player: PropTypes.object.isRequired,
-  phase: PropTypes.instanceOf(Phase).isRequired
+  phase: PropTypes.instanceOf(Phase).isRequired,
+  turn: PropTypes.instanceOf(Turn).isRequired
 };
 GameStatusRow.defaultProps = {};
 // GameStatusRow.enablePureRender(); // TODO Renable this by making everything immutable
