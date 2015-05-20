@@ -6,13 +6,12 @@ import {
   CREATE_GAME,
   NEXT_STEP,
 
-  SETTLE_ROLE,
+  CHANGE_ROLE,
   KILL_PLAYER,
   VERIFY_PLAYER
 } from 'constants/GamePlayConstants';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
-import Player from 'models/Player';
 import Roles, { Uncertain } from 'models/roles';
 import { Phase, SunSetPhase, SunRisePhase, VotePhase } from 'models/phases';
 import Turn from 'models/Turn';
@@ -27,7 +26,7 @@ export class GameEngine extends Marty.Store {
     this.handlers = {
       createGame: CREATE_GAME,
       nextStep: NEXT_STEP,
-      settleRole: SETTLE_ROLE,
+      changeRole: CHANGE_ROLE,
       killPlayer: KILL_PLAYER,
       verifyPlayer: VERIFY_PLAYER
     };
@@ -62,7 +61,6 @@ export class GameEngine extends Marty.Store {
 
   createPlayers(players) {
     return _(players)
-      .map((playerDef) => new Player(playerDef.name, playerDef.seat))
       .map((player) => new Uncertain(player))
       .map((player) => [player.name, player])
       .zipObject()
@@ -111,8 +109,8 @@ export class GameEngine extends Marty.Store {
     this.hasChanged();
   }
 
-  settleRole(player, role) {
-    this.state.players[player.name] = this.state.players[player.name].settleRole(role);
+  changeRole(player, role) {
+    this.state.players[player.name] = this.state.players[player.name].changeRole(role);
 
     this.hasChanged();
   }

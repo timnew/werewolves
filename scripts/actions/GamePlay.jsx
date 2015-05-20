@@ -5,7 +5,7 @@ import {
   CREATE_GAME,
   NEXT_STEP,
 
-  SETTLE_ROLE,
+  CHANGE_ROLE,
   KILL_PLAYER,
   VERIFY_PLAYER
 } from 'constants/GamePlayConstants';
@@ -18,8 +18,8 @@ class GamePlay extends Marty.ActionCreators {
     this.dispatch(NEXT_STEP);
   }
 
-  settleRole(player, role) {
-    this.dispatch(SETTLE_ROLE, player, role);
+  changeRole(player, role) {
+    this.dispatch(CHANGE_ROLE, player, role);
   }
   killPlayer(player, reason) {
     this.dispatch(KILL_PLAYER, player, reason);

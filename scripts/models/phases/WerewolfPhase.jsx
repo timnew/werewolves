@@ -25,8 +25,8 @@ class WerewolfPhase extends Phase {
     );
   }
 
-  settleRole(player) {
-    GamePlay.settleRole(player, 'Werewolf');
+  changeRole(player) {
+    GamePlay.changeRole(player, 'Werewolf');
   }
 
   killPlayer(player) {
@@ -40,7 +40,7 @@ class WerewolfPhase extends Phase {
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.settleRole.bind(this, player)}>
+        <Button onClick={this.changeRole.bind(this, player)}>
           <StatusIcon prefix='role' icon='werewolf'/>
         </Button>
       </ButtonGroup>
