@@ -17,10 +17,7 @@ class Role {
   get name() { return this._name; }
   get seat() { return this._seat; }
   get status() { return this._status; }
-  get alive() { return !this.status.dead; }
-  get sheriff() { return this.getStatus('sheriff'); }
-  get lover() { return this.getStatus('lover'); }
-  get verified() { return this.getStatus('verified'); }
+  get alive() { return !this.hasStatus('dead'); }
 
   changeRole(roleName){
     let RoleClass = roles[roleName];
@@ -41,7 +38,7 @@ class Role {
   }
 
   killBy(reason) {
-    this.status.dead = reason;
+    this.addStatus('dead', reason);
 
     return true;
   }
