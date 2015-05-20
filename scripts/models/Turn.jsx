@@ -11,22 +11,29 @@ class Turn {
     this._events = Immutable.fromJS({});
   }
 
-  get players() { return this._players.toJS(); }
-  get roleSchema() { return this._roleSchema.toJS(); }
+  get players() { return this._players; }
+  get roleSchema() { return this._roleSchema; }
 
   get dayIndex() { return this._dayIndex; }
-  get events() { return this._events.toJS(); }
+  get events() { return this._events; }
 
-  get unassignedRoles() {
-    return _(this.players)
-      .values()
-      .countBy(player => player.roleName)
-      .merge(this.roleSchema, (actual, expected) => _.isNumber(actual) ? expected - actual : expected)
-      .value();
+  countMissingRole(roleName) {
+    let actualCount = this.players
+                          .valueSeq()
+                          .filter(player=>player.roleName === roleName)
+                          .count();
+
+    let expectedCount = this.roleSchema.get(roleName);
+
+    return expectedCount - actualCount;
   }
 
   nextTurn() {
     return new Turn(this);
+  }
+
+  changeRole(player, roleName) {
+    this._players = this.players.set(player.name, player.changeRole(roleName));
   }
 
   playerKilled(player, reason) {

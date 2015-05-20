@@ -34,7 +34,7 @@ class WerewolfPhase extends Phase {
   }
 
   renderUncertainActions(player, turn) {
-    if(!turn.unassignedRoles.Werewolf) {
+    if(turn.countMissingRole('Werewolf') === 0) {
       return null;
     }
 

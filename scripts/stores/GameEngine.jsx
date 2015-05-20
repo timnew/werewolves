@@ -125,7 +125,7 @@ export class GameEngine extends Marty.Store {
   }
 
   changeRole(player, role) {
-    this.state.players[player.name] = this.state.players[player.name].changeRole(role);
+    this.currentTurn.changeRole(player, role);
 
     this.hasChanged();
   }

@@ -37,7 +37,7 @@ class GameStatus extends React.Component {
     );
   }
 
-  renderChildren() {    
+  renderChildren() {
     return this.players
       .valueSeq()
       .map((player) =>
@@ -53,6 +53,6 @@ GameStatus.defaultProps = {
   phase: Phase.EMPTY,
   turn: Turn.EMPTY
 };
-GameStatus.enablePureRender();
+// GameStatus.enablePureRender();
 
 export default GameStatus;
