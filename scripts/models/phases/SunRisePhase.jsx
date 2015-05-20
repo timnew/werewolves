@@ -7,7 +7,7 @@ class SunRisePhase extends Phase {
     super();
   }
 
-  get description() { return 'The sun goes up'; }
+  getDescription() { return 'The sun goes up'; }
 }
 
 export default SunRisePhase;
