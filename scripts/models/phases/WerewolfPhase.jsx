@@ -7,6 +7,7 @@ import StatusIcon from 'components/StatusIcon';
 import Phase from './Phase';
 
 import GamePlay from 'actions/GamePlay';
+import {ATTACK_PLAYER} from 'constants/GamePlayConstants';
 
 class WerewolfPhase extends Phase {
   constructor() {
@@ -14,7 +15,7 @@ class WerewolfPhase extends Phase {
   }
 
   canMoveNext(turn) {
-    return turn.events.has('werewolfKilled');
+    return turn.events.has(ATTACK_PLAYER);
   }
   getDescription() {
     return (
@@ -29,8 +30,8 @@ class WerewolfPhase extends Phase {
     GamePlay.changeRole(player, 'Werewolf');
   }
 
-  killPlayer(player) {
-    GamePlay.killPlayer(player, 'werewolf');
+  attackPlayer(player) {
+    GamePlay.attackPlayer(player);
   }
 
   renderUncertainActions(player, turn) {
@@ -52,13 +53,13 @@ class WerewolfPhase extends Phase {
       return null;
     }
 
-    if(turn.events.has('werewolfKilled')) {
+    if(turn.events.has(ATTACK_PLAYER)) {
       return null;
     }
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.killPlayer.bind(this, player)}>
+        <Button onClick={this.attackPlayer.bind(this, player)}>
           <StatusIcon prefix='action' icon='kill'/>
         </Button>
       </ButtonGroup>

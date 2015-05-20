@@ -7,7 +7,7 @@ const GamePlayConstants = Marty.createConstants([
     'NEXT_STEP',
 
     'CHANGE_ROLE',
-    'KILL_PLAYER',
+    'ATTACK_PLAYER',
     'VERIFY_PLAYER'
   ]);
 

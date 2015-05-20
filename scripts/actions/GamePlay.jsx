@@ -6,7 +6,7 @@ import {
   NEXT_STEP,
 
   CHANGE_ROLE,
-  KILL_PLAYER,
+  ATTACK_PLAYER,
   VERIFY_PLAYER
 } from 'constants/GamePlayConstants';
 
@@ -21,8 +21,8 @@ class GamePlay extends Marty.ActionCreators {
   changeRole(player, role) {
     this.dispatch(CHANGE_ROLE, player, role);
   }
-  killPlayer(player, reason) {
-    this.dispatch(KILL_PLAYER, player, reason);
+  attackPlayer(player) {
+    this.dispatch(ATTACK_PLAYER, player);
   }
   verifyPlayer(player) {
     this.dispatch(VERIFY_PLAYER, player);

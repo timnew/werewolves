@@ -32,25 +32,9 @@ class GameStatusRow extends React.Component {
   }
 
   renderStatusTags() {
-    let tagIcons = [];
-
-    if(!this.player.alive) {
-      tagIcons.push(<StatusIcon prefix='status' icon='dead'/>);
-    }
-
-    if(this.player.hasStatus('sheriff')) {
-      tagIcons.push(<StatusIcon prefix='status' icon='sheriff'/>);
-    }
-
-    if(this.player.hasStatus('lover')) {
-      tagIcons.push(<StatusIcon prefix='status' icon='lover'/>);
-    }
-
-    if(this.player.hasStatus('verified')) {
-      tagIcons.push(<StatusIcon prefix='status' icon='verified'/>);
-    }
-
-    return tagIcons;
+    return ['dead', 'sheriff', 'lover', 'verified', 'attacked']
+            .filter(status => this.player.hasStatus(status))
+            .map(status => <StatusIcon prefix='status' icon={status}/>);
   }
 
   renderActionBar() {
