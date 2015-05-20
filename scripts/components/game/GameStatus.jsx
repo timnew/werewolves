@@ -1,6 +1,5 @@
 'use strict';
 
-import _ from 'lodash';
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
 import GameStatusRow from './GameStatusRow';
@@ -13,7 +12,7 @@ class GameStatus extends React.Component {
     super(props);
   }
 
-  get players() { return this.props.players; }
+  get players() { return this.turn.players; }
   get phase() { return this.props.phase; }
   get turn() { return this.props.turn; }
 
@@ -38,21 +37,22 @@ class GameStatus extends React.Component {
     );
   }
 
-  renderChildren() {
-    return _(this.players)
-      .values()
+  renderChildren() {    
+    return this.players
+      .valueSeq()
       .map((player) =>
         <GameStatusRow key={player.name} player={player} phase={this.phase} turn={this.turn}/>
-      )
-      .value();
+      );
   }
 }
 GameStatus.propTypes = {
-  players: PropTypes.array.isRequired,
   phase: PropTypes.instanceOf(Phase).isRequired,
   turn: PropTypes.instanceOf(Turn).isRequired
 };
-GameStatus.defaultProps = {};
+GameStatus.defaultProps = {
+  phase: Phase.EMPTY,
+  turn: Turn.EMPTY
+};
 GameStatus.enablePureRender();
 
 export default GameStatus;

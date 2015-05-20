@@ -14,14 +14,12 @@ class Game extends React.Component {
     return (
       <Grid>
         <PropertyBinder source={GameEngine} binding={{
-            dayIndex: 'dayIndex',
             phase: 'currentPhase',
             turn: 'currentTurn'
           }}>
           <GamePhase/>
         </PropertyBinder>
         <PropertyBinder source={GameEngine} binding={{
-            players: 'players',
             phase: 'currentPhase',
             turn: 'currentTurn'
           }}>
