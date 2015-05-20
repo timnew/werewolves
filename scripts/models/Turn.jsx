@@ -18,14 +18,14 @@ class Turn {
   get events() { return this._events; }
 
   countMissingRole(roleName) {
-    let actualCount = this.players
+    let actual = this.players
                           .valueSeq()
                           .filter(player=>player.roleName === roleName)
                           .count();
 
-    let expectedCount = this.roleSchema.get(roleName);
+    let expected = this.roleSchema.get(roleName);
 
-    return expectedCount - actualCount;
+    return expected - actual;
   }
 
   nextTurn() {

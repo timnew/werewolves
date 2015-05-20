@@ -34,7 +34,7 @@ class SeerPhase extends Phase {
   }
 
   renderUncertainActions(player, turn) {
-    if(!turn.unassignedRoles.Seer) {
+    if(turn.countMissingRole('Seer') === 0) {
       return null;
     }
 
