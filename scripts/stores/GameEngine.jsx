@@ -21,6 +21,11 @@ export class GameEngine extends Marty.Store {
     super(options);
 
     this.state = {
+      nightPhases: [],
+      phaseGenerator: null,
+      currentPhase: EMPTY_PHASE,
+      initialTurn: Turn.EMPTY,
+      currentTurn: Turn.EMPTY
     };
 
     this.handlers = {
@@ -32,30 +37,29 @@ export class GameEngine extends Marty.Store {
     };
   }
 
-  get players() { return this.state.players; }
-  get roleSchema() { return this.state.roleSchema; }
+  get initialTurn() { return this.state.initialTurn; }
   get nightPhases() { return this.state.nightPhases; }
-  get dayIndex() { return this.currentTurn.dayIndex; }
   get phaseGenerator() { return this.state.phaseGenerator; }
+
   get currentPhase() { return this.state.currentPhase; }
   get currentTurn() { return this.state.currentTurn; }
+
+  get dayIndex() { return this.currentTurn.dayIndex; } //TODO remove this
+  get players() { return this.currentTurn.players; } //TODO remove this
+  get roleSchema() { return this.currentTurn.roleSchema; }//TODO remove this
 
   createGame() {
     this.initGame(GameConfigStorage.loadCurrentConfig());
   }
 
   initGame(config) {
-    let {players, roleSchema} = config;
-
     this.state = {
-      players: this.createPlayers(players),
-      roleSchema: _.cloneDeep(roleSchema),
-      nightPhases: this.populateNightPhases(roleSchema),
+      nightPhases: this.populateNightPhases(config.roleSchema),
       phaseGenerator: this.gamePhaseGenerator(),
-      currentPhase: EMPTY_PHASE
+      currentPhase: EMPTY_PHASE,
+      initialTurn: this.createInitialTurn(config)
     };
 
-    this.state.initialTurn = this.createInitialTurn();
     this.state.currentTurn = this.state.initialTurn;
 
     this.nextStep();
@@ -69,12 +73,17 @@ export class GameEngine extends Marty.Store {
       .value();
   }
 
-  createInitialTurn() {
-    return new Turn(0);
+  createInitialTurn(config) {
+    let turnData = {
+      players: this.createPlayers(config.players),
+      roleSchema: config.roleSchema
+    };
+    return new Turn(turnData);
   }
 
   nextTurn() {
-    this.state.currentTurn = new Turn(this.dayIndex + 1, this.players, this.roleSchema);
+    this.state.currentTurn = this.currentTurn.nextTurn();
+    this.hasChanged();
   }
 
   populateNightPhases(roleSchema) {

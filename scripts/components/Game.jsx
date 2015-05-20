@@ -18,7 +18,7 @@ class Game extends React.Component {
             phase: 'currentPhase',
             turn: 'currentTurn'
           }}>
-          <GamePhase description="Night is comming" canMoveNext={true}/>
+          <GamePhase/>
         </PropertyBinder>
         <PropertyBinder source={GameEngine} binding={{
             players: 'players',

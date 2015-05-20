@@ -17,9 +17,9 @@ class GamePhase extends React.Component {
     GamePlay.nextStep();
   }
 
-  get dayIndex() { return this.turn.dayIndex; }
   get turn() { return this.props.turn; }
   get phase() { return this.props.phase; }
+  get dayIndex() { return this.turn.dayIndex; }
   get description() { return this.phase.getDescription(this.turn); }
   get canMoveNext() { return this.phase.canMoveNext(this.turn); }
 
@@ -42,14 +42,12 @@ class GamePhase extends React.Component {
   }
 }
 GamePhase.propTypes = {
-  dayIndex: PropTypes.number,
-  phase: PropTypes.instanceOf(Phase),
-  turn: PropTypes.instanceOf(Turn)
+  phase: PropTypes.instanceOf(Phase).isRequired,
+  turn: PropTypes.instanceOf(Turn).isRequired
 };
 GamePhase.defaultProps = {
-  dayIndex: 1,
-  phase: new Phase(),
-  turn: new Turn(0)
+  phase: Phase.EMPTY,
+  turn: Turn.EMPTY
 };
 // GamePhase.enablePureRender();
 

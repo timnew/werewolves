@@ -49,14 +49,10 @@ class GameStatus extends React.Component {
 }
 GameStatus.propTypes = {
   players: PropTypes.array.isRequired,
-  phase: PropTypes.instanceOf(Phase),
-  turn: PropTypes.instanceOf(Turn)
+  phase: PropTypes.instanceOf(Phase).isRequired,
+  turn: PropTypes.instanceOf(Turn).isRequired
 };
-GameStatus.defaultProps = {
-  players: {},
-  phase: new Phase(),
-  turn: new Turn(0)
-};
+GameStatus.defaultProps = {};
 GameStatus.enablePureRender();
 
 export default GameStatus;

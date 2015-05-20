@@ -1,5 +1,6 @@
 'use strict';
 
+import Immutable from 'immutable';
 import roles from './index';
 
 import roleSpecs from './roleSpecs';
@@ -9,7 +10,7 @@ class Role {
   constructor(player) {
     this._name = player.name;
     this._seat = player.seat;
-    this._status = player.status || {};
+    this._status = Immutable.fromJS(player.status || {});
   }
 
   get roleName() { return this.constructor.name; }
@@ -24,23 +25,31 @@ class Role {
     return new RoleClass(this);
   }
 
+  updateStatus(func) {
+    this._status = func(this._status);
+  }
+
   addStatus(tag, value = true) {
-    this.status[tag] = value;
+    this.updateStatus(status => status.set(tag, value));
   }
   removeStatus(tag) {
-    delete this.status[tag];
+    this.updateStatus(status => status.delete(tag));
   }
   getStatus(tag) {
-    return this.status[tag];
+    return this.status.get(tag);
   }
   hasStatus(tag) {
-    return !!this.getStatus(tag);
+    return this.status.has(tag);
   }
 
   killBy(reason) {
     this.addStatus('dead', reason);
 
     return true;
+  }
+
+  clone() {
+    return new this.constructor(this);
   }
 
   static get roleName() {

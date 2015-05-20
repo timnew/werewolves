@@ -1,20 +1,21 @@
 'use strict';
 
 import _ from 'lodash';
+import Immutable from 'immutable';
 
 class Turn {
-  constructor(dayIndex, players, roleSchema) {
-    this._players = players;
-    this._roleSchema = roleSchema;
-    this._dayIndex = dayIndex;
-    this._events = {};
+  constructor(turn) {
+    this._players = Immutable.fromJS(turn.players).map(player => player.clone());
+    this._roleSchema = Immutable.fromJS(turn.roleSchema);
+    this._dayIndex = _.isNumber(turn.dayIndex) ? turn.dayIndex + 1 : 0;
+    this._events = Immutable.fromJS({});
   }
 
-  get players() { return this._players; }
-  get roleSchema() { return this._roleSchema; }
+  get players() { return this._players.toJS(); }
+  get roleSchema() { return this._roleSchema.toJS(); }
 
   get dayIndex() { return this._dayIndex; }
-  get events() { return this._events; }
+  get events() { return this._events.toJS(); }
 
   get unassignedRoles() {
     return _(this.players)
@@ -24,6 +25,10 @@ class Turn {
       .value();
   }
 
+  nextTurn() {
+    return new Turn(this);
+  }
+
   playerKilled(player, reason) {
     this.events[`${reason}Killed`] = player;
   }
@@ -31,5 +36,17 @@ class Turn {
     this.events[event] = value;
   }
 }
+
+const EMPTY_TURN = new Turn({
+    players: {},
+    roleSchema: {}
+});
+
+Object.defineProperty(Turn, 'EMPTY', {
+  configurable: true,
+  enumerable: false,
+  value: EMPTY_TURN,
+  writable: true
+});
 
 export default Turn;
