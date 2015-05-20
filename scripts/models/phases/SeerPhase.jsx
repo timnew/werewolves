@@ -8,29 +8,29 @@ import Phase from './Phase';
 
 import GamePlay from 'actions/GamePlay';
 
-class WerewolfPhase extends Phase {
+class SeerPhase extends Phase {
   constructor() {
     super();
   }
 
-  canMoveNext(turn) {
-    return !!turn.events.werewolfKilled;
+  canMoveNext() {
+    return true;
   }
   getDescription() {
     return (
       <div>
-        <p><b>Weresolves!</b> Please open your eyes.</p>
-        <p>Pick a guy to kill.</p>
+        <p><b>Seer!</b> Please open your eyes.</p>
+        <p>Pick a guy to verify.</p>
       </div>
     );
   }
 
   settleRole(player) {
-    GamePlay.settleRole(player, 'Werewolf');
+    GamePlay.settleRole(player, 'Seer');
   }
 
-  killPlayer(player) {
-    GamePlay.killPlayer(player, 'werewolf');
+  verifyPlayer(player) {
+    GamePlay.verifyPlayer(player);
   }
 
   renderUncertainActions(player, turn) {
@@ -38,14 +38,14 @@ class WerewolfPhase extends Phase {
       return null;
     }
 
-    if(!turn.unassignedRoles.Werewolf) {
+    if(!turn.unassignedRoles.Seer) {
       return null;
     }
 
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.settleRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='werewolf'/>
+          <StatusIcon prefix='role' icon='seer'/>
         </Button>
       </ButtonGroup>
     );
@@ -56,18 +56,26 @@ class WerewolfPhase extends Phase {
       return null;
     }
 
-    if(turn.events.werewolfKilled) {
+    if(player.roleName === 'Seer') {
+      return null;
+    }
+
+    if(turn.events.verified) {
+      return null;
+    }
+
+    if(player.hasStatus('verified')) {
       return null;
     }
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.killPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='kill'/>
+        <Button onClick={this.verifyPlayer.bind(this, player)}>
+          <StatusIcon prefix='action' icon='verify'/>
         </Button>
       </ButtonGroup>
     );
   }
 }
 
-export default WerewolfPhase;
+export default SeerPhase;

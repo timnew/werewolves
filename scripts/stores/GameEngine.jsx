@@ -7,7 +7,8 @@ import {
   NEXT_STEP,
 
   SETTLE_ROLE,
-  KILL_PLAYER
+  KILL_PLAYER,
+  VERIFY_PLAYER
 } from 'constants/GamePlayConstants';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
@@ -27,7 +28,8 @@ export class GameEngine extends Marty.Store {
       createGame: CREATE_GAME,
       nextStep: NEXT_STEP,
       settleRole: SETTLE_ROLE,
-      killPlayer: KILL_PLAYER
+      killPlayer: KILL_PLAYER,
+      verifyPlayer: VERIFY_PLAYER
     };
   }
 
@@ -120,6 +122,12 @@ export class GameEngine extends Marty.Store {
       this.currentTurn.playerKilled(player, reason);
       this.hasChanged();
     }
+  }
+
+  verifyPlayer(player) {
+    player.addStatus('verified');
+    this.currentTurn.logEvent('verified', player);
+    this.hasChanged();
   }
 }
 

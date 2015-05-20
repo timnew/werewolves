@@ -7,14 +7,14 @@ class Turn {
     this._players = players;
     this._roleSchema = roleSchema;
     this._dayIndex = dayIndex;
-    this._deadPlayers = {};
+    this._events = {};
   }
 
   get players() { return this._players; }
   get roleSchema() { return this._roleSchema; }
 
   get dayIndex() { return this._dayIndex; }
-  get deadPlayers() { return this._deadPlayers; }
+  get events() { return this._events; }
 
   get unassignedRoles() {
     return _(this.players)
@@ -25,7 +25,10 @@ class Turn {
   }
 
   playerKilled(player, reason) {
-    this.deadPlayers[reason] = player;
+    this.events[`${reason}Killed`] = player;
+  }
+  logEvent(event, value) {
+    this.events[event] = value;
   }
 }
 

@@ -12,8 +12,9 @@ class Role {
   get name() { return this.player.name; }
   get seat() { return this.player.seat; }
   get alive() { return this.player.alive; }
-  get sheriff() { return this.player.sheriff; }
-  get lover() { return this.player.lover; }
+  get sheriff() { return this.player.hasStatus('sheriff'); }
+  get lover() { return this.player.hasStatus('lover'); }
+  get verified() { return this.player.hasStatus('verified'); }
 
   get roleName() { return this.constructor.name; }
 
@@ -21,6 +22,16 @@ class Role {
     this.player.killBy(reason);
 
     return true;
+  }
+
+  addStatus(tag) {
+    return this.player.addStatus(tag);
+  }
+  removeStatus(tag) {
+    return this.player.removeStatus(tag);
+  }
+  hasStatus(tag) {
+    return this.player.hasStatus(tag);
   }
 
   static get roleName() {

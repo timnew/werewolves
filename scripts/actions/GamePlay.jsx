@@ -6,7 +6,8 @@ import {
   NEXT_STEP,
 
   SETTLE_ROLE,
-  KILL_PLAYER
+  KILL_PLAYER,
+  VERIFY_PLAYER
 } from 'constants/GamePlayConstants';
 
 class GamePlay extends Marty.ActionCreators {
@@ -22,6 +23,9 @@ class GamePlay extends Marty.ActionCreators {
   }
   killPlayer(player, reason) {
     this.dispatch(KILL_PLAYER, player, reason);
+  }
+  verifyPlayer(player) {
+    this.dispatch(VERIFY_PLAYER, player);
   }
 }
 

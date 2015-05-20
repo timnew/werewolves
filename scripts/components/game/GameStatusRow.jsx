@@ -20,10 +20,8 @@ class GameStatusRow extends React.Component {
     return (
       <tr>
         <td>
-          {this.renderDeadStatus()}
-          {this.renderSheriffStatus()}
-          {this.renderLoverStatus()}
           <StatusIcon prefix='role' icon={this.player.roleName.toLowerCase()}/>
+          {this.renderStatusTags()}
         </td>
         <td>{this.player.name} ({this.player.seat})</td>
         <td>
@@ -33,22 +31,26 @@ class GameStatusRow extends React.Component {
     );
   }
 
-  renderDeadStatus() {
+  renderStatusTags() {
+    let tagIcons = [];
+
     if(!this.player.alive) {
-      return <StatusIcon prefix='status' icon='dead'/>;
+      tagIcons.push(<StatusIcon prefix='status' icon='dead'/>);
     }
-  }
 
-  renderSheriffStatus() {
-    if(this.player.sheriff) {
-      return <StatusIcon prefix='status' icon='sheriff'/>;
+    if(this.player.hasStatus('sheriff')) {
+      tagIcons.push(<StatusIcon prefix='status' icon='sheriff'/>);
     }
-  }
 
-  renderLoverStatus() {
-    if(this.player.lover) {
-      return <StatusIcon prefix='status' icon='lover'/>;
+    if(this.player.hasStatus('lover')) {
+      tagIcons.push(<StatusIcon prefix='status' icon='lover'/>);
     }
+
+    if(this.player.hasStatus('verified')) {
+      tagIcons.push(<StatusIcon prefix='status' icon='verified'/>);
+    }
+
+    return tagIcons;
   }
 
   renderActionBar() {
