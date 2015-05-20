@@ -31,6 +31,11 @@ class Turn {
     return new Turn(this);
   }
 
+  hasRoleAlive(roleName) {
+    return this.players
+               .find(player=> player.alive && (player.roleName === roleName));
+  }
+
   changeRole(player, roleName) {
     this._players = this.players.set(player.name, player.changeRole(roleName));
   }

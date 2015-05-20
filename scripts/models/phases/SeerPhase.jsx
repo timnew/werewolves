@@ -52,6 +52,10 @@ class SeerPhase extends Phase {
       return null;
     }
 
+    if(!turn.hasRoleAlive('Seer')) {
+      return null;
+    }
+
     if(player.roleName === 'Seer') {
       return null;
     }
