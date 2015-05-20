@@ -53,6 +53,12 @@ class Turn {
     this._events = this.events.set(event, value);
   }
 
+  populateDeathNames() {
+    return DEATH_ACTIONS
+            .filter(action => this.events.has(action))
+            .map(action => this.events.get(action));
+  }
+
   makeDeath() {
     DEATH_ACTIONS
       .filter(action => this.events.has(action))
