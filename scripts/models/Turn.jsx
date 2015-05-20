@@ -19,9 +19,8 @@ class Turn {
 
   countMissingRole(roleName) {
     let actual = this.players
-                          .valueSeq()
-                          .filter(player=>player.roleName === roleName)
-                          .count();
+                     .filter(player=>player.roleName === roleName)
+                     .count();
 
     let expected = this.roleSchema.get(roleName);
 
