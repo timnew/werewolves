@@ -34,10 +34,6 @@ class WerewolfPhase extends Phase {
   }
 
   renderUncertainActions(player, turn) {
-    if(!player.alive) {
-      return null;
-    }
-
     if(!turn.unassignedRoles.Werewolf) {
       return null;
     }
