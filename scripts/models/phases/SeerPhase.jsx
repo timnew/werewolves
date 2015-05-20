@@ -56,7 +56,7 @@ class SeerPhase extends Phase {
       return null;
     }
 
-    if(turn.events.verified) {
+    if(turn.events.has('verified')) {
       return null;
     }
 

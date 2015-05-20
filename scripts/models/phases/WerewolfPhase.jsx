@@ -14,7 +14,7 @@ class WerewolfPhase extends Phase {
   }
 
   canMoveNext(turn) {
-    return !!turn.events.werewolfKilled;
+    return turn.events.has('werewolfKilled');
   }
   getDescription() {
     return (
@@ -52,7 +52,7 @@ class WerewolfPhase extends Phase {
       return null;
     }
 
-    if(turn.events.werewolfKilled) {
+    if(turn.events.has('werewolfKilled')) {
       return null;
     }
 

@@ -37,10 +37,11 @@ class Turn {
   }
 
   playerKilled(player, reason) {
-    this.events[`${reason}Killed`] = player;
+    this.logEvent(`${reason}Killed`, player);
   }
+
   logEvent(event, value) {
-    this.events[event] = value;
+    this._events = this.events.set(event, value);
   }
 }
 
