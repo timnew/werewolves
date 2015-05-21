@@ -24,8 +24,17 @@ class Witch extends Role {
 
   renderRoleCapabily() {
     return [
-      <StatusIcon prefix='action' icon='heal' availability={this.canHeal}/>,
-      <StatusIcon prefix='action' icon='poison' availability={this.canPoison}/>
+      <StatusIcon key='heal-potion'
+                  prefix='capability'
+                  icon='heal'
+                  valueMode
+                  value={this.canHeal}/>,
+
+      <StatusIcon key='poison-potion'
+                  prefix='capability'
+                  icon='poison'
+                  valueMode
+                  value={this.canPoison}/>
     ];
   }
 

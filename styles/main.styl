@@ -30,13 +30,23 @@ input.table-inline
     &[type=range]
       width: 100px
 
+.player-info
+  &.dead
+    opacity: .2
+    text-decoration: strike-through
+
 .status-icon
   width: 24px
   height: 24px
   margin: 0 2px
 
-  &.available, &.unavailable
+  &.capability
     background: tan
 
-  &.unavailable
+  &.status
+    background: skyblue
+    &.status-dead
+      background: pink
+
+  &.canceled
     opacity: .2

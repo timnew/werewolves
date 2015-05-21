@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { PropTypes } from 'reactx';
+import classNames from 'classnames';
 import StatusIcon from 'components/StatusIcon';
 import { ButtonToolbar } from 'react-bootstrap';
 
@@ -20,12 +21,20 @@ class GameStatusRow extends React.Component {
     return (
       <tr>
         <td>
-          <StatusIcon prefix='role' icon={this.player.roleName.toLowerCase()}/>
+          <StatusIcon key='role'
+                      prefix='role'
+                      icon={this.player.roleName.toLowerCase()}
+                      valueMode
+                      value={this.player.alive}/>
           {this.renderStatus()}
           {this.renderRoleCapabily()}
           {this.renderVoteTicket()}
         </td>
-        <td>{this.player.name} ({this.player.seat})</td>
+        <td>
+          <span className={classNames('player-info', {dead: !this.player.alive})}>
+            {this.player.name} ( {this.player.seat} )
+          </span>
+        </td>
         <td>
           {this.renderActionBar()}
         </td>
@@ -42,8 +51,13 @@ class GameStatusRow extends React.Component {
 
   renderStatus() {
     return ['dead', 'sheriff', 'lover', 'verified', 'attacked', 'poisoned']
-            .filter(status => this.player.getStatus(status, false))
-            .map(status => <StatusIcon key={status} prefix='status' icon={status}/>);
+            .map(statusName =>
+              <StatusIcon key={statusName}
+                          valueMode
+                          prefix='status'
+                          icon={statusName}
+                          value={this.player.getStatus(statusName)} />
+            );
   }
 
   renderRoleCapabily() {
