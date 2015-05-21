@@ -4,6 +4,7 @@ require('./initApp');
 
 require('bootstrap-webpack');
 require('font-awesome-webpack');
+require('../styles/main.styl');
 
 import React from 'react';
 import Router, { Route, DefaultRoute } from 'react-router';
