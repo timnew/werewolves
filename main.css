@@ -1832,10 +1832,26 @@ input.table-inline {
 .setup-table input[type=range] {
   width: 100px;
 }
+.player-info.dead {
+  opacity: 0.2;
+  text-decoration: strike-through;
+}
 .status-icon {
   width: 24px;
   height: 24px;
   margin: 0 2px;
+}
+.status-icon.capability {
+  background: #d2b48c;
+}
+.status-icon.status {
+  background: #87ceeb;
+}
+.status-icon.status.status-dead {
+  background: #ffc0cb;
+}
+.status-icon.canceled {
+  opacity: 0.2;
 }
 
 /*# sourceMappingURL=main.css.map*/
