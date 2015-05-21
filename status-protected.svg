@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
+You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path id="shield-30-icon" d="M256,100.867c40.768,29.345,75.684,40.771,116.5,44.536v154.125c0,24.719-7.423,37.486-18.567,49.053
+	c-18.974,19.691-53.682,39.149-97.933,66.313c-44.255-27.167-78.959-46.623-97.933-66.313
+	c-11.145-11.566-18.567-24.334-18.567-49.053V145.403C180.316,141.639,215.232,130.212,256,100.867 M256,50
+	c-57.861,49.195-96.167,57-156.5,57c0,0,0,116.921,0,192.528c0,79,56.996,99.629,156.5,162.472
+	c99.504-62.843,156.5-83.472,156.5-162.472c0-75.607,0-192.528,0-192.528C352.167,107,313.861,99.195,256,50z M235.666,323.598
+	l-62.088-62.106l26.436-26.441l35.65,35.661l82.309-82.309l26.449,26.433L235.666,323.598z"/>
+</svg>
