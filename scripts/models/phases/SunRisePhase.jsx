@@ -24,7 +24,7 @@ class SunRisePhase extends Phase {
   renderDeathNames(turn) {
     let deathNames = turn.populateDeathNames();
 
-    if (deathNames.length > 0) {
+    if (deathNames.count() > 0) {
       return <p>{deathNames.join(', ')} died last night, {this.renderLastWords(turn)}.</p>;
     } else {
       return <p>Last night is a peaceful night, everybody survives.</p>;
