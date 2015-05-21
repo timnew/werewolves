@@ -25,7 +25,6 @@ class StatusIcon extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     if( this.valueMode && this.value == null) {
       return null;
     }
