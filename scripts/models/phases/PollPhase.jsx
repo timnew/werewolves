@@ -10,7 +10,11 @@ import Phase from './Phase';
 
 class PollPhase extends Phase {
   constructor() {
-    super();
+    super('Poll');
+  }
+
+  getDescription() {
+    return 'Please vote the suspect.';
   }
 
   votePositive(player) {

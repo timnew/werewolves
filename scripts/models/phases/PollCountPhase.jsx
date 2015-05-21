@@ -9,7 +9,7 @@ import GameEngine from 'stores/GameEngine';
 
 class PollCountPhase extends Phase {
   constructor() {
-    super();
+    super('Poll Count');
   }
 
   onPhaseBegin() {

@@ -2,9 +2,9 @@
 
 import Phase from './Phase';
 
-class SunSetPhase extends Phase {
+class SunsetPhase extends Phase {
   constructor() {
-    super();
+    super('Sunset');
   }
 
   getDescription() { return 'The sun goes down, every body close your eyes.'; }
@@ -14,4 +14,4 @@ class SunSetPhase extends Phase {
   }
 }
 
-export default SunSetPhase;
+export default SunsetPhase;

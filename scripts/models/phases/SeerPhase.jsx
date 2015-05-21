@@ -7,21 +7,16 @@ import StatusIcon from 'components/StatusIcon';
 import Phase from './Phase';
 
 import GamePlay from 'actions/GamePlay';
-import {VERIFY_PLAYER} from 'constants/GamePlayConstants';
 
 class SeerPhase extends Phase {
   constructor() {
     super();
   }
 
-  canMoveNext() {
-    return true;
-  }
   getDescription() {
     return (
       <div>
-        <p><b>Seer!</b> Please open your eyes.</p>
-        <p>Pick a guy to verify.</p>
+        <p><b>Seer!</b> Please open your eyes. Pick a guy to verify.</p>
       </div>
     );
   }

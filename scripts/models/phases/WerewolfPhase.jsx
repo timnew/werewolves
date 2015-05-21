@@ -11,12 +11,9 @@ import {ATTACK_PLAYER} from 'constants/GamePlayConstants';
 
 class WerewolfPhase extends Phase {
   constructor() {
-    super();
+    super('Werewolf');
   }
 
-  canMoveNext(turn) {
-    return true;
-  }
   getDescription() {
     return (
       <div>

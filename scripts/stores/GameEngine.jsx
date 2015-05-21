@@ -14,7 +14,7 @@ import {
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import Roles, { Uncertain } from 'models/roles';
-import { EMPTY_PHASE, Phase, SunSetPhase, SunRisePhase, PollPhase, PollCountPhase } from 'models/phases'; // eslint-disable-line no-unused-vars
+import { EMPTY_PHASE, Phase, SunsetPhase, SunrisePhase, PollPhase, PollCountPhase } from 'models/phases'; // eslint-disable-line no-unused-vars
 import Turn from 'models/Turn';
 
 export class GameEngine extends Marty.Store {
@@ -100,9 +100,9 @@ export class GameEngine extends Marty.Store {
   }
 
   *turnPhaseGenerator() {
-    yield new SunSetPhase();
+    yield new SunsetPhase();
     yield* this.nightPhases;
-    yield new SunRisePhase();
+    yield new SunrisePhase();
     yield new PollPhase();
     yield new PollCountPhase();
   }

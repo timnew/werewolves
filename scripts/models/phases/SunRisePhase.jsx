@@ -3,9 +3,9 @@
 import React from 'reactx';
 import Phase from './Phase';
 
-class SunRisePhase extends Phase {
+class SunrisePhase extends Phase {
   constructor() {
-    super();
+    super('Sunrise');
   }
 
   onPhaseBegin(GameEngine) {
@@ -25,7 +25,7 @@ class SunRisePhase extends Phase {
     let deathNames = turn.populateDeathNames();
 
     if (deathNames.count() > 0) {
-      return <p>{deathNames.join(', ')} died last night, {this.renderLastWords(turn)}.</p>;
+      return <p><b>{deathNames.join(', ')}</b> died last night, {this.renderLastWords(turn)}.</p>;
     } else {
       return <p>Last night is a peaceful night, everybody survives.</p>;
     }
@@ -40,4 +40,4 @@ class SunRisePhase extends Phase {
   }
 }
 
-export default SunRisePhase;
+export default SunrisePhase;
