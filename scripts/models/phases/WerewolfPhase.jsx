@@ -60,7 +60,7 @@ class WerewolfPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.attackPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='kill'/>
+          <StatusIcon prefix='action' icon='attack'/>
         </Button>
       </ButtonGroup>
     );
