@@ -3,12 +3,12 @@
 import Phase from './Phase';
 import SunRisePhase from './SunRisePhase';
 import SunSetPhase from './SunSetPhase';
-import VotePhase from './VotePhase';
+import PollPhase from './PollPhase';
 
 export default {
   Phase,
   EMPTY_PHASE: Phase.EMPTY,
   SunRisePhase,
   SunSetPhase,
-  VotePhase
+  PollPhase,
 };

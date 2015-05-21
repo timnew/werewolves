@@ -8,20 +8,20 @@ import GamePlay from 'actions/GamePlay';
 
 import Phase from './Phase';
 
-class VotePhase extends Phase {
+class PollPhase extends Phase {
   constructor() {
     super();
   }
 
-  incraseVote(player) {
+  votePositive(player) {
     GamePlay.votePlayer(player, 1);
   }
 
-  decreaseVote(player) {
+  voteNegative(player) {
     GamePlay.votePlayer(player, -1);
   }
 
-  canDecreaseVote(player) {
+  canVoteNegative(player) {
     return player.getStatus('voted', 0) > 0;
   }
 
@@ -32,10 +32,10 @@ class VotePhase extends Phase {
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.incraseVote.bind(this, player)}>
+        <Button onClick={this.votePositive.bind(this, player)}>
           <StatusIcon prefix='action' icon='vote'/>
         </Button>
-        <Button onClick={this.decreaseVote.bind(this, player)} disabled={!this.canDecreaseVote(player)}>
+        <Button onClick={this.voteNegative.bind(this, player)} disabled={!this.canVoteNegative(player)}>
           <StatusIcon prefix='action' icon='vote-cancel'/>
         </Button>
       </ButtonGroup>
@@ -43,4 +43,4 @@ class VotePhase extends Phase {
   }
 }
 
-export default VotePhase;
+export default PollPhase;
