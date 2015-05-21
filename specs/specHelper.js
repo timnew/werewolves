@@ -1,7 +1,10 @@
 'use strict';
 
 require('coffee-script/register');
-require('babel/register');
+require('babel/register')({ // TODO Temp solution
+  ignore: false,
+  extensions: ['.jsx', '.es6', '.es' ]
+});
 
 require('chai').should();
 global.expect = require('chai');
