@@ -59,12 +59,19 @@ class RoleTableRow extends React.Component {
     );
   }
 
+  createValueLink(field, onChangedCallback, withField = false) { // TODO push to reactx with props link, state link, value link, data link
+    return {
+      value: this[field],
+      requestChange: withField ? onChangedCallback.bind(this, field) : onChangedCallback.bind(this)
+    };
+  }
+
   renderToggle() {
     return (
       <span>
         {this.count}
         <input type='checkbox'
-               checkedLink={this.createStateLink('count', this.countChanged)}/>
+               checkedLink={this.createValueLink('count', this.countChanged)}/>
       </span>
     );
   }
@@ -77,7 +84,7 @@ class RoleTableRow extends React.Component {
                min={this.spec.min}
                max={this.spec.max}
                step={1}
-               valueLink={this.createStateLink('count', this.countChanged)}/>
+               valueLink={this.createValueLink('count', this.countChanged)}/>
       </span>
     );
   }
