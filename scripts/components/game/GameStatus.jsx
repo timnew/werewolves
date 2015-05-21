@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
+import { FaIcon } from 'react-fa-icon';
 import GameStatusRow from './GameStatusRow';
 
 import Phase from 'models/phases/Phase';
@@ -19,7 +20,7 @@ class GameStatus extends React.Component {
   render() {
     return (
       <Row>
-        <Panel bsStyle='info' header='Game'>
+        <Panel bsStyle='info' header={this.renderHeader()}>
           <Table striped condensed hover fill>
             <thead>
               <tr>
@@ -35,6 +36,10 @@ class GameStatus extends React.Component {
         </Panel>
       </Row>
     );
+  }
+
+  renderHeader() {
+    return <h3><FaIcon icon='group'/> Players</h3>;
   }
 
   renderChildren() {

@@ -31,7 +31,7 @@ class GameControlPanel extends React.Component {
   render() {
     return (
       <Row>
-        <Panel bsStyle={this.panelStyle} header='Game Control'>
+        <Panel bsStyle={this.panelStyle} header={this.renderHeader()}>
           <ButtonToolbar>
             <Button bsStyle='primary'
                     disabled={!this.isValid}
@@ -50,6 +50,10 @@ class GameControlPanel extends React.Component {
         </Panel>
       </Row>
     );
+  }
+
+  renderHeader() {
+    return <h3><FaIcon icon='gamepad'/> Game Control</h3>;
   }
 
   get panelStyle() {

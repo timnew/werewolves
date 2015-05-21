@@ -2,10 +2,17 @@
 
 import _ from 'lodash';
 import React, { PropTypes } from 'reactx';
+import { FaIcon } from 'react-fa-icon';
 import { Row, Panel, Table } from 'react-bootstrap';
 import RoleTableRow from './RoleTableRow';
 
 import { sides } from 'models/roles/roleSpecs';
+
+const ICON_NAMES = {
+  villager: 'sun-o',
+  werewolf: 'moon-o'
+};
+
 
 class RoleTable extends React.Component {
   constructor(props) {
@@ -22,18 +29,15 @@ class RoleTable extends React.Component {
       <Row>
         <Panel bsStyle={this.panelStyle} header={this.renderTitle()} footer={this.renderError()}>
           <Table condensed hover fill responsive className='setup-table'>
-            <thead>
-              <tr>
-                <th>Role</th>
-                <th></th>
-              </tr>
-            </thead>
             <tbody>
+              {this.renderHeader('Villagers', 'villager')}
               {this.renderSide('villager')}
-              {this.renderTotal('Villagers', 'sub-total', 'villager')}
+              {this.renderHeader('Werewoles', 'werewolf')}
               {this.renderSide('werewolf')}
-              {this.renderTotal('Werewoles', 'sub-total', 'werewolf')}
-              {this.renderTotal('Total', 'total', 'total')}
+              <tr className='total'>
+                <th>Total</th>
+                <th>{this.roleCount.total}</th>
+              </tr>
             </tbody>
           </Table>
         </Panel>
@@ -54,11 +58,11 @@ class RoleTable extends React.Component {
       .value();
   }
 
-  renderTotal(caption, className, field) {
+  renderHeader(caption, side) {
     return (
-      <tr className={className}>
-        <th>{caption}</th>
-        <th>{this.roleCount[field]}</th>
+      <tr className='header'>
+        <th><FaIcon icon={ICON_NAMES[side]}/> {caption}</th>
+        <th>{this.roleCount[side]}</th>
       </tr>
     );
   }
@@ -72,8 +76,8 @@ class RoleTable extends React.Component {
   }
 
   renderTitle() {
-    let { villager, werewolf } = this.roleCount;
-    return <h3>Roles ( Villagers: {villager}, Wereolves: {werewolf} )</h3>;  // eslint-disable-line comma-spacing
+    let { villager, werewolf, total } = this.roleCount;
+    return <h3><FaIcon icon='list-alt'/> Roles ( <FaIcon icon='sun-o'/> {villager} + <FaIcon icon='moon-o'/> {werewolf} = <FaIcon icon='adjust'/> {total} )</h3>;
   }
 
   renderError() {

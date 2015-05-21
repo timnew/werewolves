@@ -1,13 +1,7 @@
 'use strict';
 
 import React, { PropTypes } from 'reactx';
-import { FaIcon } from 'react-fa-icon';
 import GameSetup from 'actions/GameSetup';
-
-const ICON_NAMES = {
-  villager: 'sun-o',
-  werewolf: 'moon-o'
-};
 
 class RoleTableRow extends React.Component {
   constructor(props) {
@@ -29,14 +23,10 @@ class RoleTableRow extends React.Component {
   render() {
     return (
       <tr>
-        <td><FaIcon icon={this.iconName()}/> {this.name}</td>
+        <td>{this.name}</td>
         <td>{this.renderValue()}</td>
       </tr>
     );
-  }
-
-  iconName() {
-    return ICON_NAMES[this.spec.side];
   }
 
   renderValue() {

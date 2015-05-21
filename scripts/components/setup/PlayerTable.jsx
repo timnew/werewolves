@@ -95,7 +95,7 @@ class PlayerTable extends React.Component {
   }
 
   renderTitle() {
-    return <h3>Players: {this.playerCount}</h3>;
+    return <h3><FaIcon icon='group'/> Players: {this.playerCount}</h3>;
   }
 
   renderError() {

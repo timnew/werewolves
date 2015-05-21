@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Button } from 'react-bootstrap';
+import { FaIcon } from 'react-fa-icon';
 
 import GamePlay from 'actions/GamePlay';
 
@@ -27,6 +28,7 @@ class GamePhase extends React.Component {
     return (
       <Row>
         <Panel bsStyle='info' header={this.renderHeader()} footer={this.renderFooter()}>
+          <FaIcon icon='bullhorn' size='3x' pull='left'/>
           {this.description}
         </Panel>
       </Row>
@@ -34,11 +36,23 @@ class GamePhase extends React.Component {
   }
 
   renderHeader() {
-    return `Description ( Day ${this.dayIndex} ): ${this.phase.name}`;
+    return (
+      <h3>
+        <FaIcon icon='newspaper-o'/> {this.phase.name}
+        &nbsp;&nbsp;
+        ( <FaIcon icon='calendar' />: {this.dayIndex} day )
+      </h3>
+    );
   }
 
   renderFooter() {
-    return <Button bsStyle='primary' disabled={!this.canMoveNext} onClick={this.nextStep.bind(this)}>Next Step</Button>;
+    return (
+      <Button bsStyle='primary'
+              disabled={!this.canMoveNext}
+              onClick={this.nextStep.bind(this)}>
+        Next Step <FaIcon icon='step-forward'/>
+      </Button>
+    );
   }
 }
 GamePhase.propTypes = {
