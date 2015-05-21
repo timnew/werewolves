@@ -115,7 +115,7 @@ class PlayerTable extends React.Component {
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.editAll.bind(this)}>
+        <Button onClick={this.editAll.bind(this)} bsStyle='info'>
           <FaIcon icon='pencil'/>
         </Button>
       </ButtonGroup>
