@@ -8,9 +8,9 @@ import { ATTACK_PLAYER, VOTE_PLAYER } from 'constants/GamePlayConstants';
 const STATUS_MAPPING = Immutable.fromJS({
   ATTACK_PLAYER: 'attacked'
 });
-const DEATH_ACTIONS = Immutable.Seq.of([
+const DEATH_ACTIONS = Immutable.Seq.of(
   ATTACK_PLAYER
-]);
+);
 
 class Turn {
   constructor(turn) {
@@ -68,7 +68,7 @@ class Turn {
       .forEach( actionData => {
         let [action, playerName] = actionData;
         let player = this.players.get(playerName);
-        player.kill(STATUS_MAPPING[action]);
+        player.kill(STATUS_MAPPING.get(action));
       });
   }
 
