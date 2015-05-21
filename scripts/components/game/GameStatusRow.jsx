@@ -21,7 +21,8 @@ class GameStatusRow extends React.Component {
       <tr>
         <td>
           <StatusIcon prefix='role' icon={this.player.roleName.toLowerCase()}/>
-          {this.renderStatusTags()}
+          {this.renderStatus()}
+          {this.renderRoleCapabily()}
           {this.renderVoteTicket()}
         </td>
         <td>{this.player.name} ({this.player.seat})</td>
@@ -32,16 +33,27 @@ class GameStatusRow extends React.Component {
     );
   }
 
-  renderStatusTags() {
-    return ['dead', 'sheriff', 'lover', 'verified', 'attacked']
-            .filter(status => this.player.hasStatus(status))
-            .map(status => <StatusIcon prefix='status' icon={status}/>);
+  tryRender(host, methodName) {
+    let method = host[methodName];
+    if(method) {
+      return method.call(host, this.player, this.turn, this.phase); //TODO refact to this.props
+    }
+  }
+
+  renderStatus() {
+    return ['dead', 'sheriff', 'lover', 'verified', 'attacked', 'poisoned']
+            .filter(status => this.player.getStatus(status, false))
+            .map(status => <StatusIcon key={status} prefix='status' icon={status}/>);
+  }
+
+  renderRoleCapabily() {
+    return this.tryRender(this.player, 'renderRoleCapabily');
   }
 
   renderVoteTicket() {
     if(this.player.hasStatus('voted')) {
       return (
-        <span>
+        <span key='voteTicket'>
           <StatusIcon prefix='status' icon='voted'/>
           {this.player.getStatus('voted')}
         </span>
@@ -58,19 +70,12 @@ class GameStatusRow extends React.Component {
     );
   }
 
-  tryRender(methodName) {
-    let method = this.phase[methodName];
-    if(method) {
-      return method.call(this.phase, this.player, this.turn);
-    }
-  }
-
   renderRoleActions() {
-    return this.tryRender(`render${this.player.roleName}Actions`);
+    return this.tryRender(this.phase, `render${this.player.roleName}Actions`);
   }
 
   renderDefaultActions() {
-    return this.tryRender('renderDefaultActions');
+    return this.tryRender(this.phase, 'renderDefaultActions');
   }
 }
 GameStatusRow.propTypes = {

@@ -3,13 +3,15 @@
 import _ from 'lodash';
 import Immutable from 'immutable';
 
-import { ATTACK_PLAYER, VOTE_PLAYER } from 'constants/GamePlayConstants';
+import { VOTE_PLAYER, ATTACK_PLAYER, POISON_PLAYER } from 'constants/GamePlayConstants';
 
 const STATUS_MAPPING = Immutable.fromJS({
-  ATTACK_PLAYER: 'attacked'
+  ATTACK_PLAYER: 'attacked',
+  POISON_PLAYER: 'poisoned'
 });
 const DEATH_ACTIONS = Immutable.Seq.of(
-  ATTACK_PLAYER
+  ATTACK_PLAYER,
+  POISON_PLAYER
 );
 
 class Turn {
@@ -41,7 +43,7 @@ class Turn {
     return new Turn(this);
   }
 
-  hasRoleAlive(roleName) {
+  findAliveRole(roleName) {
     return this.players
                .find(player=> player.alive && (player.roleName === roleName));
   }
@@ -54,22 +56,34 @@ class Turn {
     this._events = this.events.set(event, value);
   }
 
-  populateDeathNames() {
+  populateDeathInfo() {
     return DEATH_ACTIONS
             .filter(action => this.events.has(action))
-            .map(action => this.events.get(action))
-            .toList();
+            .map(action => {
+              let playerName = this.events.get(action);
+              let player = this.players.get(playerName);
+              let statusName = STATUS_MAPPING.get(action);
+              let status = player.getStatus(statusName, false);
+
+              return {
+                action,
+                player,
+                statusName,
+                status
+              };
+            });
+  }
+
+  populateDeathNames() {
+    return this.populateDeathInfo()
+               .filter(info => !info.player.alive )
+               .map(info => info.player.name);
   }
 
   populateDeath() {
-    DEATH_ACTIONS
-      .filter(action => this.events.has(action))
-      .map(action => [action, this.events.get(action)])
-      .forEach( actionData => {
-        let [action, playerName] = actionData;
-        let player = this.players.get(playerName);
-        player.kill(STATUS_MAPPING.get(action));
-      });
+    this.populateDeathInfo()
+        .filter(info => info.status )
+        .forEach(info => info.player.kill(info.statusName));
   }
 
   pollCount() {

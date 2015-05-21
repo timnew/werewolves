@@ -8,6 +8,8 @@ import {
   CHANGE_ROLE,
   ATTACK_PLAYER,
   VERIFY_PLAYER,
+  HEAL_PLAYER,
+  POISON_PLAYER,
   VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 
@@ -30,6 +32,12 @@ class GamePlay extends Marty.ActionCreators {
   }
   votePlayer(player, tickets = 1) {
     this.dispatch(VOTE_PLAYER, player, tickets);
+  }
+  healPlayer(player) {
+    this.dispatch(HEAL_PLAYER, player);
+  }
+  poisonPlayer(player) {
+    this.dispatch(POISON_PLAYER, player);
   }
 }
 

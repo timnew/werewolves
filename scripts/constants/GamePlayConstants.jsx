@@ -18,6 +18,8 @@ const GamePlayConstants = React.createConstants([
     'CHANGE_ROLE',
     'ATTACK_PLAYER',
     'VERIFY_PLAYER',
+    'HEAL_PLAYER',
+    'POISON_PLAYER',
     'VOTE_PLAYER'
   ]);
 

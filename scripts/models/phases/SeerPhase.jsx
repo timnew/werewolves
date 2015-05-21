@@ -10,7 +10,7 @@ import GamePlay from 'actions/GamePlay';
 
 class SeerPhase extends Phase {
   constructor() {
-    super();
+    super('Seer');
   }
 
   getDescription() {
@@ -48,7 +48,7 @@ class SeerPhase extends Phase {
       return null;
     }
 
-    if(!turn.hasRoleAlive('Seer')) {
+    if(!turn.findAliveRole('Seer')) {
       return null;
     }
 
