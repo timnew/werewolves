@@ -1,14 +1,20 @@
 'use strict';
 
 import Phase from './Phase';
-import SunRisePhase from './SunRisePhase';
 import SunSetPhase from './SunSetPhase';
+import WerewolfPhase from './WerewolfPhase';
+import SeerPhase from './SeerPhase';
+import SunRisePhase from './SunRisePhase';
 import PollPhase from './PollPhase';
+import PollCountPhase from './PollCountPhase';
 
 export default {
   Phase,
   EMPTY_PHASE: Phase.EMPTY,
-  SunRisePhase,
   SunSetPhase,
+  WerewolfPhase,
+  SeerPhase,
+  SunRisePhase,
   PollPhase,
+  PollCountPhase
 };

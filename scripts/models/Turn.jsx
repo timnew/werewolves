@@ -3,14 +3,14 @@
 import _ from 'lodash';
 import Immutable from 'immutable';
 
-import {ATTACK_PLAYER} from 'constants/GamePlayConstants';
+import { ATTACK_PLAYER, VOTE_PLAYER } from 'constants/GamePlayConstants';
 
-const STATUS_MAPPING = {
+const STATUS_MAPPING = Immutable.fromJS({
   ATTACK_PLAYER: 'attacked'
-};
-const DEATH_ACTIONS = [
+});
+const DEATH_ACTIONS = Immutable.Seq.of([
   ATTACK_PLAYER
-];
+]);
 
 class Turn {
   constructor(turn) {
@@ -28,6 +28,7 @@ class Turn {
 
   countMissingRole(roleName) {
     let actual = this.players
+                     .toSeq()
                      .filter(player=>player.roleName === roleName)
                      .count();
 
@@ -56,7 +57,8 @@ class Turn {
   populateDeathNames() {
     return DEATH_ACTIONS
             .filter(action => this.events.has(action))
-            .map(action => this.events.get(action));
+            .map(action => this.events.get(action))
+            .toList();
   }
 
   populateDeath() {
@@ -68,6 +70,24 @@ class Turn {
         let player = this.players.get(playerName);
         player.kill(STATUS_MAPPING[action]);
       });
+  }
+
+  pollCount() {
+    let mostVoted = this.players
+                        .toSeq()
+                        .filter((player) => player.getStatus('voted', 0) > 0)
+                        .groupBy((player) => player.getStatus('voted'))
+                        .maxBy((playerGroup, tickets) => tickets);
+
+    if(mostVoted != null) {
+      this.logEvent(VOTE_PLAYER, mostVoted);
+
+      if(mostVoted.count() === 1) {
+        mostVoted.first().kill('voted');
+      }
+    }
+
+    this.players.forEach((player) => player.removeStatus('voted'));
   }
 }
 
