@@ -2,6 +2,10 @@
 
 require('./initApp');
 
+require('bootstrap/dist/css/bootstrap.css');
+require('bootstrap/dist/css/bootstrap-theme.css');
+require('font-awesome-webpack');
+
 import React from 'react';
 import Router, { Route, DefaultRoute } from 'react-router';
 
