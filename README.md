@@ -3,6 +3,8 @@ werewolves [![Build Status][ci-image]][ci-url] [![Dependency Status][depstat-ima
 
 > Werewolves is a web app that work as judge for [Werewolves] board game.
 
+Access [Werewolves App] at http://werewolves.timnew.me/
+
 ## Why this project
 
 > The main purpose of this project to spike the tech stack based on React.js.
@@ -62,3 +64,4 @@ MIT
 [depstat-image]: http://img.shields.io/gemnasium/timnew/werewolves.svg?style=flat
 
 [Werewolves]: http://fr.wikipedia.org/wiki/Les_Loups-garous_de_Thiercelieux
+[Werewolves App]: http://werewolves.timnew.me/
