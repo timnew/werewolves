@@ -8,7 +8,8 @@ import {
 
   CHANGE_ROLE,
   ATTACK_PLAYER,
-  VERIFY_PLAYER
+  VERIFY_PLAYER,
+  VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
@@ -33,7 +34,8 @@ export class GameEngine extends Marty.Store {
       nextStep: NEXT_STEP,
       changeRole: CHANGE_ROLE,
       attackPlayer: ATTACK_PLAYER,
-      verifyPlayer: VERIFY_PLAYER
+      verifyPlayer: VERIFY_PLAYER,
+      votePlayer: VOTE_PLAYER
     };
   }
 
@@ -139,6 +141,11 @@ export class GameEngine extends Marty.Store {
   verifyPlayer(player) {
     player.addStatus('verified');
     this.currentTurn.logEvent(VERIFY_PLAYER, player.name);
+    this.hasChanged();
+  }
+
+  votePlayer(player, tickets) {    
+    player.updateStatusValue('voted', (number) => number + tickets, 0);
     this.hasChanged();
   }
 

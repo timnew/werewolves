@@ -7,7 +7,8 @@ import {
 
   CHANGE_ROLE,
   ATTACK_PLAYER,
-  VERIFY_PLAYER
+  VERIFY_PLAYER,
+  VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 
 class GamePlay extends Marty.ActionCreators {
@@ -26,6 +27,9 @@ class GamePlay extends Marty.ActionCreators {
   }
   verifyPlayer(player) {
     this.dispatch(VERIFY_PLAYER, player);
+  }
+  votePlayer(player, tickets = 1) {
+    this.dispatch(VOTE_PLAYER, player, tickets);
   }
 }
 

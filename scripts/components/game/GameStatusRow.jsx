@@ -22,6 +22,7 @@ class GameStatusRow extends React.Component {
         <td>
           <StatusIcon prefix='role' icon={this.player.roleName.toLowerCase()}/>
           {this.renderStatusTags()}
+          {this.renderVoteTicket()}
         </td>
         <td>{this.player.name} ({this.player.seat})</td>
         <td>
@@ -35,6 +36,17 @@ class GameStatusRow extends React.Component {
     return ['dead', 'sheriff', 'lover', 'verified', 'attacked']
             .filter(status => this.player.hasStatus(status))
             .map(status => <StatusIcon prefix='status' icon={status}/>);
+  }
+
+  renderVoteTicket() {
+    if(this.player.hasStatus('voted')) {
+      return (
+        <span>
+          <StatusIcon prefix='status' icon='voted'/>
+          {this.player.getStatus('voted')}
+        </span>
+      );
+    }
   }
 
   renderActionBar() {

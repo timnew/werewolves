@@ -17,7 +17,8 @@ const GamePlayConstants = React.createConstants([
 
     'CHANGE_ROLE',
     'ATTACK_PLAYER',
-    'VERIFY_PLAYER'
+    'VERIFY_PLAYER',
+    'VOTE_PLAYER'
   ]);
 
 export default GamePlayConstants;

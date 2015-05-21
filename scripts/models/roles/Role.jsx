@@ -35,8 +35,11 @@ class Role {
   removeStatus(tag) {
     this.updateStatus(status => status.delete(tag));
   }
-  getStatus(tag) {
-    return this.status.get(tag);
+  updateStatusValue(tag, functor, defaultValue) {
+    this.updateStatus(status => status.set(tag, functor(status.get(tag, defaultValue))));
+  }
+  getStatus(tag, defaultValue) {
+    return this.status.get(tag, defaultValue);
   }
   hasStatus(tag) {
     return this.status.has(tag);
