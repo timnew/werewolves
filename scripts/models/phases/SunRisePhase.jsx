@@ -8,11 +8,16 @@ class SunRisePhase extends Phase {
     super();
   }
 
+  onPhaseBegin(GameEngine) {
+    GameEngine.makeDeath();
+  }
+
   getDescription(turn) {
     return (
       <div>
         <p>The sun goes up.</p>
         {this.renderDeathNames(turn)}
+        {this.renderLastWords(turn)}
       </div>
     );
   }
@@ -27,8 +32,10 @@ class SunRisePhase extends Phase {
     }
   }
 
-  onPhaseBegin(GameEngine) {
-    GameEngine.makeDeath();
+  renderLastWords(turn) {
+    if(turn.dayIndex <= turn.roleSchema.get('Werewolf')) {
+      return <p>Please dead players leave the last words.</p>;
+    }
   }
 }
 
