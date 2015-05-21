@@ -34,7 +34,7 @@
     "marty": "^0.9.14",
     "react": "^0.13.3",
     "react-bootstrap": "^0.21.1",
-    "react-fa-icon": "^0.1.0",
+    "react-fa-icon": "^0.1.4",
     "react-pure-render": "^1.0.1",
     "react-retina-image": "^1.1.2",
     "react-router": "^0.13.3",
