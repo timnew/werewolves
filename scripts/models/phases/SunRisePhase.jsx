@@ -9,7 +9,7 @@ class SunRisePhase extends Phase {
   }
 
   onPhaseBegin(GameEngine) {
-    GameEngine.makeDeath();
+    GameEngine.populateDeath();
   }
 
   getDescription(turn) {

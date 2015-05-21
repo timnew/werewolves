@@ -59,7 +59,7 @@ class Turn {
             .map(action => this.events.get(action));
   }
 
-  makeDeath() {
+  populateDeath() {
     DEATH_ACTIONS
       .filter(action => this.events.has(action))
       .map(action => [action, this.events.get(action)])

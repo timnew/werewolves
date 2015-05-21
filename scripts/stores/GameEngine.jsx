@@ -150,8 +150,8 @@ export class GameEngine extends Marty.Store {
     this.hasChanged();
   }
 
-  makeDeath() {
-    this.currentTurn.makeDeath();
+  populateDeath() {
+    this.currentTurn.populateDeath();
     this.hasChanged();
   }
 }
