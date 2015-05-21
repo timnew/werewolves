@@ -12,11 +12,14 @@ Config.set devtool: 'source-map'
       new webpack.optimize.UglifyJsPlugin()
     ]
   .appendLoaders [
-      { test: /\.(png|svg)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=true' }
+      { test: /\.(png)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=true' }
       { test: /\.(gif)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=false' }
       { test: /\.(jpe?g)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=false&progressive=true' }
 
-      { test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file" },
+      { test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=application/font-woff" }
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=application/octet-stream" }
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&minetype=image/svg+xml" }
 
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap') }
       { test: /\.styl$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap!stylus') }

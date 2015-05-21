@@ -10,7 +10,7 @@ DefaultConfig =
   entry: [ './scripts/route' ]
 
   output:
-    path: path.resolve(__dirname, '..', 'scripts')
+    path: path.resolve(__dirname, '..', 'public')
     filename: 'bundle.js'
 
   resolveLoader:
@@ -26,7 +26,7 @@ DefaultConfig =
 
   module:
     loaders: [
-      { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
+      { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' }
       { test: /\.json$/, loader: 'file' }
     ]
 
