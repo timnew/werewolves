@@ -17,7 +17,6 @@ class SunRisePhase extends Phase {
       <div>
         <p>The sun goes up.</p>
         {this.renderDeathNames(turn)}
-        {this.renderLastWords(turn)}
       </div>
     );
   }
@@ -26,7 +25,7 @@ class SunRisePhase extends Phase {
     let deathNames = turn.populateDeathNames();
 
     if (deathNames.length > 0) {
-      return <p>The following people dead last night: {deathNames.join(', ')}.</p>;
+      return <p>{deathNames.join(', ')} died last night, {this.renderLastWords(turn)}.</p>;
     } else {
       return <p>Last night is a peaceful night, everybody survives.</p>;
     }
@@ -34,7 +33,9 @@ class SunRisePhase extends Phase {
 
   renderLastWords(turn) {
     if(turn.dayIndex <= turn.roleSchema.get('Werewolf')) {
-      return <p>Please dead players leave the last words.</p>;
+      return 'please leave the last words';
+    } else {
+      return 'no last words';
     }
   }
 }
