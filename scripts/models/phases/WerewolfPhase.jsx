@@ -15,7 +15,7 @@ class WerewolfPhase extends Phase {
   }
 
   canMoveNext(turn) {
-    return turn.events.has(ATTACK_PLAYER);
+    return true;
   }
   getDescription() {
     return (
