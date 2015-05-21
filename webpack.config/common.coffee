@@ -26,7 +26,7 @@ DefaultConfig =
 
   module:
     loaders: [
-      { test: /\.woff$|\.ttf$/, loader: "file" }
+      { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
       { test: /\.json$/, loader: 'file' }
     ]
 

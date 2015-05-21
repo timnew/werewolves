@@ -21,7 +21,6 @@ paths =
 devServer = {}
 
 gulp.task 'css', ->
-
   gulp.src ['styles/*.styl']
   .pipe stylus compress: true
   .on 'error', (err) ->

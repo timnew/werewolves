@@ -2,8 +2,7 @@
 
 require('./initApp');
 
-require('bootstrap/dist/css/bootstrap.css');
-require('bootstrap/dist/css/bootstrap-theme.css');
+require('bootstrap-webpack');
 require('font-awesome-webpack');
 
 import React from 'react';
