@@ -7,10 +7,11 @@ import {
   NEXT_STEP,
 
   CHANGE_ROLE,
+  GUARD_PLAYER,
   ATTACK_PLAYER,
-  VERIFY_PLAYER,
   HEAL_PLAYER,
   POISON_PLAYER,
+  VERIFY_PLAYER,
   VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
@@ -35,10 +36,11 @@ export class GameEngine extends Marty.Store {
       createGame: CREATE_GAME,
       nextStep: NEXT_STEP,
       changeRole: CHANGE_ROLE,
+      guardPlayer: GUARD_PLAYER,
       attackPlayer: ATTACK_PLAYER,
-      verifyPlayer: VERIFY_PLAYER,
       healPlayer: HEAL_PLAYER,
       poisonPlayer: POISON_PLAYER,
+      verifyPlayer: VERIFY_PLAYER,
       votePlayer: VOTE_PLAYER
     };
   }
@@ -137,15 +139,16 @@ export class GameEngine extends Marty.Store {
     this.hasChanged();
   }
 
-  attackPlayer(player) {
-    player.addStatus('attacked');
-    this.currentTurn.logEvent(ATTACK_PLAYER, player.name);
+  guardPlayer(player) {
+    player.addStatus('guarded');
+    this.currentTurn.logEvent(GUARD_PLAYER, player.name);
     this.hasChanged();
   }
 
-  verifyPlayer(player) {
-    player.addStatus('verified');
-    this.currentTurn.logEvent(VERIFY_PLAYER, player.name);
+  attackPlayer(player) {
+    let attachStatus = !player.hasStatus('guarded');
+    player.addStatus('attacked', attachStatus);
+    this.currentTurn.logEvent(ATTACK_PLAYER, player.name);
     this.hasChanged();
   }
 
@@ -160,6 +163,12 @@ export class GameEngine extends Marty.Store {
     player.addStatus('poisoned');
     this.currentTurn.findAliveRole('Witch').addStatus('poison-potion', false);
     this.currentTurn.logEvent(POISON_PLAYER, player.name);
+    this.hasChanged();
+  }
+
+  verifyPlayer(player) {
+    player.addStatus('verified');
+    this.currentTurn.logEvent(VERIFY_PLAYER, player.name);
     this.hasChanged();
   }
 

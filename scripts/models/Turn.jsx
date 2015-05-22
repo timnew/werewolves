@@ -82,6 +82,10 @@ class Turn {
 
   populateDeath() {
     this.populateDeathInfo()
+        .map(info => { // Use map as tap.
+          info.player.removeStatus(info.statusName);
+          return info;
+        })
         .filter(info => info.status )
         .forEach(info => info.player.kill(info.statusName));
   }

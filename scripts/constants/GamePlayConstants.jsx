@@ -16,10 +16,11 @@ const GamePlayConstants = React.createConstants([
     'NEXT_STEP',
 
     'CHANGE_ROLE',
+    'GUARD_PLAYER',
     'ATTACK_PLAYER',
-    'VERIFY_PLAYER',
     'HEAL_PLAYER',
     'POISON_PLAYER',
+    'VERIFY_PLAYER',
     'VOTE_PLAYER'
   ]);
 

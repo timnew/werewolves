@@ -28,7 +28,9 @@ class Role {
   updateStatus(func) {
     this._status = func(this._status);
   }
-
+  batchUpdateStatus(func) {
+    this.updateStatus(status => status.withMutations(func));
+  }
   addStatus(tag, value = true) {
     this.updateStatus(status => status.set(tag, value));
   }
@@ -43,6 +45,13 @@ class Role {
   }
   hasStatus(tag) {
     return this.status.has(tag);
+  }
+  shiftStatus(originalTag, targetTag) {
+    if(!this.hasStatus(originalTag)) {
+      return;
+    }
+
+    this.batchUpdateStatus(status => status.set(targetTag, status.get(originalTag)).delete(originalTag));
   }
 
   kill(reason) {

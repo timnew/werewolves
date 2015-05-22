@@ -2,6 +2,7 @@
 
 import Phase from './Phase';
 import SunsetPhase from './SunsetPhase';
+import GuardianPhase from './GuardianPhase';
 import WerewolfPhase from './WerewolfPhase';
 import WitchPhase from './WitchPhase';
 import SeerPhase from './SeerPhase';
@@ -13,6 +14,7 @@ export default {
   Phase,
   EMPTY_PHASE: Phase.EMPTY,
   SunsetPhase,
+  GuardianPhase,
   WerewolfPhase,
   WitchPhase,
   SeerPhase,

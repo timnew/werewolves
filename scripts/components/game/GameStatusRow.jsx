@@ -50,7 +50,7 @@ class GameStatusRow extends React.Component {
   }
 
   renderStatus() {
-    return ['dead', 'sheriff', 'lover', 'verified', 'attacked', 'poisoned']
+    return ['dead', 'sheriff', 'lover', 'guarded', 'guard-ban', 'attacked', 'poisoned', 'verified']
             .map(statusName =>
               <StatusIcon key={statusName}
                           valueMode

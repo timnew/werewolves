@@ -6,10 +6,11 @@ import {
   NEXT_STEP,
 
   CHANGE_ROLE,
+  GUARD_PLAYER,
   ATTACK_PLAYER,
-  VERIFY_PLAYER,
   HEAL_PLAYER,
   POISON_PLAYER,
+  VERIFY_PLAYER,
   VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 
@@ -24,20 +25,23 @@ class GamePlay extends Marty.ActionCreators {
   changeRole(player, role) {
     this.dispatch(CHANGE_ROLE, player, role);
   }
+  guardPlayer(player) {
+    this.dispatch(GUARD_PLAYER, player);
+  }
   attackPlayer(player) {
     this.dispatch(ATTACK_PLAYER, player);
-  }
-  verifyPlayer(player) {
-    this.dispatch(VERIFY_PLAYER, player);
-  }
-  votePlayer(player, tickets = 1) {
-    this.dispatch(VOTE_PLAYER, player, tickets);
   }
   healPlayer(player) {
     this.dispatch(HEAL_PLAYER, player);
   }
   poisonPlayer(player) {
     this.dispatch(POISON_PLAYER, player);
+  }
+  verifyPlayer(player) {
+    this.dispatch(VERIFY_PLAYER, player);
+  }
+  votePlayer(player, tickets = 1) {
+    this.dispatch(VOTE_PLAYER, player, tickets);
   }
 }
 
