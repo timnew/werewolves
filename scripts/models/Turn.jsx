@@ -66,21 +66,6 @@ class Turn {
   }
 
   populateDeathInfo() {
-    return DEATH_ACTIONS
-            .filter(action => this.events.has(action))
-            .map(action => {
-              let playerName = this.events.get(action);
-              let player = this.players.get(playerName);
-              let statusName = STATUS_MAPPING.get(action);
-              let status = player.getStatus(statusName, false);
-
-              return {
-                action,
-                player,
-                statusName,
-                status
-              };
-            });
   }
 
   populateDeathNames() {
@@ -90,15 +75,27 @@ class Turn {
   }
 
   populateDeath() {
-    this.populateDeathInfo()
+    DEATH_ACTIONS
+        .filter(action => this.events.has(action))
+        .map(action => {
+          let playerName = this.events.get(action);
+          let player = this.players.get(playerName);
+          let statusName = STATUS_MAPPING.get(action);
+          let status = player.getStatus(statusName, false);
+
+          return {
+            action,
+            player,
+            statusName,
+            status
+          };
+        })
         .map(info => { // Use map as tap.
           info.player.removeStatus(info.statusName);
           return info;
         })
         .filter(info => info.status )
-        .map(info => info.player.kill(info.statusName))
-        .filter(callback => typeof callback === 'function' )
-        .forEach(callback => callback(this));
+        .forEach(info => info.player.kill(info.statusName, this));
   }
 
   pollCount() {
@@ -112,10 +109,7 @@ class Turn {
       this.logEvent(VOTE_PLAYER, mostVoted);
 
       if(mostVoted.count() === 1) {
-        let callback = mostVoted.first().kill('voted');
-        if(callback) {
-          callback(this);
-        }
+        mostVoted.first().kill('voted', this);
       }
     }
 

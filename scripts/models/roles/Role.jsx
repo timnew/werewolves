@@ -56,15 +56,27 @@ class Role {
     this.batchUpdateStatus(status => status.set(targetTag, status.get(originalTag)).delete(originalTag));
   }
 
-  kill(reason) {
-    this.addStatus('dead', reason);
-    STATUS_MAPPING.forEach((k, status) => this.removeStatus(status));
+  beforeKill() {
+    return true;
+  }
 
+  kill(reason, turn) {
+    if(!this.alive) {
+      return;
+    }
+
+    if(this.beforeKill(reason, turn)) {
+      this.addStatus('dead', reason);
+
+      this.afterKill(reason, turn);
+    }
+
+    STATUS_MAPPING.forEach((k, status) => this.removeStatus(status));
+  }
+
+  afterKill(reason, turn) {
     if(this.hasStatus('lover')) {
-      return (turn) => {
-        console.log(turn);
-        turn.players.get(this.getStatus('lover')).kill('lover');
-      };
+      turn.players.get(this.getStatus('lover')).kill('lover', turn);
     }
   }
 
