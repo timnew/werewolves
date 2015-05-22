@@ -57,8 +57,8 @@ MIT
 
 [homepage]: https://github.com/timnew/werewolves
 
-[ci-url]: https://drone.io/github.com/timnew/werewolves/latest
-[ci-image]: https://drone.io/github.com/timnew/werewolves/status.png
+[ci-url]: https://travis-ci.org/timnew/werewolves
+[ci-image]: https://img.shields.io/travis/timnew/werewolves.svg?style=flat
 
 [depstat-url]: https://gemnasium.com/timnew/werewolves
 [depstat-image]: http://img.shields.io/gemnasium/timnew/werewolves.svg?style=flat
