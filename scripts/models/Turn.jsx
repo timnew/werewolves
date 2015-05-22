@@ -5,11 +5,11 @@ import Immutable from 'immutable';
 
 import { VOTE_PLAYER, ATTACK_PLAYER, POISON_PLAYER } from 'constants/GamePlayConstants';
 
-const STATUS_MAPPING = Immutable.fromJS({
+export const STATUS_MAPPING = Immutable.fromJS({
   ATTACK_PLAYER: 'attacked',
   POISON_PLAYER: 'poisoned'
 });
-const DEATH_ACTIONS = Immutable.Seq.of(
+export const DEATH_ACTIONS = Immutable.Seq.of(
   ATTACK_PLAYER,
   POISON_PLAYER
 );
@@ -56,6 +56,15 @@ class Turn {
     this._events = this.events.set(event, value);
   }
 
+  marryLovers() {
+    let lovers = this.players
+                     .toSeq()
+                     .filter(player => player.hasStatus('lover'));
+
+    lovers.first().addStatus('lover', lovers.last().name);
+    lovers.last().addStatus('lover', lovers.first().name);
+  }
+
   populateDeathInfo() {
     return DEATH_ACTIONS
             .filter(action => this.events.has(action))
@@ -87,7 +96,9 @@ class Turn {
           return info;
         })
         .filter(info => info.status )
-        .forEach(info => info.player.kill(info.statusName));
+        .map(info => info.player.kill(info.statusName))
+        .filter(callback => typeof callback === 'function' )
+        .forEach(callback => callback(this));
   }
 
   pollCount() {
@@ -101,7 +112,10 @@ class Turn {
       this.logEvent(VOTE_PLAYER, mostVoted);
 
       if(mostVoted.count() === 1) {
-        mostVoted.first().kill('voted');
+        let callback = mostVoted.first().kill('voted');
+        if(callback) {
+          callback(this);
+        }
       }
     }
 

@@ -3,6 +3,8 @@
 import Immutable from 'immutable';
 import roles from './index';
 
+import {STATUS_MAPPING} from 'models/Turn';
+
 import roleSpecs from './roleSpecs';
 import Phase from 'models/phases/Phase';
 
@@ -55,8 +57,15 @@ class Role {
   }
 
   kill(reason) {
-    this.removeStatus(reason);
     this.addStatus('dead', reason);
+    STATUS_MAPPING.forEach((k, status) => this.removeStatus(status));
+
+    if(this.hasStatus('lover')) {
+      return (turn) => {
+        console.log(turn);
+        turn.players.get(this.getStatus('lover')).kill('lover');
+      };
+    }
   }
 
   clone() {

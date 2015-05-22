@@ -6,6 +6,7 @@ import {
   NEXT_STEP,
 
   CHANGE_ROLE,
+  COUPLE_PLAYER,
   GUARD_PLAYER,
   ATTACK_PLAYER,
   HEAL_PLAYER,
@@ -24,6 +25,9 @@ class GamePlay extends Marty.ActionCreators {
 
   changeRole(player, role) {
     this.dispatch(CHANGE_ROLE, player, role);
+  }
+  couplePlayer(player) {
+    this.dispatch(COUPLE_PLAYER, player);
   }
   guardPlayer(player) {
     this.dispatch(GUARD_PLAYER, player);

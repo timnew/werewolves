@@ -7,6 +7,7 @@ import {
   NEXT_STEP,
 
   CHANGE_ROLE,
+  COUPLE_PLAYER,
   GUARD_PLAYER,
   ATTACK_PLAYER,
   HEAL_PLAYER,
@@ -36,6 +37,7 @@ export class GameEngine extends Marty.Store {
       createGame: CREATE_GAME,
       nextStep: NEXT_STEP,
       changeRole: CHANGE_ROLE,
+      couplePlayer: COUPLE_PLAYER,
       guardPlayer: GUARD_PLAYER,
       attackPlayer: ATTACK_PLAYER,
       healPlayer: HEAL_PLAYER,
@@ -120,7 +122,23 @@ export class GameEngine extends Marty.Store {
   }
 
   nextStep() {
-    this.gotoPhase(this.phaseGenerator.next().value);
+    let nextPhase = null;
+
+    while(nextPhase == null) {
+      let nextPhaseResult = this.phaseGenerator.next();
+
+      if(nextPhaseResult.done) {
+        console.error('Finished');
+        nextPhase = false;
+        continue;
+      }
+
+      nextPhase = nextPhaseResult.value.isAvailable(this.currentTurn) ? nextPhaseResult.value : null;
+    }
+
+    if(nextPhase) {
+      this.gotoPhase(nextPhase);
+    }
   }
 
   gotoPhase(phase) {
@@ -136,6 +154,11 @@ export class GameEngine extends Marty.Store {
   changeRole(player, role) {
     this.currentTurn.changeRole(player, role);
 
+    this.hasChanged();
+  }
+
+  couplePlayer(player) {
+    player.addStatus('lover', true);
     this.hasChanged();
   }
 
