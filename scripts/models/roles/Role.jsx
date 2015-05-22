@@ -67,7 +67,7 @@ class Role {
 
     if(this.beforeKill(reason, turn)) {
       this.addStatus('dead', reason);
-
+      turn.recordDeath(this);
       this.afterKill(reason, turn);
     }
 

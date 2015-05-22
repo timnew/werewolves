@@ -138,6 +138,8 @@ export class GameEngine extends Marty.Store {
 
     if(nextPhase) {
       this.gotoPhase(nextPhase);
+    } else {
+      this.currentPhase.onPhaseCompleted(this);
     }
   }
 

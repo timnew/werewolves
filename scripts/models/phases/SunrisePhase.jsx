@@ -9,6 +9,7 @@ class SunrisePhase extends Phase {
   }
 
   onPhaseBegin(GameEngine) {
+    GameEngine.currentTurn.prepareDeathList(this);
     GameEngine.populateDeath();
   }
 
@@ -22,7 +23,7 @@ class SunrisePhase extends Phase {
   }
 
   renderDeathNames(turn) {
-    let deathNames = turn.populateDeathNames();
+    let deathNames = turn.getDeathList(this);
 
     if (deathNames.count() > 0) {
       return <p><b>{deathNames.join(', ')}</b> died last night, {this.renderLastWords(turn)}.</p>;

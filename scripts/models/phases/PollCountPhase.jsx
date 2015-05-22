@@ -13,6 +13,7 @@ class PollCountPhase extends Phase {
   }
 
   onPhaseBegin() {
+    GameEngine.currentTurn.prepareDeathList(this);
     GameEngine.pollCount();
   }
 
@@ -28,8 +29,14 @@ class PollCountPhase extends Phase {
     }
 
     let sentencedPlayer = pollResult.first();
+    let deathList = turn.getDeathList(this);
 
-    return <p>Player <b>{sentencedPlayer.name}</b> is most voted, who is sentenced.</p>;
+    if(deathList.count() === 1 ) {
+      return <p><b>{sentencedPlayer.name}</b> is most voted, who is sentenced.</p>;
+    } else {
+      console.log(deathList.toJS());
+      return <p><b>{sentencedPlayer.name}</b> is sentenced, and <b>{deathList.join(', ')}</b> died.</p>;
+    }
   }
 }
 

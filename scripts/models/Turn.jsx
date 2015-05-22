@@ -65,13 +65,19 @@ class Turn {
     lovers.last().addStatus('lover', lovers.first().name);
   }
 
-  populateDeathInfo() {
+  prepareDeathList(phase) {
+    let listName = `DeathIn${phase.name}`;
+    this.logEvent('currentDeathList', listName);
+    this.logEvent(listName, Immutable.fromJS([]));
   }
-
-  populateDeathNames() {
-    return this.populateDeathInfo()
-               .filter(info => !info.player.alive )
-               .map(info => info.player.name);
+  recordDeath(player) {
+    let listName = this.events.get('currentDeathList');
+    let newList = this.events.get(listName).push(player.name);
+    this._events = this.events.set(listName, newList);
+  }
+  getDeathList(phase) {
+    let listName = phase != null ? `DeathIn${phase.name}` : this.events.get('currentDeathList');
+    return this.events.get(listName);
   }
 
   populateDeath() {
