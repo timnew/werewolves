@@ -12,6 +12,7 @@ import {
   HEAL_PLAYER,
   POISON_PLAYER,
   VERIFY_PLAYER,
+  SHOOT_PLAYER,
   VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 
@@ -43,6 +44,9 @@ class GamePlay extends Marty.ActionCreators {
   }
   verifyPlayer(player) {
     this.dispatch(VERIFY_PLAYER, player);
+  }
+  shootPlayer(player) {
+    this.dispatch(SHOOT_PLAYER, player);
   }
   votePlayer(player, tickets = 1) {
     this.dispatch(VOTE_PLAYER, player, tickets);

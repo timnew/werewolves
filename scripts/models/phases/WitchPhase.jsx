@@ -57,7 +57,6 @@ class WitchPhase extends Phase {
     }
 
     let witch = turn.findAliveRole('Witch');
-    console.log(witch.status.poison);
     return (
       <ButtonGroup bsSize='xsmall'>
         {this.renderHealAction(player, witch)}

@@ -22,6 +22,7 @@ const GamePlayConstants = React.createConstants([
     'HEAL_PLAYER',
     'POISON_PLAYER',
     'VERIFY_PLAYER',
+    'SHOOT_PLAYER',
     'VOTE_PLAYER'
   ]);
 

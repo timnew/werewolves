@@ -13,6 +13,7 @@ import {
   HEAL_PLAYER,
   POISON_PLAYER,
   VERIFY_PLAYER,
+  SHOOT_PLAYER,
   VOTE_PLAYER
 } from 'constants/GamePlayConstants';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
@@ -43,6 +44,7 @@ export class GameEngine extends Marty.Store {
       healPlayer: HEAL_PLAYER,
       poisonPlayer: POISON_PLAYER,
       verifyPlayer: VERIFY_PLAYER,
+      shootPlayer: SHOOT_PLAYER,
       votePlayer: VOTE_PLAYER
     };
   }
@@ -194,6 +196,12 @@ export class GameEngine extends Marty.Store {
   verifyPlayer(player) {
     player.addStatus('verified');
     this.currentTurn.logEvent(VERIFY_PLAYER, player.name);
+    this.hasChanged();
+  }
+
+  shootPlayer(player) {
+    player.kill('shoot', this.currentTurn);
+    this.currentTurn.logEvent(SHOOT_PLAYER, player.name);
     this.hasChanged();
   }
 

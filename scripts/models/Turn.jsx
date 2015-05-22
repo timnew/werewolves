@@ -35,7 +35,7 @@ class Turn {
                      .count();
 
     let expected = this.roleSchema.get(roleName);
-
+    console.log(roleName, expected, actual);
     return expected - actual;
   }
 
