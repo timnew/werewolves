@@ -23,7 +23,9 @@ const GamePlayConstants = React.createConstants([
     'POISON_PLAYER',
     'VERIFY_PLAYER',
     'SHOOT_PLAYER',
-    'VOTE_PLAYER'
+    'VOTE_PLAYER',
+
+    'IDIOT_VOTED'
   ]);
 
 export default GamePlayConstants;

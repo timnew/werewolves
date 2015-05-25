@@ -35,7 +35,7 @@ class Turn {
                      .count();
 
     let expected = this.roleSchema.get(roleName);
-    console.log(roleName, expected, actual);
+
     return expected - actual;
   }
 
@@ -111,15 +111,26 @@ class Turn {
                         .groupBy((player) => player.getStatus('voted'))
                         .maxBy((playerGroup, tickets) => tickets);
 
-    if(mostVoted != null) {
-      this.logEvent(VOTE_PLAYER, mostVoted);
-
-      if(mostVoted.count() === 1) {
-        mostVoted.first().kill('voted', this);
-      }
+    if(mostVoted == null) {
+      this.logEvent(VOTE_PLAYER, Immutable.fromJS([]));
+    } else {
+      this.logEvent(VOTE_PLAYER, mostVoted.keySeq());
     }
 
     this.players.forEach((player) => player.removeStatus('voted'));
+  }
+
+  sentencePlayer() {
+    let mostVoted = this.events.get(VOTE_PLAYER);
+
+    if(mostVoted.count() !== 1) {
+      return false;
+    }
+
+    let playerName = mostVoted.first();
+    this.players.get(playerName).kill('voted', this);
+
+    return true;
   }
 }
 

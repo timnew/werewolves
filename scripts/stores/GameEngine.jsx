@@ -19,7 +19,7 @@ import {
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import Roles, { Uncertain } from 'models/roles';
-import { EMPTY_PHASE, Phase, SunsetPhase, SunrisePhase, PollPhase, PollCountPhase } from 'models/phases'; // eslint-disable-line no-unused-vars
+import { EMPTY_PHASE, Phase, SunsetPhase, SunrisePhase, PollPhase, IdiotPhase, PollCountPhase } from 'models/phases'; // eslint-disable-line no-unused-vars
 import Turn from 'models/Turn';
 
 export class GameEngine extends Marty.Store {
@@ -114,6 +114,7 @@ export class GameEngine extends Marty.Store {
     yield* this.nightPhases;
     yield new SunrisePhase();
     yield new PollPhase();
+    yield new IdiotPhase(); // TODO avoid to create it if not necessary
     yield new PollCountPhase();
   }
 
@@ -124,6 +125,8 @@ export class GameEngine extends Marty.Store {
   }
 
   nextStep() {
+    this.currentPhase.onPhaseCompleted(this);
+
     let nextPhase = null;
 
     while(nextPhase == null) {
@@ -140,14 +143,10 @@ export class GameEngine extends Marty.Store {
 
     if(nextPhase) {
       this.gotoPhase(nextPhase);
-    } else {
-      this.currentPhase.onPhaseCompleted(this);
     }
   }
 
   gotoPhase(phase) {
-    this.currentPhase.onPhaseCompleted(this);
-
     this.state.currentPhase = phase;
 
     this.currentPhase.onPhaseBegin(this);
@@ -217,7 +216,13 @@ export class GameEngine extends Marty.Store {
 
   pollCount() {
     this.currentTurn.pollCount();
-    this.hasChanged();
+    // this.hasChanged();
+  }
+
+  sentencePlayer() {
+    if(this.currentTurn.sentencePlayer()) {
+      this.hasChanged();
+    }
   }
 }
 

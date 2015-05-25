@@ -8,6 +8,7 @@ import WitchPhase from './WitchPhase';
 import SeerPhase from './SeerPhase';
 import SunrisePhase from './SunrisePhase';
 import PollPhase from './PollPhase';
+import IdiotPhase from './IdiotPhase';
 import PollCountPhase from './PollCountPhase';
 
 export default {
@@ -20,5 +21,6 @@ export default {
   SeerPhase,
   SunrisePhase,
   PollPhase,
+  IdiotPhase,
   PollCountPhase
 };

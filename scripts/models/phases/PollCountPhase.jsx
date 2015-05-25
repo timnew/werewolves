@@ -6,7 +6,7 @@ import StatusIcon from 'components/StatusIcon';
 
 import Phase from './Phase';
 
-import { VOTE_PLAYER, SHOOT_PLAYER } from 'constants/GamePlayConstants';
+import { VOTE_PLAYER, SHOOT_PLAYER, IDIOT_VOTED } from 'constants/GamePlayConstants';
 import GamePlay from 'actions/GamePlay';
 
 
@@ -17,7 +17,7 @@ class PollCountPhase extends Phase {
 
   onPhaseBegin(GameEngine) {
     GameEngine.currentTurn.prepareDeathList(this);
-    GameEngine.pollCount();
+    GameEngine.sentencePlayer();
   }
 
   getDescription(turn) {
@@ -31,19 +31,20 @@ class PollCountPhase extends Phase {
       return <p><b>Flat vote</b>, so no one is sentenced.</p>; // eslint-disable-line comma-spacing
     }
 
+    if(turn.events.has(IDIOT_VOTED)) {
+      let idiotName = turn.events.get(IDIOT_VOTED);
+
+      return <p><b>{idiotName}</b> has been most voted, whom later annouced as an <b>idiot</b>. The sentence is canceled.</p>;
+    }
+
     let sentencedPlayer = pollResult.first();
     let deathList = turn.getDeathList(this);
 
     if(deathList.count() === 1 ) {
       return <p><b>{sentencedPlayer.name}</b> is most voted, who is sentenced.</p>;
     } else {
-      console.log(deathList.toJS());
       return <p><b>{sentencedPlayer.name}</b> is sentenced, and <b>{deathList.join(', ')}</b> died.</p>;
     }
-  }
-
-  changeRoleToHunter(player) {
-    GamePlay.changeRole(player, 'Hunter');
   }
 
   renderUncertainActions(player, turn) {
@@ -51,20 +52,26 @@ class PollCountPhase extends Phase {
       return null;
     }
 
+    return (
+      <ButtonGroup bsSize='xsmall'>
+        {this.renderHunterRole(player, turn)}
+      </ButtonGroup>
+    );
+  }
+
+  changeRole(player, roleName) {
+    GamePlay.changeRole(player, roleName);
+  }
+
+  renderHunterRole(player, turn) {
     if(turn.countMissingRole('Hunter') === 0) {
       return null;
     }
 
-    if(player.getStatus('dead') === 'poisoned') {
-      return null;
-    }
-
     return (
-      <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.changeRoleToHunter.bind(this, player)}>
-          <StatusIcon prefix='role' icon='hunter'/>
-        </Button>
-      </ButtonGroup>
+      <Button onClick={this.changeRole.bind(this, player, 'Hunter')}>
+        <StatusIcon prefix='role' icon='hunter'/>
+      </Button>
     );
   }
 

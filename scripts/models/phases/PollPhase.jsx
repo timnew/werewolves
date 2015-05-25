@@ -13,6 +13,10 @@ class PollPhase extends Phase {
     super('Poll');
   }
 
+  onPhaseCompleted(GameEngine) {
+    GameEngine.pollCount();
+  }
+
   getDescription() {
     return 'Please vote the suspect.';
   }
@@ -31,6 +35,10 @@ class PollPhase extends Phase {
 
   renderDefaultActions(player) {
     if(!player.alive) {
+      return null;
+    }
+
+    if(player.roleName === 'Idiot') {
       return null;
     }
 
