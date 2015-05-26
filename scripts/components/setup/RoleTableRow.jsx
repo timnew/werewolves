@@ -59,8 +59,8 @@ class RoleTableRow extends React.Component {
   renderToggle() {
     return (
       <span>
-        {this.count}
-        <input type='checkbox'
+        <span className='number'>{this.count}</span>
+        <input type='checkbox' className='switch-box'
                checkedLink={this.createValueLink('count', this.countChanged)}/>
       </span>
     );
@@ -69,7 +69,7 @@ class RoleTableRow extends React.Component {
   renderNumber() {
     return (
       <span>
-        {this.count}
+        <span className='number'>{this.count}</span>
         <input type='range'
                min={this.spec.min}
                max={this.spec.max}

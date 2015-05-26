@@ -21,16 +21,16 @@ paths =
 devServer = {}
 
 gulp.task 'css', ->
-  gulp.src ['styles/*.styl']
-  .pipe stylus compress: true
-  .on 'error', (err) ->
-    gutil.log err
-    @emit('end')
-  .pipe size()
-  .pipe gulp.dest(paths.dest)
-  .pipe map (a, cb) ->
-    if devServer.invalidate? then devServer.invalidate()
-    cb()
+  # gulp.src ['styles/*.styl']
+  # .pipe stylus compress: true
+  # .on 'error', (err) ->
+  #   gutil.log err
+  #   @emit('end')
+  # .pipe size()
+  # .pipe gulp.dest(paths.dest)
+  # .pipe map (a, cb) ->
+  #   if devServer.invalidate? then devServer.invalidate()
+  #   cb()
 
 gulp.task 'assets:minify-html', ->
 
