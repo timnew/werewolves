@@ -32,7 +32,7 @@ class GameStatusRow extends React.Component {
         </td>
         <td>
           <span className={classNames('player-info', {dead: !this.player.alive})}>
-            {this.player.name} ( {this.player.seat} )
+            {this.player.name}
           </span>
         </td>
         <td>

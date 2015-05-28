@@ -20,23 +20,23 @@ describe 'PlayerStore', ->
 
   describe 'players', ->
     it 'should add', ->
-      GameSetup.addPlayer name: 'Tim', seat: 1
-      GameSetup.addPlayer name: 'Dylan', seat: 2
-      GameSetup.addPlayer name: 'Crab', seat: 3
-      GameSetup.addPlayer name: 'SemiCircle', seat: 4
+      GameSetup.addPlayer name: 'Tim'
+      GameSetup.addPlayer name: 'Dylan'
+      GameSetup.addPlayer name: 'Crab'
+      GameSetup.addPlayer name: 'SemiCircle'
 
       playerStore.players.should.deep.have.members [
-          { name: 'Tim', seat:1 }
-          { name: 'Dylan', seat: 2 }
-          { name: 'Crab', seat: 3 }
-          { name: 'SemiCircle', seat: 4 }
+          { name: 'Tim' }
+          { name: 'Dylan' }
+          { name: 'Crab' }
+          { name: 'SemiCircle' }
         ]
 
     it 'should remove', ->
-      GameSetup.addPlayer name: 'Tim', seat: 1
-      GameSetup.addPlayer name: 'Dylan', seat: 2
-      GameSetup.addPlayer name: 'Crab', seat: 3
-      GameSetup.addPlayer name: 'SemiCircle', seat: 4
+      GameSetup.addPlayer name: 'Tim'
+      GameSetup.addPlayer name: 'Dylan'
+      GameSetup.addPlayer name: 'Crab'
+      GameSetup.addPlayer name: 'SemiCircle'
 
       playerStore.players.should.have.length 4
 
@@ -45,31 +45,31 @@ describe 'PlayerStore', ->
       playerStore.players.length.should.equal 3
 
       playerStore.players.should.deep.have.members [
-          { name: 'Tim', seat:1 }
-          { name: 'Crab', seat: 3 }
-          { name: 'SemiCircle', seat: 4 }
+          { name: 'Tim' }
+          { name: 'Crab' }
+          { name: 'SemiCircle' }
         ]
 
     it 'should update', ->
-      GameSetup.addPlayer name: 'Tim', seat: 1
-      GameSetup.addPlayer name: 'Dylan', seat: 2
-      GameSetup.addPlayer name: 'Crab', seat: 3
-      GameSetup.addPlayer name: 'SemiCircle', seat: 4
+      GameSetup.addPlayer name: 'Tim'
+      GameSetup.addPlayer name: 'Dylan'
+      GameSetup.addPlayer name: 'Crab'
+      GameSetup.addPlayer name: 'SemiCircle'
 
-      GameSetup.updatePlayer 1, name: 'Dalu', seat: 2
+      GameSetup.updatePlayer 1, name: 'Dalu'
 
       playerStore.players.should.deep.have.members [
-          { name: 'Tim', seat:1 }
-          { name: 'Dalu', seat: 2 }
-          { name: 'Crab', seat: 3 }
-          { name: 'SemiCircle', seat: 4 }
+          { name: 'Tim' }
+          { name: 'Dalu' }
+          { name: 'Crab' }
+          { name: 'SemiCircle' }
         ]
 
     it 'should remove all', ->
-      GameSetup.addPlayer name: 'Tim', seat: 1
-      GameSetup.addPlayer name: 'Dylan', seat: 2
-      GameSetup.addPlayer name: 'Crab', seat: 3
-      GameSetup.addPlayer name: 'SemiCircle', seat: 4
+      GameSetup.addPlayer name: 'Tim'
+      GameSetup.addPlayer name: 'Dylan'
+      GameSetup.addPlayer name: 'Crab'
+      GameSetup.addPlayer name: 'SemiCircle'
 
       GameSetup.removeAllPlayers()
 
@@ -91,11 +91,11 @@ describe 'PlayerStore', ->
 
   describe 'validation', ->
     beforeEach ->
-      GameSetup.addPlayer name: 'Tim', seat: 1
-      GameSetup.addPlayer name: 'Dylan', seat: 2
-      GameSetup.addPlayer name: 'Crab', seat: 3
-      GameSetup.addPlayer name: 'SemiCircle', seat: 4
-      GameSetup.addPlayer name: '007', seat: 5
+      GameSetup.addPlayer name: 'Tim'
+      GameSetup.addPlayer name: 'Dylan'
+      GameSetup.addPlayer name: 'Crab'
+      GameSetup.addPlayer name: 'SemiCircle'
+      GameSetup.addPlayer name: '007'
 
     it 'should be invalid by default', ->
       new PlayerStore({}).isValid.should.be.false
@@ -109,17 +109,9 @@ describe 'PlayerStore', ->
       playerStore.validationError.should.equal 'Expected 5 players, but got 4'
 
     it 'should check player name', ->
-      GameSetup.updatePlayer 1, { name: '', seat: 2 }
+      GameSetup.updatePlayer 1, { name: '' }
       playerStore.validationError.should.equal 'Player name is empty'
 
-    it 'should check player name', ->
-      GameSetup.updatePlayer 1, { name: 'Dylan', seat: null }
-      playerStore.validationError.should.equal 'Player seat is empty'
-
     it 'should check duplicate name', ->
-      GameSetup.updatePlayer 1, { name: 'Tim', seat: 2 }
+      GameSetup.updatePlayer 1, { name: 'Tim' }
       playerStore.validationError.should.equal 'Duplicate player name'
-
-    it 'should check duplicate seat', ->
-      GameSetup.updatePlayer 1, { name: 'Dylan', seat: 1 }
-      playerStore.validationError.should.equal 'Duplicate player seat'

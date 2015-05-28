@@ -106,18 +106,10 @@ export class PlayerStore extends Marty.Store {
       if(!player.name) {
         return this.setError('Player name is empty');
       }
-
-      if(!player.seat) {
-        return this.setError('Player seat is empty');
-      }
     }
 
     if(_.uniq(_.pluck(this.players, 'name')).length !== this.players.length) {
       return this.setError('Duplicate player name');
-    }
-
-    if(_.uniq(_.pluck(this.players, 'seat')).length !== this.players.length) {
-      return this.setError('Duplicate player seat');
     }
 
     return this.setError(null);

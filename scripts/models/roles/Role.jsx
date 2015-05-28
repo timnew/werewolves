@@ -11,14 +11,12 @@ import Phase from 'models/phases/Phase';
 class Role {
   constructor(player) {
     this._name = player.name;
-    this._seat = player.seat;
     this._status = Immutable.fromJS(player.status || {});
   }
 
   get roleName() { return this.constructor.name; }
 
   get name() { return this._name; }
-  get seat() { return this._seat; }
   get status() { return this._status; }
   get alive() { return !this.hasStatus('dead'); }
 

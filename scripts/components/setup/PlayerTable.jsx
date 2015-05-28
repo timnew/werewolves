@@ -62,8 +62,7 @@ class PlayerTable extends React.Component {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Seat</th>
+                <th>Name</th>                
                 <th>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>

@@ -23,7 +23,6 @@ class PlayerTableRow extends React.Component {
   get inEditing() { return this.data.get('inEditing'); }
 
   get playerName() { return this.player.name || `Player ${this.props.index + 1}`; }
-  get playerSeat() { return this.player.seat || `Seat ${this.props.index + 1}`; }
 
   render() {
     if(this.inEditing) {
@@ -41,8 +40,7 @@ class PlayerTableRow extends React.Component {
   edit() {
     this.updateData({
         inEditing: true,
-        name: this.playerName,
-        seat: this.playerSeat
+        name: this.playerName
     });
 
     this.editingStatusChanged(this.props.index, true);
@@ -53,7 +51,7 @@ class PlayerTableRow extends React.Component {
   }
 
   confirmEdit() {
-    let playerDefinition = _.pick(this.data.toJS(), 'name', 'seat');
+    let playerDefinition = _.pick(this.data.toJS(), 'name');
 
     if(this.player) {
       GameSetup.updatePlayer(this.props.index, playerDefinition);
@@ -85,7 +83,6 @@ class PlayerTableRow extends React.Component {
       <tr>
         <td>{this.props.index + 1}</td>
         <td>{this.props.player.name}</td>
-        <td>{this.props.player.seat}</td>
         <td>
           <ButtonToolbar>
             <ButtonGroup bsSize='xsmall'>
@@ -120,7 +117,6 @@ class PlayerTableRow extends React.Component {
       <tr>
         <td>{this.props.index + 1}</td>
         <td><input type='text' className='table-inline' valueLink={this.createStateLink('name')}/></td>
-        <td><input type='text' className='table-inline' valueLink={this.createStateLink('seat')}/></td>
         <td>
           <ButtonGroup bsSize='xsmall'>
             <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
@@ -134,8 +130,7 @@ class PlayerTableRow extends React.Component {
 PlayerTableRow.propTypes = {
   index: PropTypes.number,
   player: PropTypes.shape({
-    name: PropTypes.string,
-    seat: PropTypes.string
+    name: PropTypes.string
   }),
   editingStatusChanged: PropTypes.func
 };
