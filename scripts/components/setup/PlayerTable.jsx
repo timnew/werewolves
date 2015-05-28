@@ -14,7 +14,7 @@ class PlayerTable extends React.Component {
     });
   }
 
-  get playerCount() { return this.props.playerCount; }
+  get playerCount() { return this.players.length; }
   get canDecreasePlayer() { return this.props.canDecreasePlayer; }
   get players() { return this.props.players; }
   get error() { return this.props.error; }
@@ -23,7 +23,7 @@ class PlayerTable extends React.Component {
   setChildrenInEditing(value) { this.updateData(data => data.set('childrenInEditing', value)); }
 
   increasePlayer() {
-    GameSetup.updatePlayerCount(this.playerCount + 1);
+    GameSetup.addPlayer();
   }
 
   decreasePlayer() {
@@ -62,7 +62,7 @@ class PlayerTable extends React.Component {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>                
+                <th>Name</th>
                 <th>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
@@ -163,7 +163,6 @@ class PlayerTable extends React.Component {
   }
 }
 PlayerTable.propTypes = {
-  playerCount: PropTypes.number,
   players: PropTypes.arrayOf(PropTypes.object),
   error: PropTypes.string,
   canDecreasePlayer: PropTypes.bool

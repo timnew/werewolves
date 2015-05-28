@@ -27,7 +27,6 @@ class Setup extends React.Component {
         </PropertyBinder>
         <PropertyBinder source={PlayerStore}
           binding={{
-            playerCount: 'expectedPlayerCount',
             players: 'players',
             error: 'validationError',
             canDecreasePlayer: 'canDecreasePlayer'
