@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import Marty from 'marty';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
+import PlayerStore, { MIN_PLAYER_COUNT, RECOMMENDED_MAX_PLAYER_COUNT } from './PlayerStore';
 
 import {
   ADD_PLAYER,
@@ -45,28 +46,39 @@ export class RoleConfigStore extends Marty.Store {
 
   get isValid() { return this.state.validationError == null; }
 
-  updateSchema(count) {
+  updateSchema() {
+    let count = PlayerStore.playerCount;
+
     this.state.playerCount = count;
-    this.state.roleSchema = defaultRoleSchemas[count] ? defaultRoleSchemas[count] : defaultRoleSchemas.default;
-    this.state.roleSchema = _.cloneDeep(this.state.roleSchema);
 
-    this.validate();
-
-    let difference = count - this.roleCount.total;
-    if(difference > 0) {
-      this.state.roleSchema.Villager += difference;
-      this.validate();
+    if (count < MIN_PLAYER_COUNT) {
+      this.state.roleSchema = _.cloneDeep(defaultRoleSchemas[MIN_PLAYER_COUNT]);
+    } else if(count > RECOMMENDED_MAX_PLAYER_COUNT) {
+      this.state.roleSchema = _.cloneDeep(defaultRoleSchemas.default);
+      this.repopulateVillager();
+    } else {
+      this.state.roleSchema = _.cloneDeep(defaultRoleSchemas[count]);
     }
 
+    this.validate();
     this.hasChanged();
   }
 
   updateRoleConfig(name, count) {
     if(this.validateName(name)) {
       this.state.roleSchema[name] = count;
+      this.repopulateVillager();
       this.validate();
       this.hasChanged();
     }
+  }
+
+  repopulateVillager() {
+    let withoutVillagers = _(this.roleSchema).omit('Villager')
+                                             .values()
+                                             .reduce((total, count) => total + count);
+    console.log(withoutVillagers);
+    this.roleSchema.Villager = Math.max(0, this.playerCount - withoutVillagers);
   }
 
   validateName(name) {
@@ -110,6 +122,11 @@ export class RoleConfigStore extends Marty.Store {
     this.state.roleCount = roleCount;
 
     if(!this.isValid) {
+      return false;
+    }
+
+    if (this.playerCount < MIN_PLAYER_COUNT) {
+      this.setError(`At least ${MIN_PLAYER_COUNT} players`);
       return false;
     }
 

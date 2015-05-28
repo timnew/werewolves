@@ -16,8 +16,10 @@ import {
   CURRENT_CONFIG
 } from 'constants/GameSetupConstants';
 
-const MIN_PLAYER_COUNT = 5;
-const MAX_PLAYER_COUNT = 999;
+export const MIN_PLAYER_COUNT = 5;
+export const RECOMMENDED_MAX_PLAYER_COUNT = 17;
+export const MAX_PLAYER_COUNT = 999;
+
 
 export class PlayerStore extends Marty.Store {
   constructor(options) {
@@ -100,8 +102,8 @@ export class PlayerStore extends Marty.Store {
   }
 
   validate() {
-    if (this.expectedPlayerCount < 5) {
-      return this.setError('At least 5 players');
+    if (this.expectedPlayerCount < MIN_PLAYER_COUNT) {
+      return this.setError(`At least ${MIN_PLAYER_COUNT} players`);
     }
 
     for(var index in this.players) {

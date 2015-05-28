@@ -32,7 +32,7 @@ class RoleTableRow extends React.Component {
   renderValue() {
     let spec = this.spec;
 
-    if(spec.max === spec.min) {
+    if(spec.name === 'Villager' || spec.max === spec.min) {
       return this.renderFix();
     }
 
@@ -40,7 +40,7 @@ class RoleTableRow extends React.Component {
       return this.renderToggle();
     }
 
-    return this.renderNumber();
+    return this.renderSlide();
   }
 
   renderFix() {
@@ -66,7 +66,7 @@ class RoleTableRow extends React.Component {
     );
   }
 
-  renderNumber() {
+  renderSlide() {
     return (
       <span>
         <span className='number'>{this.count}</span>
