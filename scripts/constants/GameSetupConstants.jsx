@@ -3,11 +3,10 @@
 import Marty from 'marty';
 
 const GameSetupConstants = Marty.createConstants([
-      'UPDATE_PLAYER_COUNT',
       'ADD_PLAYER',
       'REMOVE_PLAYER',
       'UPDATE_PLAYER',
-      'REMOVE_ALL_PLAYERS',
+      'RESET_ALL_PLAYER',
 
       'UPDATE_ROLE_CONFIG',
 

@@ -15,6 +15,7 @@ class PlayerTable extends React.Component {
   }
 
   get playerCount() { return this.players.length; }
+  get canIncreasePlayer() { return this.props.canIncreasePlayer; }
   get canDecreasePlayer() { return this.props.canDecreasePlayer; }
   get players() { return this.props.players; }
   get error() { return this.props.error; }
@@ -27,7 +28,7 @@ class PlayerTable extends React.Component {
   }
 
   decreasePlayer() {
-    GameSetup.updatePlayerCount(this.playerCount - 1);
+    GameSetup.removePlayer();
   }
 
   editAll() {
@@ -35,8 +36,8 @@ class PlayerTable extends React.Component {
     this.setChildrenInEditing(this.playerCount);
   }
 
-  trashAll() {
-    GameSetup.removeAllPlayers();
+  resetAllPlayer() {
+    GameSetup.resetAllPlayer();
   }
 
   confirmAll() {
@@ -66,12 +67,12 @@ class PlayerTable extends React.Component {
                 <th>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
-                      <Button onClick={this.increasePlayer.bind(this)}><FaIcon icon='user-plus'/></Button>
+                      <Button onClick={this.increasePlayer.bind(this)} disabled={!this.canIncreasePlayer}><FaIcon icon='user-plus'/></Button>
                       <Button onClick={this.decreasePlayer.bind(this)} disabled={!this.canDecreasePlayer}><FaIcon icon='user-times'/></Button>
                     </ButtonGroup>
                     {this.renderEditAll()}
-                    {this.renderTrashAll()}
                     {this.renderChildrenEditControl()}
+                    {this.renderResetAll()}
                   </ButtonToolbar>
                 </th>
               </tr>
@@ -121,15 +122,10 @@ class PlayerTable extends React.Component {
     );
   }
 
-  renderTrashAll() {
-    let hasPlayer = this.players.length > 0;
-    if(!hasPlayer) {
-      return null;
-    }
-
+  renderResetAll() {
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button bsStyle="danger" onClick={this.trashAll.bind(this)}><FaIcon icon="trash"/></Button>
+        <Button bsStyle="danger" onClick={this.resetAllPlayer.bind(this)}><FaIcon icon="recycle"/></Button>
       </ButtonGroup>
     );
   }
@@ -149,28 +145,25 @@ class PlayerTable extends React.Component {
   }
 
   renderChildren() {
-    let {playerCount, players} = this.props;
-    let rowCount = Math.max(playerCount, players.length);
-    return _.map(_.range(rowCount), (index) => {
-      return (
+    return this.players.map((player, index) =>
         <PlayerTableRow ref={index}
                         key={index}
                         index={index}
-                        player={players[index]}
+                        player={player}
                         editingStatusChanged={this.childEditingStatusChanged.bind(this)} />
-        );
-    });
+    );
   }
 }
 PlayerTable.propTypes = {
   players: PropTypes.arrayOf(PropTypes.object),
   error: PropTypes.string,
+  canIncreasePlayer: PropTypes.bool,
   canDecreasePlayer: PropTypes.bool
 };
 PlayerTable.defaultProps = {
-  playerCount: 5,
   players: [],
   error: null,
+  canIncreasePlayer: true,
   canDecreasePlayer: false
 };
 

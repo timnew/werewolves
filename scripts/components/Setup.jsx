@@ -29,6 +29,7 @@ class Setup extends React.Component {
           binding={{
             players: 'players',
             error: 'validationError',
+            canIncreasePlayer: 'canIncreasePlayer',
             canDecreasePlayer: 'canDecreasePlayer'
           }}>
           <PlayerTable/>

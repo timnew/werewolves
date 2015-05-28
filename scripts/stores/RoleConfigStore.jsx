@@ -5,7 +5,8 @@ import Marty from 'marty';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import {
-  UPDATE_PLAYER_COUNT,
+  ADD_PLAYER,
+  REMOVE_PLAYER,
   UPDATE_ROLE_CONFIG,
   SAVE_CONFIG,
   LOAD_CONFIG,
@@ -26,7 +27,7 @@ export class RoleConfigStore extends Marty.Store {
     this.updateSchema(5);
 
     this.handlers = {
-      updateSchema: UPDATE_PLAYER_COUNT,
+      updateSchema: [ADD_PLAYER, REMOVE_PLAYER],
       updateRoleConfig: UPDATE_ROLE_CONFIG,
       saveConfig: SAVE_CONFIG,
       loadConfig: LOAD_CONFIG,

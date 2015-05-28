@@ -2,11 +2,10 @@
 
 import Marty from 'marty';
 import {
-  UPDATE_PLAYER_COUNT,
   ADD_PLAYER,
   REMOVE_PLAYER,
   UPDATE_PLAYER,
-  REMOVE_ALL_PLAYERS,
+  RESET_ALL_PLAYER,
   UPDATE_ROLE_CONFIG,
   LOAD_CONFIG,
   SAVE_CONFIG,
@@ -15,12 +14,12 @@ import {
 } from 'constants/GameSetupConstants';
 
 class GameSetup extends Marty.ActionCreators {
-  updatePlayerCount(count) {
-    this.dispatch(UPDATE_PLAYER_COUNT, count);
+  updatePlayerCount() {
+    console.error('invalid');
   }
 
-  addPlayer(playerDefinition) {
-    this.dispatch(ADD_PLAYER, playerDefinition);
+  addPlayer() {
+    this.dispatch(ADD_PLAYER);
   }
 
   removePlayer(index) {
@@ -31,8 +30,8 @@ class GameSetup extends Marty.ActionCreators {
     this.dispatch(UPDATE_PLAYER, index, playerDefinition);
   }
 
-  removeAllPlayers() {
-    this.dispatch(REMOVE_ALL_PLAYERS);
+  resetAllPlayer() {
+    this.dispatch(RESET_ALL_PLAYER);
   }
 
   updateRoleConfig(roleName, value) {

@@ -1,6 +1,6 @@
 _ = require('lodash')
 
-describe 'RoleConfigStore', ->
+xdescribe 'RoleConfigStore', ->
   RoleConfigStore = require(sourceRoot.stores('RoleConfigStore')).RoleConfigStore
   GameSetup = require(sourceRoot.actions('GameSetup'))
   roleSchemas = require(sourceRoot.models('roles', 'roleSchemas'))

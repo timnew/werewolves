@@ -6,34 +6,33 @@ import _ from 'lodash';
 import GameConfigStorage from 'stateSources/GameConfigStorage';
 
 import {
-  UPDATE_PLAYER_COUNT,
   ADD_PLAYER,
   REMOVE_PLAYER,
   UPDATE_PLAYER,
-  REMOVE_ALL_PLAYERS,
+  RESET_ALL_PLAYER,
   SAVE_CONFIG,
   LOAD_CONFIG,
   INIT_CONFIG,
   CURRENT_CONFIG
 } from 'constants/GameSetupConstants';
+
 const MIN_PLAYER_COUNT = 5;
+const MAX_PLAYER_COUNT = 999;
 
 export class PlayerStore extends Marty.Store {
   constructor(options) {
     super(options);
 
     this.state = {
-      expectedPlayerCount: MIN_PLAYER_COUNT,
-      players: [],
+      players: _.range(0, MIN_PLAYER_COUNT).map(index => this.buildPlayer(index)),
       validationError: null
     };
 
     this.handlers = {
-      updateExpectedPlayerCount: UPDATE_PLAYER_COUNT,
       addPlayer: ADD_PLAYER,
       removePlayer: REMOVE_PLAYER,
       updatePlayer: UPDATE_PLAYER,
-      removeAllPlayers: REMOVE_ALL_PLAYERS,
+      resetAllPlayer: RESET_ALL_PLAYER,
       saveConfig: SAVE_CONFIG,
       loadConfig: LOAD_CONFIG,
       initConfig: INIT_CONFIG
@@ -42,7 +41,9 @@ export class PlayerStore extends Marty.Store {
     this.validate();
   }
 
-  get expectedPlayerCount() { return this.state.expectedPlayerCount; }
+  get playerCount() {
+    return this.players.length;
+  }
 
   get players() {
     return this.state.players;
@@ -55,7 +56,15 @@ export class PlayerStore extends Marty.Store {
   }
 
   get canDecreasePlayer() {
-    return this.expectedPlayerCount > MIN_PLAYER_COUNT;
+    return this.playerCount > MIN_PLAYER_COUNT;
+  }
+
+  get canIncreasePlayer() {
+    return this.playerCount < MAX_PLAYER_COUNT;
+  }
+
+  buildPlayer(index = this.players.length) {
+    return {name: `Player ${index + 1}`};
   }
 
   setError(error) {
@@ -66,18 +75,17 @@ export class PlayerStore extends Marty.Store {
     return error == null;
   }
 
-  updateExpectedPlayerCount(count) {
-    this.state.expectedPlayerCount = count;
-    this.validate();
-  }
-
-  addPlayer(playerDefinition) {
-    this.players.push(playerDefinition);
+  addPlayer() {
+    this.players.push(this.buildPlayer());
     this.validate();
   }
 
   removePlayer(index) {
-    _.pullAt(this.players, index);
+    if(index == null) {
+      this.players.pop();
+    } else {
+      _.pullAt(this.players, index);
+    }
     this.validate();
   }
 
@@ -86,18 +94,14 @@ export class PlayerStore extends Marty.Store {
     this.validate();
   }
 
-  removeAllPlayers() {
-    this.players.splice(0, this.players.length);
+  resetAllPlayer() {
+    this.state.players = this.players.map((player, index) => this.buildPlayer(index));
     this.validate();
   }
 
   validate() {
     if (this.expectedPlayerCount < 5) {
       return this.setError('At least 5 players');
-    }
-
-    if(this.players.length !== this.expectedPlayerCount) {
-      return this.setError(`Expected ${this.expectedPlayerCount} players, but got ${this.players.length}`);
     }
 
     for(var index in this.players) {
