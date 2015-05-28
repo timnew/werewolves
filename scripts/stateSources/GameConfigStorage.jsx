@@ -34,4 +34,4 @@ export class GameConfigStorage extends Marty.LocalStorageStateSource {
   }
 }
 
-export default Marty.register(GameConfigStorage);
+export default Marty.register(GameConfigStorage, 'GameConfigStorage');

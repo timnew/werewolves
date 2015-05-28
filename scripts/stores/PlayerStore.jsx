@@ -153,4 +153,4 @@ export class PlayerStore extends Marty.Store {
   }
 }
 
-export default Marty.register(PlayerStore);
+export default Marty.register(PlayerStore, 'PlayerStore');

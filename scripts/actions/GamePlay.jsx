@@ -53,4 +53,4 @@ class GamePlay extends Marty.ActionCreators {
   }
 }
 
-export default Marty.register(GamePlay);
+export default Marty.register(GamePlay, 'GamePlay');

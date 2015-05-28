@@ -59,4 +59,4 @@ class GameSetup extends Marty.ActionCreators {
   }
 }
 
-export default Marty.register(GameSetup);
+export default Marty.register(GameSetup, 'GameSetup');

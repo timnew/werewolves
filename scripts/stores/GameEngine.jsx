@@ -226,4 +226,4 @@ export class GameEngine extends Marty.Store {
   }
 }
 
-export default Marty.register(GameEngine);
+export default Marty.register(GameEngine, 'GameEngine');

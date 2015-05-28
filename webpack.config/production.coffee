@@ -9,7 +9,7 @@ Config.set devtool: 'source-map'
   .appendPlugins [
       new ExtractTextPlugin('main.css')
       new webpack.optimize.DedupePlugin()
-      # new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin()
     ]
   .appendLoaders [
       { test: /\.(png)$/i, loaders: 'image?bypassOnDebug&optimizationLevel=7&interlaced=true' }

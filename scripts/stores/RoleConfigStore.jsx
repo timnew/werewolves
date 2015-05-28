@@ -154,4 +154,4 @@ export class RoleConfigStore extends Marty.Store {
   }
 }
 
-export default Marty.register(RoleConfigStore);
+export default Marty.register(RoleConfigStore, 'RoleConfigStore');
