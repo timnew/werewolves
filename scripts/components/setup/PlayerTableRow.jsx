@@ -24,14 +24,6 @@ class PlayerTableRow extends React.Component {
 
   get playerName() { return this.player.name; }
 
-  render() {
-    if(this.inEditing) {
-        return this.renderEditing();
-    }
-
-    return this.renderPlayer();
-  }
-
   edit() {
     this.updateData({
         inEditing: true,
@@ -60,10 +52,6 @@ class PlayerTableRow extends React.Component {
     this.editingStatusChanged(this.props.index, false);
   }
 
-  createStateLink(field) {
-    return super.createStateLink(field, this.updatePlayer, true);
-  }
-
   updatePlayer(field, value) {
     this.updateData(data => {
       let newData = data.set(field, value);
@@ -71,39 +59,54 @@ class PlayerTableRow extends React.Component {
     });
   }
 
-  renderPlayer() {
+  render() {
     return (
       <tr>
-        <td className='col-md-1 col-sm-1 col-xs-1'>{this.props.index + 1}</td>
-        <td className='col-md-8 col-sm-6 col-xs-6'><span className='editable'>{this.props.player.name}</span></td>
-        <td className='col-md-3 col-sm-5 col-xs-5'>
+        <td className='col-md-1 col-sm-1 col-xs-1 index'>{this.props.index + 1}</td>
+        <td className='col-md-8 col-sm-6 col-xs-5 name'>{this.renderName()}</td>
+        <td className='col-md-3 col-sm-5 col-xs-6 action'>
           <ButtonToolbar>
             <ButtonGroup bsSize='xsmall'>
-              <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
+              <Button bsStyle='info' onClick={this.edit.bind(this)} disabled={this.inEditing}>
+                <FaIcon icon='pencil'/>
+              </Button>
             </ButtonGroup>
             <ButtonGroup bsSize='xsmall'>
               <Button bsStyle='danger' onClick={this.remove.bind(this)}><FaIcon icon='trash'/></Button>
             </ButtonGroup>
+            {this.renderEditingControl()}
           </ButtonToolbar>
         </td>
       </tr>
     );
   }
 
-  renderEditing() {
+  createStateLink(field) {
+    return super.createStateLink(field, this.updatePlayer, true);
+  }
+
+  renderName() {
+    if(this.inEditing) {
+      return (
+        <input type='text' className='editable' valueLink={this.createStateLink('name')}/>
+      );
+    } else {
+      return (
+        <span className='editable'>{this.props.player.name}</span>
+      );
+    }
+  }
+
+  renderEditingControl() {
+    if(!this.inEditing) {
+      return null;
+    }
+
     return (
-      <tr>
-        <td className='col-md-1 col-sm-1 col-xs-1'>{this.props.index + 1}</td>
-        <td className='col-md-8 col-sm-6 col-xs-6'>
-          <input type='text' className='editable' valueLink={this.createStateLink('name')}/>
-        </td>
-        <td className='col-md-3 col-sm-5 col-xs-5'>
-          <ButtonGroup bsSize='xsmall'>
-            <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
-            <Button onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>
-          </ButtonGroup>
-        </td>
-      </tr>
+      <ButtonGroup bsSize='xsmall'>
+        <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
+        <Button onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>
+      </ButtonGroup>
     );
   }
 }

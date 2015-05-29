@@ -59,20 +59,20 @@ class PlayerTable extends React.Component {
     return (
       <Row>
         <Panel bsStyle={this.panelStyle} header={this.renderTitle()} footer={this.renderError()}>
-          <Table striped condensed hover fill>
+          <Table striped condensed hover fill className='player-table'>
             <thead>
               <tr>
-                <th className='col-md-1 col-sm-1 col-xs-1'>#</th>
-                <th className='col-md-8 col-sm-6 col-xs-6'>Name</th>
-                <th className='col-md-3 col-sm-5 col-xs-5'>
+                <th className='col-md-1 col-sm-1 col-xs-1 index'>#</th>
+                <th className='col-md-8 col-sm-6 col-xs-5 name'>Name</th>
+                <th className='col-md-3 col-sm-5 col-xs-6 actions'>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
                       <Button onClick={this.increasePlayer.bind(this)} disabled={!this.canIncreasePlayer}><FaIcon icon='user-plus'/></Button>
                       <Button onClick={this.decreasePlayer.bind(this)} disabled={!this.canDecreasePlayer}><FaIcon icon='user-times'/></Button>
                     </ButtonGroup>
                     {this.renderEditAll()}
-                    {this.renderChildrenEditControl()}
                     {this.renderResetAll()}
+                    {this.renderChildrenEditControl()}
                   </ButtonToolbar>
                 </th>
               </tr>
@@ -109,13 +109,10 @@ class PlayerTable extends React.Component {
 
   renderEditAll() {
     let allChildrenInEditing = this.childrenInEditing === this.playerCount;
-    if(allChildrenInEditing) {
-      return null;
-    }
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button onClick={this.editAll.bind(this)} bsStyle='info'>
+        <Button onClick={this.editAll.bind(this)} bsStyle='info' disabled={allChildrenInEditing}>
           <FaIcon icon='pencil'/>
         </Button>
       </ButtonGroup>
