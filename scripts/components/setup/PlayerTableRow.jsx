@@ -63,8 +63,8 @@ class PlayerTableRow extends React.Component {
     return (
       <tr>
         <td className='col-md-1 col-sm-1 col-xs-1 index'>{this.props.index + 1}</td>
-        <td className='col-md-8 col-sm-6 col-xs-5 name'>{this.renderName()}</td>
-        <td className='col-md-3 col-sm-5 col-xs-6 action'>
+        <td className='col-md-5 col-sm-6 col-xs-5 name'>{this.renderName()}</td>
+        <td className='col-md-6 col-sm-5 col-xs-6 action'>
           <ButtonToolbar>
             <ButtonGroup bsSize='xsmall'>
               <Button bsStyle='info' onClick={this.edit.bind(this)} disabled={this.inEditing}>

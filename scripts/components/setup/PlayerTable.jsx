@@ -63,8 +63,8 @@ class PlayerTable extends React.Component {
             <thead>
               <tr>
                 <th className='col-md-1 col-sm-1 col-xs-1 index'>#</th>
-                <th className='col-md-8 col-sm-6 col-xs-5 name'>Name</th>
-                <th className='col-md-3 col-sm-5 col-xs-6 actions'>
+                <th className='col-md-5 col-sm-6 col-xs-5 name'>Name</th>
+                <th className='col-md-6 col-sm-5 col-xs-6 actions'>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
                       <Button onClick={this.increasePlayer.bind(this)} disabled={!this.canIncreasePlayer}><FaIcon icon='user-plus'/></Button>
