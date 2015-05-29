@@ -19,6 +19,8 @@ class Witch extends Role {
     }
   }
 
+  static get roleName() { return 'Witch'; }
+
   get canHeal() { return this.getStatus('heal-potion'); }
   get canPoison() { return this.getStatus('poison-potion'); }
 

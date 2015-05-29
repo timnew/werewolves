@@ -8,6 +8,8 @@ class Werewolf extends Role {
     super(player);
   }
 
+  static get roleName() { return 'Werewolf'; }
+
   static createPhase() {
     return new WerewolfPhase();
   }

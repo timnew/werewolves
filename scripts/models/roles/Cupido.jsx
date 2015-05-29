@@ -8,6 +8,8 @@ class Cupido extends Role {
     super(player);
   }
 
+  static get roleName() { return 'Cupido'; }
+
   static createPhase() {
     return new CupidoPhase();
   }

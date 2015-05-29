@@ -9,6 +9,8 @@ class Seer extends Role {
     super(player);
   }
 
+  static get roleName() { return 'Seer'; }
+
   static createPhase() {
     return new SeerPhase();
   }

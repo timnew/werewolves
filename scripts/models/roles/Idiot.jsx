@@ -8,6 +8,8 @@ class Idiot extends Role {
     super(player);
   }
 
+  static get roleName() { return 'Idiot'; }
+
   beforeKill(reason, turn) {
     if(reason === 'voted') {
       turn.logEvent(IDIOT_VOTED, this.name);

@@ -14,7 +14,9 @@ class Role {
     this._status = Immutable.fromJS(player.status || {});
   }
 
-  get roleName() { return this.constructor.name; }
+  get roleName() {
+     return this.constructor.roleName;
+   }
 
   get name() { return this._name; }
   get status() { return this._status; }
@@ -83,6 +85,7 @@ class Role {
   }
 
   static get roleName() {
+    console.warn('This implementation strongly depends on refactor, which might break after minified.');
     return this.name;
   }
 

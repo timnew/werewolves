@@ -8,6 +8,8 @@ class Guardian extends Role {
     super(player);
   }
 
+  static get roleName() { return 'Guardian'; }
+
   static createPhase() {
     return new GuardianPhase();
   }
