@@ -17,21 +17,31 @@ table
   th.name
     padding: 5px 10px
 
-.setup-table
+.role-table
+  .icon
+    text-align: center
+
+  .name
+    padding: 5px 10px
+
   .header
     background: #eee
+
   .total
     background: #ddd
+    .caption
+      text-align: right
 
-  .number
-    margin: 0 .5em
+  .value
+    span
+      margin: 0 5px
 
-  input
-    display: inline
-    margin: 0px 0px 0px 5px
-    vertical-align: middle
+    input
+      display: inline
+      margin: 0px 0px 0px 5px
+      vertical-align: middle
 
-    &[type=checkbox]
-      width: 20px
-    &[type=range]
-      width: 100px
+      &[type=checkbox]
+        width: 20px
+      &[type=range]
+        width: 100px

@@ -4,15 +4,10 @@ import _ from 'lodash';
 import React, { PropTypes } from 'reactx';
 import { FaIcon } from 'react-fa-icon';
 import { Row, Panel, Table } from 'react-bootstrap';
+import StatusIcon from 'components/StatusIcon';
 import RoleTableRow from './RoleTableRow';
 
 import { sides } from 'models/roles/roleSpecs';
-
-const ICON_NAMES = {
-  villager: 'sun-o',
-  werewolf: 'moon-o'
-};
-
 
 class RoleTable extends React.Component {
   constructor(props) {
@@ -28,15 +23,16 @@ class RoleTable extends React.Component {
     return (
       <Row>
         <Panel bsStyle={this.panelStyle} header={this.renderTitle()} footer={this.renderError()}>
-          <Table condensed hover fill responsive className='setup-table'>
+          <Table condensed hover fill responsive className='role-table'>
             <tbody>
               {this.renderHeader('Villagers', 'villager')}
               {this.renderSide('villager')}
               {this.renderHeader('Werewoles', 'werewolf')}
               {this.renderSide('werewolf')}
               <tr className='total'>
-                <th>Total</th>
-                <th>{this.roleCount.total}</th>
+                <th className='col-md-1 col-sm-1 col-xs-1 icon'></th>
+                <th className='col-md-5 col-sm-6 col-xs-5 role'>Total</th>
+                <th className='col-md-6 col-sm-5 col-xs-6 value'><span>{this.roleCount.total}</span></th>
               </tr>
             </tbody>
           </Table>
@@ -61,8 +57,12 @@ class RoleTable extends React.Component {
   renderHeader(caption, side) {
     return (
       <tr className='header'>
-        <th><FaIcon icon={ICON_NAMES[side]}/> {caption}</th>
-        <th>{this.roleCount[side]}</th>
+        <th className='col-md-1 col-sm-1 col-xs-1 icon'>
+          <StatusIcon prefix='family'
+                      icon={side}/>
+        </th>
+        <th className='col-md-5 col-sm-6 col-xs-5 role'>{caption}</th>
+        <th className='col-md-6 col-sm-5 col-xs-6 value'><span>{this.roleCount[side]}</span></th>
       </tr>
     );
   }

@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'reactx';
 import GameSetup from 'actions/GameSetup';
+import StatusIcon from 'components/StatusIcon';
 
 class RoleTableRow extends React.Component {
   constructor(props) {
@@ -23,17 +24,26 @@ class RoleTableRow extends React.Component {
   render() {
     return (
       <tr>
-        <td>{this.name}</td>
-        <td>{this.renderValue()}</td>
+        <td className='col-md-1 col-sm-1 col-xs-1 icon'>
+          <StatusIcon prefix='role'
+                      icon={this.name.toLowerCase()}/>
+        </td>
+        <td className='col-md-5 col-sm-6 col-xs-5 role'>
+          {this.name}
+        </td>
+        <td className='col-md-6 col-sm-5 col-xs-6 value'>
+          <span>{this.count}</span>
+          {this.renderInput()}
+        </td>
       </tr>
     );
   }
 
-  renderValue() {
+  renderInput() {
     let spec = this.spec;
 
     if(spec.name === 'Villager' || spec.max === spec.min) {
-      return this.renderFix();
+      return null;
     }
 
     if(spec.max === 1) {
@@ -41,12 +51,6 @@ class RoleTableRow extends React.Component {
     }
 
     return this.renderSlide();
-  }
-
-  renderFix() {
-    return (
-      <span>{this.count}</span>
-    );
   }
 
   createValueLink(field, onChangedCallback, withField = false) { // TODO push to reactx with props link, state link, value link, data link
@@ -58,24 +62,19 @@ class RoleTableRow extends React.Component {
 
   renderToggle() {
     return (
-      <span>
-        <span className='number'>{this.count}</span>
-        <input type='checkbox' className='switch-box'
-               checkedLink={this.createValueLink('count', this.countChanged)}/>
-      </span>
+      <input type='checkbox'
+             className='switch-box'
+             checkedLink={this.createValueLink('count', this.countChanged)}/>
     );
   }
 
   renderSlide() {
     return (
-      <span>
-        <span className='number'>{this.count}</span>
-        <input type='range'
-               min={this.spec.min}
-               max={this.spec.max}
-               step={1}
-               valueLink={this.createValueLink('count', this.countChanged)}/>
-      </span>
+      <input type='range'
+             min={this.spec.min}
+             max={this.spec.max}
+             step={1}
+             valueLink={this.createValueLink('count', this.countChanged)}/>
     );
   }
 }
