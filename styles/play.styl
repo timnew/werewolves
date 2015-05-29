@@ -1,0 +1,55 @@
+.player-info
+  &.dead
+    opacity: .2
+    text-decoration: strike-through
+
+.status-icon
+  width: 24px
+  height: 24px
+  margin: 0 2px
+
+  &.capability
+    background: tan
+
+  &.status
+    background: skyblue
+    &.status-dead
+      background: pink
+
+  &.canceled
+    opacity: .2
+
+input[type=checkbox].switch-box
+  position: relative
+
+  switch-component()
+    content: ''
+    display: inline-block
+    position: absolute
+    border-radius: 4px
+
+  &:before
+    switch-component()
+    width: 35px
+    height: 20px
+    top: -4px
+    left: -2px
+    border: 1px solid #ccc
+    background: #ccc
+    transition: background .3s ease-in-out
+
+  &:after
+    switch-component()
+    width: 18px
+    height: 18px
+    top: -3px
+    left: -1px
+    border: 1px solid #eee
+    background: #fff
+    transition: left .3s ease-in-out
+
+  &:checked:before
+    background: #53bafe
+
+  &:checked:after
+    left: 14px
