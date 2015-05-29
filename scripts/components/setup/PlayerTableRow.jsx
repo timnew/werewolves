@@ -22,19 +22,14 @@ class PlayerTableRow extends React.Component {
 
   get inEditing() { return this.data.get('inEditing'); }
 
-  get playerName() { return this.player.name || `Player ${this.props.index + 1}`; }
+  get playerName() { return this.player.name; }
 
   render() {
     if(this.inEditing) {
         return this.renderEditing();
     }
 
-    if(this.props.player) {
-      return this.renderPlayer();
-    }
-    else{
-      return this.renderEmpty();
-    }
+    return this.renderPlayer();
   }
 
   edit() {
@@ -55,8 +50,6 @@ class PlayerTableRow extends React.Component {
 
     if(this.player) {
       GameSetup.updatePlayer(this.props.index, playerDefinition);
-    } else {
-      GameSetup.addPlayer(playerDefinition);
     }
 
     this.abortEdit();
@@ -81,9 +74,9 @@ class PlayerTableRow extends React.Component {
   renderPlayer() {
     return (
       <tr>
-        <td>{this.props.index + 1}</td>
-        <td>{this.props.player.name}</td>
-        <td>
+        <td className='col-md-1 col-sm-1 col-xs-1'>{this.props.index + 1}</td>
+        <td className='col-md-8 col-sm-6 col-xs-6'><span className='editable'>{this.props.player.name}</span></td>
+        <td className='col-md-3 col-sm-5 col-xs-5'>
           <ButtonToolbar>
             <ButtonGroup bsSize='xsmall'>
               <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
@@ -97,27 +90,14 @@ class PlayerTableRow extends React.Component {
     );
   }
 
-  renderEmpty() {
-    return (
-      <tr>
-        <td>{this.props.index + 1}</td>
-        <td>--Empty--</td>
-        <td>--Empty--</td>
-        <td>
-          <ButtonGroup bsSize='xsmall'>
-            <Button onClick={this.edit.bind(this)}><FaIcon icon='pencil'/></Button>
-          </ButtonGroup>
-        </td>
-      </tr>
-    );
-  }
-
   renderEditing() {
     return (
       <tr>
-        <td>{this.props.index + 1}</td>
-        <td><input type='text' className='table-inline' valueLink={this.createStateLink('name')}/></td>
-        <td>
+        <td className='col-md-1 col-sm-1 col-xs-1'>{this.props.index + 1}</td>
+        <td className='col-md-8 col-sm-6 col-xs-6'>
+          <input type='text' className='editable' valueLink={this.createStateLink('name')}/>
+        </td>
+        <td className='col-md-3 col-sm-5 col-xs-5'>
           <ButtonGroup bsSize='xsmall'>
             <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
             <Button onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>

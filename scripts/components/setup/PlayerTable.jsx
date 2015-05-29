@@ -62,9 +62,9 @@ class PlayerTable extends React.Component {
           <Table striped condensed hover fill>
             <thead>
               <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>
+                <th className='col-md-1 col-sm-1 col-xs-1'>#</th>
+                <th className='col-md-8 col-sm-6 col-xs-6'>Name</th>
+                <th className='col-md-3 col-sm-5 col-xs-5'>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
                       <Button onClick={this.increasePlayer.bind(this)} disabled={!this.canIncreasePlayer}><FaIcon icon='user-plus'/></Button>
