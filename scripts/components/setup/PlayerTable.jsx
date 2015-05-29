@@ -49,9 +49,9 @@ class PlayerTable extends React.Component {
     this.setChildrenInEditing(0);
   }
 
-  childEditingStatusChanged(index, state) {
-    let children = _(this.refs).values().pluck('state').pluck('inEditing').value();
-    children[index] = state;
+  childEditingStatusChanged(index, inEditing) {
+    let children = _(this.refs).values().pluck('inEditing').value();
+    children[index] = inEditing;
     this.setChildrenInEditing(_.filter(children, (v)=>v).length);
   }
 
