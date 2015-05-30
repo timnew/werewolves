@@ -20,7 +20,7 @@ class GameStatusRow extends React.Component {
   render() {
     return (
       <tr>
-        <td>
+        <td className='col-md-3 col-sm-4 col-xs-4 status'>
           <StatusIcon key='role'
                       prefix='role'
                       icon={this.player.roleName.toLowerCase()}
@@ -30,12 +30,12 @@ class GameStatusRow extends React.Component {
           {this.renderRoleCapabily()}
           {this.renderVoteTicket()}
         </td>
-        <td>
+        <td className='col-md-3 col-sm-4 col-xs-4 name'>
           <span className={classNames('player-info', {dead: !this.player.alive})}>
             {this.player.name}
           </span>
         </td>
-        <td>
+        <td className='col-md-6 col-sm-4 col-xs-4 actions'>
           {this.renderActionBar()}
         </td>
       </tr>

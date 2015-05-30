@@ -21,12 +21,12 @@ class GameStatus extends React.Component {
     return (
       <Row>
         <Panel bsStyle='info' header={this.renderHeader()}>
-          <Table striped condensed hover fill>
+          <Table striped condensed hover fill className='game-status'>
             <thead>
               <tr>
-                <th></th>
-                <th>Player</th>
-                <th>Actions</th>
+                <th className='col-md-3 col-sm-4 col-xs-4 status'></th>
+                <th className='col-md-3 col-sm-4 col-xs-4 name'>Player</th>
+                <th className='col-md-6 col-sm-4 col-xs-4 actions'>Actions</th>
               </tr>
             </thead>
             <tbody>
