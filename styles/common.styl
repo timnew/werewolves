@@ -1,0 +1,39 @@
+input[type=checkbox].switch-box
+  position: relative
+
+  switch-component()
+    content: ''
+    display: inline-block
+    position: absolute
+    border-radius: 4px
+
+  &:before
+    switch-component()
+    width: 35px
+    height: 20px
+    top: -4px
+    left: -2px
+    border: 1px solid #ccc
+    background: #ccc
+    transition: background .3s ease-in-out
+
+  &:after
+    switch-component()
+    width: 18px
+    height: 18px
+    top: -3px
+    left: -1px
+    border: 1px solid #eee
+    background: #fff
+    transition: left .3s ease-in-out
+
+  &:checked:before
+    background: #53bafe
+
+  &:checked:after
+    left: 14px
+
+.status-icon
+  width: 24px
+  height: 24px
+  margin: 2px
