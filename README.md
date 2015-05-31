@@ -51,6 +51,11 @@ Access [Werewolves App] at http://werewolves.timnew.me/
 * atom-linter
 * linter-eslint
 * eslint-plugin-react
+* cordova
+
+## Cordova
+
+> TDB.
 
 ## License
 MIT
