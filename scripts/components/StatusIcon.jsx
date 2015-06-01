@@ -7,29 +7,30 @@ class StatusIcon extends React.Component {
   constructor(props) {
     super(props);
   }
+
   get prefix() { return this.props.prefix; }
   get icon() { return this.props.icon.toLowerCase(); }
   get extension() { return this.props.extension; }
   get valueMode() { return this.props.valueMode; }
   get value() { return this.props.value; }
-  get imageUrl() { return `${this.prefix}-${this.icon}${this.extension}`; }
 
   get classNames() {
     return classNames(
       'status-icon',
+      'ww',
       this.prefix,
-      `${this.prefix}-${this.icon}`,
+      `ww-${this.prefix}-${this.icon}`,
       { canceled: this.valueMode && !this.value },
       this.props.className
     );
   }
 
   render() {
-    if( this.valueMode && this.value == null) {
+    if(this.valueMode && this.value == null) {
       return null;
     }
 
-    return <img src={this.imageUrl} className={this.classNames}/>;
+    return <i className={this.classNames}/>;
   }
 }
 StatusIcon.propTypes = {

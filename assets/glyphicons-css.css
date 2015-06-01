@@ -53,7 +53,7 @@
 .ww-role-villager:before {
 	content: "\e609";
 }
-.ww-action-couple:before {
+.ww-action-love:before {
 	content: "\e60a";
 }
 .ww-status-lover:before {
@@ -96,6 +96,9 @@
 	content: "\e612";
 }
 .ww-action-attack:before {
+	content: "\e613";
+}
+.ww-status-attacked:before {
 	content: "\e613";
 }
 .ww-status-dead:before {
