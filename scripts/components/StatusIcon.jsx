@@ -10,19 +10,28 @@ class StatusIcon extends React.Component {
 
   get prefix() { return this.props.prefix; }
   get icon() { return this.props.icon.toLowerCase(); }
+  get size() { return this.props.size; }
   get extension() { return this.props.extension; }
   get valueMode() { return this.props.valueMode; }
   get value() { return this.props.value; }
 
   get classNames() {
     return classNames(
-      'status-icon',
-      'ww',
+      'gi',
       this.prefix,
-      `ww-${this.prefix}-${this.icon}`,
+      `${this.prefix}-${this.icon}`,
+      `gi-${this.prefix}-${this.icon}`,
       { canceled: this.valueMode && !this.value },
+      this.buildSizeClassName(),
       this.props.className
     );
+  }
+
+  buildSizeClassName() {
+    if(!this.size) {
+      return null;
+    }
+    return `gi-${this.size}`;
   }
 
   render() {
@@ -34,21 +43,30 @@ class StatusIcon extends React.Component {
   }
 }
 StatusIcon.propTypes = {
-  prefix: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
+  prefix: PropTypes.string,
   valueMode: PropTypes.bool,
   value: PropTypes.any,
+  size: PropTypes.oneOf([
+      '',
+      '1x',
+      'lg',
+      '2x',
+      '3x',
+      '4x',
+      '5x'
+  ]),
   className: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array
-    ]),
-  extension: PropTypes.string
+    ])
 };
 StatusIcon.defaultProps = {
   valueMode: false,
   value: null,
-  className: {},
-  extension: '.svg'
+  size: null,
+  prefix: null,
+  className: null
 };
 StatusIcon.enablePureRender();
 
