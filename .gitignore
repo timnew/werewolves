@@ -1,4 +1,6 @@
 node_modules
 public
+package/werewolves/platforms/android/assets
+package/werewolves/platforms/.gradle
 package/werewolves/platforms/android/CordovaLib/build
 package/werewolves/www
