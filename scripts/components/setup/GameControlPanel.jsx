@@ -36,15 +36,15 @@ class GameControlPanel extends React.Component {
             <Button bsStyle='primary'
                     disabled={!this.isValid}
                     onClick={this.startGame.bind(this)}>
-              <FaIcon icon='flag-checkered'/> Start Game
+              <FaIcon icon='rocket'/> Start Game
             </Button>
 
             <Button disabled={!this.isValid}
                     onClick={this.saveConfig.bind(this)}>
-              <FaIcon icon='save'/> Save
+              <FaIcon icon='sign-out'/> Save
             </Button>
             <Button onClick={this.loadConfig.bind(this)}>
-              <FaIcon icon='folder-open'/> Load
+              <FaIcon icon='sign-in'/> Load
             </Button>
           </ButtonToolbar>
         </Panel>

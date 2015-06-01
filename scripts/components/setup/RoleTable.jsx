@@ -30,7 +30,7 @@ class RoleTable extends React.Component {
               {this.renderHeader('Werewoles', 'werewolf')}
               {this.renderSide('werewolf')}
               <tr className='total'>
-                <th className='col-md-1 col-sm-1 col-xs-1 icon'></th>
+                <th className='col-md-1 col-sm-1 col-xs-1 icon'><FaIcon icon='user' size='lg'/></th>
                 <th className='col-md-5 col-sm-6 col-xs-5 role'>Total</th>
                 <th className='col-md-6 col-sm-5 col-xs-6 value'><span>{this.roleCount.total}</span></th>
               </tr>
@@ -77,7 +77,7 @@ class RoleTable extends React.Component {
 
   renderTitle() {
     let { villager, werewolf, total } = this.roleCount;
-    return <h3><FaIcon icon='list-alt'/> Roles ( <FaIcon icon='sun-o'/> {villager} + <FaIcon icon='moon-o'/> {werewolf} = <FaIcon icon='adjust'/> {total} )</h3>;
+    return <h3><StatusIcon prefix='family' icon='both'/> Roles ( <StatusIcon prefix='family' icon='villager'/> {villager} + <StatusIcon prefix='family' icon='werewolf'/> {werewolf} = <FaIcon icon='user' size='lg'/> {total} )</h3>;
   }
 
   renderError() {
