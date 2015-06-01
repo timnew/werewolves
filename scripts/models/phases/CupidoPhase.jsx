@@ -32,6 +32,8 @@ class CupidoPhase extends Phase {
                .count();
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='role' icon='cupido' className='fa-3x pull-left'/>; }
+
   getDescription() {
     return (
       <div>

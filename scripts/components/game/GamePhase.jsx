@@ -20,19 +20,26 @@ class GamePhase extends React.Component {
 
   get turn() { return this.props.turn; }
   get phase() { return this.props.phase; }
-  get dayIndex() { return this.turn.dayIndex; }
-  get description() { return this.phase.getDescription(this.turn); }
+  get dayIndex() { return this.turn.dayIndex; }  
   get canMoveNext() { return this.phase.canMoveNext(this.turn); }
 
   render() {
     return (
       <Row>
         <Panel bsStyle='info' header={this.renderHeader()} footer={this.renderFooter()}>
-          <FaIcon icon='bullhorn' size='3x' pull='left'/>
-          {this.description}
+          { this.renderPhaseIcon() }
+          { this.renderDescription() }
         </Panel>
       </Row>
     );
+  }
+
+  renderPhaseIcon() {
+    return this.phase.getPhaseIcon(this.turn);
+  }
+
+  renderDescription() {
+    return this.phase.getDescription(this.turn);
   }
 
   renderHeader() {
