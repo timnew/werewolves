@@ -107,13 +107,13 @@ gulp.task 'spec', (done) ->
   start "./node_modules/.bin/mocha --harmony --opts mocha.opts specs/**/*Spec.cjsx ", done
 
 gulp.task 'package:cordova', (done) ->
-  gulp.src ['public/*']
+  gulp.src ['public/**']
   .pipe gulp.dest('package/werewolves/www')
   .pipe size()
-  start "PWD=./package/werewolves cordova build", done
+  start 'PWD=./package/werewolves cordova build', done
 
 gulp.task 'package:install', (done) ->
-  start "adb install -rs package/werewolves/platforms/android/build/outputs/apk/android-debug.apk", done
+  start 'adb install -rs package/werewolves/platforms/android/build/outputs/apk/android-debug.apk', done
 
 gulp.task 'package', (done) ->
   runSequence 'build', 'package:cordova', 'package:install', done
