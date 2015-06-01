@@ -1,0 +1,133 @@
+@font-face {
+	font-family: 'werewolves';
+	src:url('fonts/werewolves.eot?v=1.0.0');
+	src:url('fonts/werewolves.eot?v=1.0.0#iefix') format('embedded-opentype'),
+		url('fonts/werewolves.ttf?v=1.0.0') format('truetype'),
+		url('fonts/werewolves.woff?v=1.0.0') format('woff'),
+		url('fonts/werewolves.svg?v=1.0.0#werewolves') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.ww {
+	font-family: 'werewolves';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ww-role-uncertain:before {
+	content: "\e600";
+}
+.ww-role-cupido:before {
+	content: "\e601";
+}
+.ww-role-guardian:before {
+	content: "\e602";
+}
+.ww-role-witch:before {
+	content: "\e603";
+}
+.ww-role-seer:before {
+	content: "\e604";
+}
+.ww-role-hunter:before {
+	content: "\e605";
+}
+.ww-role-idiot:before {
+	content: "\e606";
+}
+.ww-role-werewolf:before {
+	content: "\e607";
+}
+.ww-role-girl:before {
+	content: "\e608";
+}
+.ww-role-villager:before {
+	content: "\e609";
+}
+.ww-action-love:before {
+	content: "\e60a";
+}
+.ww-status-lover:before {
+	content: "\e60b";
+}
+.ww-action-guard:before {
+	content: "\e60c";
+}
+.ww-status-guard-ban:before {
+	content: "\e60d";
+}
+.ww-status-guarded:before {
+	content: "\e60e";
+}
+.ww-action-heal:before {
+	content: "\e60f";
+}
+.ww-capability-heal:before {
+	content: "\e60f";
+}
+.ww-status-healed:before {
+	content: "\e60f";
+}
+.ww-action-poison:before {
+	content: "\e610";
+}
+.ww-capability-poison:before {
+	content: "\e610";
+}
+.ww-status-poisoned:before {
+	content: "\e610";
+}
+.ww-action-verify:before {
+	content: "\e611";
+}
+.ww-status-verified:before {
+	content: "\e611";
+}
+.ww-action-shoot:before {
+	content: "\e612";
+}
+.ww-action-attack:before {
+	content: "\e613";
+}
+.ww-status-attacked:before {
+	content: "\e613";
+}
+.ww-status-dead:before {
+	content: "\e614";
+}
+.ww-status-sheriff:before {
+	content: "\e615";
+}
+.ww-action-vote:before {
+	content: "\e616";
+}
+.ww-status-voted:before {
+	content: "\e616";
+}
+.ww-action-vote-cancel:before {
+	content: "\e617";
+}
+.ww-action-ban:before {
+	content: "\e618";
+}
+.ww-action-skip:before {
+	content: "\e619";
+}
+.ww-family-both:before {
+	content: "\e61a";
+}
+.ww-family-villager:before {
+	content: "\e61b";
+}
+.ww-family-werewolf:before {
+	content: "\e61c";
+}
