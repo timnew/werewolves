@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Navbar, CollapsibleNav, Nav, NavItem} from 'react-bootstrap';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 import { NavItemLink } from 'react-router-bootstrap';
 import { RouteHandler } from 'react-router';
 import Footer from './Footer';
@@ -14,8 +14,8 @@ class AppRoot extends React.Component {
         <Navbar brand="Werewolf Judget" inverse fixedTop toggleNavKey={'navbar'}>
           <CollapsibleNav eventKey={'navbar'}>
             <Nav navbar eventKey={'navbar'}>
-              <NavItemLink to="Setup"><FaIcon icon='cogs' size='lg'/> Setup Game</NavItemLink>
-              <NavItemLink to="Play"><FaIcon icon='gamepad' size='lg'/> Play Game</NavItemLink>
+              <NavItemLink to="Setup"><StatusIcon inline prefix='view' icon='setup'/>Setup Game</NavItemLink>
+              <NavItemLink to="Play"><StatusIcon inline prefix='view' icon='game'/>Play Game</NavItemLink>
             </Nav>
             <Nav navbar right>
               <NavItem href='http://timnew.me'>By TimNew & his pals</NavItem>
