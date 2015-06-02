@@ -56,7 +56,7 @@ class GuardianPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='guardian'/>
+          <StatusIcon prefix='role' icon='guardian' size='lg'/>
         </Button>
       </ButtonGroup>
     );
@@ -82,7 +82,7 @@ class GuardianPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.guardPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='guard'/>
+          <StatusIcon prefix='action' icon='guard' size='lg'/>
         </Button>
       </ButtonGroup>
     );

@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'reactx';
 import classNames from 'classnames';
 import StatusIcon from 'components/StatusIcon';
-import { ButtonToolbar } from 'react-bootstrap';
+import { ButtonToolbar, Label } from 'react-bootstrap';
 
 import Phase from 'models/phases/Phase';
 import Turn from 'models/Turn';
@@ -20,22 +20,25 @@ class GameStatusRow extends React.Component {
   render() {
     return (
       <tr>
-        <td className='col-md-3 col-sm-4 col-xs-4 status'>
+        <td className='col-md-3 col-sm-4 col-xs-4 player-status'>
           <StatusIcon key='role'
                       prefix='role'
                       icon={this.player.roleName.toLowerCase()}
+                      size='lg'
                       valueMode
-                      value={this.player.alive}/>
+                      value={this.player.alive}
+                      renderPrefix
+                      className={this.player.side}/>
           {this.renderStatus()}
           {this.renderRoleCapabily()}
           {this.renderVoteTicket()}
         </td>
-        <td className='col-md-3 col-sm-4 col-xs-4 name'>
+        <td className='col-md-3 col-sm-4 col-xs-4 player-name'>
           <span className={classNames('player-info', {dead: !this.player.alive})}>
             {this.player.name}
           </span>
         </td>
-        <td className='col-md-6 col-sm-4 col-xs-4 actions'>
+        <td className='col-md-6 col-sm-4 col-xs-4 player-actions'>
           {this.renderActionBar()}
         </td>
       </tr>
@@ -53,10 +56,12 @@ class GameStatusRow extends React.Component {
     return ['dead', 'sheriff', 'lover', 'guarded', 'guard-ban', 'attacked', 'poisoned', 'verified']
             .map(statusName =>
               <StatusIcon key={statusName}
+                          size='lg'
                           valueMode
                           prefix='status'
                           icon={statusName}
-                          value={this.player.getStatus(statusName)} />
+                          value={this.player.getStatus(statusName)}
+                          renderPrefix renderIcon/>
             );
   }
 
@@ -67,9 +72,9 @@ class GameStatusRow extends React.Component {
   renderVoteTicket() {
     if(this.player.hasStatus('voted')) {
       return (
-        <span key='voteTicket'>
-          <StatusIcon prefix='status' icon='voted'/>
-          {this.player.getStatus('voted')}
+        <span className='vote-tickets'>
+          <StatusIcon prefix='status' icon='voted' size='lg'/>
+          <span className='number'>{this.player.getStatus('voted')}</span>
         </span>
       );
     }

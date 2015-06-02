@@ -47,10 +47,10 @@ class PollPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.votePositive.bind(this, player)}>
-          <StatusIcon prefix='action' icon='vote-plus'/>
+          <StatusIcon prefix='action' icon='vote-plus' size='lg'/>
         </Button>
         <Button onClick={this.voteNegative.bind(this, player)} disabled={!this.canVoteNegative(player)}>
-          <StatusIcon prefix='action' icon='vote-minus'/>
+          <StatusIcon prefix='action' icon='vote-minus' size='lg'/>
         </Button>
       </ButtonGroup>
     );

@@ -1,4 +1,23 @@
 .game-status
+  colorDanger = #d9534f
+  colorSuccess = #5cb85c
+  colorInfo = #5bc0de
+  colorWarn = #f0ad4e
+
+  colorUnknown=#a8a8a8
+  colorVillager=#a8a200
+  colorWerewolf=#a00
+
+  icon-color(color)
+    color: color
+    padding: 3px
+    border: solid 1px color
+    border-radius: 5px
+
+    &.disabled
+      border-style: dashed
+      opacity: .5
+
   td
     vertical-align: middle !important
 
@@ -7,14 +26,63 @@
       opacity: .2
       text-decoration: strike-through
 
-  .status-icon
-    &.capability
-      background: tan
+  .player-status
+    .gi
+      margin: 0 2px
 
-    &.status
-      background: skyblue
-      &.status-dead
-        background: pink
+      &:first-of-type
+        margin: 0 5px 0 2px
 
-    &.canceled
-      opacity: .2
+      &.role
+        role-color(color)
+          font-size: 25px
+          color: color
+          &.disabled
+            opacity 0.5
+            text-shadow: 0 0 3px #000
+            color: darken(color, 50%)
+
+        role-color: colorUnknown
+
+        &.villager
+          role-color: colorVillager
+
+        &.werewolf
+          role-color: colorWerewolf
+
+      &.capability
+        font-size: 15px // Not sure why the icons looks larger than others when in same size
+        icon-color: colorInfo
+
+      &.status
+        &.dead
+          icon-color: colorDanger
+
+        &.lover
+          icon-color: colorInfo
+
+        &.sheriff
+          icon-color: colorInfo
+
+        &.guarded
+          icon-color: colorSuccess
+
+        &.guarded
+          icon-color: colorSuccess
+
+        &.guard-ban
+          icon-color: colorWarn
+
+        &.attacked
+          icon-color: colorDanger
+
+        &.poisoned
+          icon-color: colorDanger
+
+        &.verified
+          icon-color: colorSuccess
+
+    .vote-tickets
+      icon-color: colorDanger
+      .number
+        font-size: 16px

@@ -39,7 +39,7 @@ class SeerPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='seer'/>
+          <StatusIcon prefix='role' icon='seer' size='lg'/>
         </Button>
       </ButtonGroup>
     );
@@ -69,7 +69,7 @@ class SeerPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.verifyPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='verify'/>
+          <StatusIcon prefix='action' icon='verify' size='lg'/>
         </Button>
       </ButtonGroup>
     );

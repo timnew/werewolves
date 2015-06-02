@@ -47,7 +47,7 @@ class IdiotPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='idiot'/>
+          <StatusIcon prefix='role' icon='idiot' size='lg'/>
         </Button>
       </ButtonGroup>
     );

@@ -15,7 +15,7 @@ class WerewolfPhase extends Phase {
   }
 
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='werewolf' size='3x' pull='left'/>; }
-    
+
   getDescription() {
     return (
       <div>
@@ -41,7 +41,7 @@ class WerewolfPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='werewolf'/>
+          <StatusIcon prefix='role' icon='werewolf' size='lg'/>
         </Button>
       </ButtonGroup>
     );
@@ -59,7 +59,7 @@ class WerewolfPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.attackPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='attack'/>
+          <StatusIcon prefix='action' icon='attack' size='lg'/>
         </Button>
       </ButtonGroup>
     );

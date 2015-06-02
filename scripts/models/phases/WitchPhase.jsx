@@ -43,7 +43,7 @@ class WitchPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='witch'/>
+          <StatusIcon prefix='role' icon='witch' size='lg'/>
         </Button>
       </ButtonGroup>
     );
@@ -78,7 +78,7 @@ class WitchPhase extends Phase {
 
     return (
       <Button onClick={this.healPlayer.bind(this, player)}>
-        <StatusIcon prefix='action' icon='heal'/>
+        <StatusIcon prefix='action' icon='heal' size='lg'/>
       </Button>
     );
   }
@@ -94,7 +94,7 @@ class WitchPhase extends Phase {
 
     return (
       <Button onClick={this.poisonPlayer.bind(this, player)}>
-        <StatusIcon prefix='action' icon='poison'/>
+        <StatusIcon prefix='action' icon='poison' size='lg'/>
       </Button>
     );
   }

@@ -16,7 +16,10 @@ class Role {
 
   get roleName() {
      return this.constructor.roleName;
-   }
+  }
+  get side() {
+    return this.constructor.defaultSide;
+  }
 
   get name() { return this._name; }
   get status() { return this._status; }
@@ -98,7 +101,9 @@ class Role {
   }
 
   static get defaultSide() {
-    return roleSpecs[this.roleName].side;
+    let roleSpec = roleSpecs[this.roleName];
+
+    return roleSpec ? roleSpec.side : '';
   }
 
   static createPhase() {

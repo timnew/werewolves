@@ -59,7 +59,7 @@ class CupidoPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRole.bind(this, player)}>
-          <StatusIcon prefix='role' icon='cupido'/>
+          <StatusIcon prefix='role' icon='cupido' size='lg'/>
         </Button>
       </ButtonGroup>
     );
@@ -77,7 +77,7 @@ class CupidoPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.couplePlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='love'/>
+          <StatusIcon prefix='action' icon='love' size='lg'/>
         </Button>
       </ButtonGroup>
     );

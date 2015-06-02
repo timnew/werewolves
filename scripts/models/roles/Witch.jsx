@@ -30,13 +30,15 @@ class Witch extends Role {
                   prefix='capability'
                   icon='heal'
                   valueMode
-                  value={this.canHeal}/>,
+                  value={this.canHeal}
+                  renderPrefix/>,
 
       <StatusIcon key='poison-potion'
                   prefix='capability'
                   icon='poison'
                   valueMode
-                  value={this.canPoison}/>
+                  value={this.canPoison}
+                  renderPrefix/>
     ];
   }
 

@@ -19,7 +19,7 @@ class SunrisePhase extends Phase {
     GameEngine.populateDeath();
   }
 
-  getPhaseIcon() { return <StatusIcon prefix='hint' icon='eye-open' size='3x' pull='left'/>; }
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='open-eye' size='3x' pull='left'/>; }
 
   getDescription(turn) {
     return (
@@ -68,7 +68,7 @@ class SunrisePhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.changeRoleToHunter.bind(this, player)}>
-          <StatusIcon prefix='role' icon='hunter'/>
+          <StatusIcon prefix='role' icon='hunter' size='lg'/>
         </Button>
       </ButtonGroup>
     );
@@ -104,7 +104,7 @@ class SunrisePhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.shootPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='shoot'/>
+          <StatusIcon prefix='action' icon='shoot' size='lg'/>
         </Button>
       </ButtonGroup>
     );

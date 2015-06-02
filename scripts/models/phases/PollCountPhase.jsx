@@ -71,7 +71,7 @@ class PollCountPhase extends Phase {
 
     return (
       <Button onClick={this.changeRole.bind(this, player, 'Hunter')}>
-        <StatusIcon prefix='role' icon='hunter'/>
+        <StatusIcon prefix='role' icon='hunter' size='lg'/>
       </Button>
     );
   }
@@ -106,7 +106,7 @@ class PollCountPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.shootPlayer.bind(this, player)}>
-          <StatusIcon prefix='action' icon='shoot'/>
+          <StatusIcon prefix='action' icon='shoot' size='lg'/>
         </Button>
       </ButtonGroup>
     );
