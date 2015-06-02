@@ -3,14 +3,14 @@
 import Phase from './Phase';
 
 import React from 'reactx';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 
 class SunsetPhase extends Phase {
   constructor() {
     super('Sunset');
   }
 
-  getPhaseIcon() { return <FaIcon icon='eye-slash' size='3x' pull='left'/>; }
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='close-eye' size='3x' pull='left'/>; }
   getDescription() { return 'The sun goes down, every body close your eyes.'; }
 
   onPhaseBegin(GameEngine) {

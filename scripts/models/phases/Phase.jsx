@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'reactx';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 
 class Phase {
   constructor(name) {
@@ -12,7 +12,7 @@ class Phase {
 
   isAvailable() { return true; }
 
-  getPhaseIcon() { return <FaIcon icon='bullhorn' size='3x' pull='left'/>; }
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='announcement' size='3x' pull='left'/>; }
   getDescription() { return '-- Game Not Started --'; }
 
   canMoveNext() { return true; }

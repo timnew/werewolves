@@ -13,6 +13,8 @@ class WitchPhase extends Phase {
     super('Witch');
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='witch' size='3x' pull='left'/>; }
+
   getDescription() {
     return (
       <div>

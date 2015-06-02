@@ -30,6 +30,7 @@ class GuardianPhase extends Phase {
         .forEach(player => player.shiftStatus('guarded', 'guard-ban'));
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='guardian' size='3x' pull='left'/>; }
   getDescription() {
     return (
       <div>

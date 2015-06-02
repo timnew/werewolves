@@ -19,6 +19,8 @@ class SunrisePhase extends Phase {
     GameEngine.populateDeath();
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='eye-open' size='3x' pull='left'/>; }
+
   getDescription(turn) {
     return (
       <div>

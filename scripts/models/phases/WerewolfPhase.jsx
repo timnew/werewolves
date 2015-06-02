@@ -14,6 +14,8 @@ class WerewolfPhase extends Phase {
     super('Werewolf');
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='werewolf' size='3x' pull='left'/>; }
+    
   getDescription() {
     return (
       <div>

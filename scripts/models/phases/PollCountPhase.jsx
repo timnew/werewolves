@@ -9,7 +9,6 @@ import Phase from './Phase';
 import { VOTE_PLAYER, SHOOT_PLAYER, IDIOT_VOTED } from 'constants/GamePlayConstants';
 import GamePlay from 'actions/GamePlay';
 
-
 class PollCountPhase extends Phase {
   constructor() {
     super('Poll Count');
@@ -19,6 +18,8 @@ class PollCountPhase extends Phase {
     GameEngine.currentTurn.prepareDeathList(this);
     GameEngine.sentencePlayer();
   }
+
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='judgement' size='3x' pull='left'/>; }
 
   getDescription(turn) {
     if(!turn.events.has(VOTE_PLAYER)) {
@@ -41,9 +42,9 @@ class PollCountPhase extends Phase {
     let deathList = turn.getDeathList(this);
 
     if(deathList.count() === 1 ) {
-      return <p><b>{sentencedPlayer.name}</b> is most voted, who is sentenced.</p>;
+      return <p><b>{sentencedPlayer}</b> is most voted, who is sentenced.</p>;
     } else {
-      return <p><b>{sentencedPlayer.name}</b> is sentenced, and <b>{deathList.join(', ')}</b> died.</p>;
+      return <p><b>{sentencedPlayer}</b> is sentenced, and <b>{deathList.join(', ')}</b> died.</p>;
     }
   }
 

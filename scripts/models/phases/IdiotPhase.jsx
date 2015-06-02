@@ -29,6 +29,8 @@ class IdiotPhase extends Phase {
     return mostVotedPlayer.roleName === 'Uncertain';
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='idiot' size='3x' pull='left'/>; }
+
   getDescription() {
     return <p>Poll result has been published, a potential idiot is voted</p>;
   }

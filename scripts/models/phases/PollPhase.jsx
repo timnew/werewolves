@@ -17,6 +17,8 @@ class PollPhase extends Phase {
     GameEngine.pollCount();
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='vote' size='3x' pull='left'/>; }
+
   getDescription() {
     return 'Please vote the suspect.';
   }
@@ -45,10 +47,10 @@ class PollPhase extends Phase {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.votePositive.bind(this, player)}>
-          <StatusIcon prefix='action' icon='vote'/>
+          <StatusIcon prefix='action' icon='vote-plus'/>
         </Button>
         <Button onClick={this.voteNegative.bind(this, player)} disabled={!this.canVoteNegative(player)}>
-          <StatusIcon prefix='action' icon='vote-cancel'/>
+          <StatusIcon prefix='action' icon='vote-minus'/>
         </Button>
       </ButtonGroup>
     );

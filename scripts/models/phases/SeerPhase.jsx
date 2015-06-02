@@ -13,6 +13,8 @@ class SeerPhase extends Phase {
     super('Seer');
   }
 
+  getPhaseIcon() { return <StatusIcon prefix='hint' icon='seer' size='3x' pull='left'/>; }
+
   getDescription() {
     return (
       <div>
