@@ -9,6 +9,9 @@
 	font-style: normal;
 }
 
+.gi-code-star:before {
+	content: "\f005";
+}
 .gi-hint-player:before {
 	content: "\f007";
 }
@@ -21,13 +24,22 @@
 .gi-action-edit:before {
 	content: "\f040";
 }
+.gi-action-skip:before {
+	content: "\f050";
+}
+.gi-action-next-step:before {
+	content: "\f051";
+}
+.gi-hint-open-eye:before {
+	content: "\f06e";
+}
 .gi-hint-close-eye:before {
 	content: "\f070";
 }
 .gi-hint-day:before {
 	content: "\f073";
 }
-.gi-hint-bullhorn:before {
+.gi-hint-announcement:before {
 	content: "\f0a1";
 }
 .gi-panel-players:before {
@@ -39,11 +51,26 @@
 .gi-view-game:before {
 	content: "\f0e4";
 }
+.gi-code-fork:before {
+	content: "\f126";
+}
 .gi-action-launch:before {
 	content: "\f135";
 }
 .gi-panel-control:before {
 	content: "\f144";
+}
+.gi-app-ios:before {
+	content: "\f179";
+}
+.gi-app-android:before {
+	content: "\f17b";
+}
+.gi-action-reset:before {
+	content: "\f1b8";
+}
+.gi-view-setup:before {
+	content: "\f1de";
 }
 .gi-panel-phase:before {
 	content: "\f1ea";
@@ -186,7 +213,7 @@
 .gi-action-ban:before {
 	content: "\e618";
 }
-.gi-action-skip:before {
+.gi-status-sleep:before {
 	content: "\e619";
 }
 .gi-panel-roles:before {
@@ -201,12 +228,12 @@
 .gi-side-werewolf:before {
 	content: "\e61c";
 }
+.gi-view-roll:before {
+	content: "\e915";
+}
 .gi-action-save:before {
 	content: "\e960";
 }
 .gi-action-load:before {
 	content: "\e961";
-}
-.gi-view-setup:before {
-	content: "\e992";
 }
