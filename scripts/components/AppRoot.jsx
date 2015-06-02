@@ -14,8 +14,9 @@ class AppRoot extends React.Component {
         <Navbar brand="Werewolf Judget" inverse fixedTop toggleNavKey={'navbar'}>
           <CollapsibleNav eventKey={'navbar'}>
             <Nav navbar eventKey={'navbar'}>
-              <NavItemLink to="Setup"><StatusIcon inline prefix='view' icon='setup'/>Setup Game</NavItemLink>
-              <NavItemLink to="Play"><StatusIcon inline prefix='view' icon='game'/>Play Game</NavItemLink>
+              <NavItemLink to='Setup'><StatusIcon inline prefix='view' icon='setup'/>Setup Rules</NavItemLink>
+              <NavItemLink to='Roll'><StatusIcon inline prefix='view' icon='roll'/>Role Roller</NavItemLink>
+              <NavItemLink to='Play'><StatusIcon inline prefix='view' icon='game'/>Run</NavItemLink>
             </Nav>
             <Nav navbar right>
               <NavItem href='http://timnew.me'>By TimNew & his pals</NavItem>
