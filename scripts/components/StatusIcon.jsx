@@ -10,25 +10,34 @@ class StatusIcon extends React.Component {
 
   get prefix() { return this.props.prefix; }
   get icon() { return this.props.icon.toLowerCase(); }
+  get pull() { return this.props.pull; }
   get size() { return this.props.size; }
   get inline() { return this.props.inline; }
-  get extension() { return this.props.extension; }
-  get pull() { return this.props.pull; }
   get valueMode() { return this.props.valueMode; }
   get value() { return this.props.value; }
+  get className() { return this.props.className; }
+  get renderPrefix() { return this.props.renderPrefix; }
+  get renderIcon() { return this.props.renderIcon; }
 
   get classNames() {
     return classNames(
       'gi',
       `gi-${this.prefix}-${this.icon}`,
-      { canceled: this.valueMode && !this.value },
-      { 'gi-inline': this.inline },
       {
         'pull-left': this.pull === 'left',
         'pull-right': this.pull === 'right'
       },
       this.buildSizeClassName(),
-      this.props.className
+      { 'gi-inline': this.inline },
+      {
+        enabled: this.valueMode && !!this.value,
+        disabled: this.valueMode && !this.value
+      },
+      {
+        [this.prefix]: this.renderPrefix,
+        [this.icon]: this.renderIcon
+      },
+      this.className
     );
   }
 
@@ -50,9 +59,6 @@ class StatusIcon extends React.Component {
 StatusIcon.propTypes = {
   icon: PropTypes.string.isRequired,
   prefix: PropTypes.string,
-  valueMode: PropTypes.bool,
-  inline: PropTypes.bool,
-  value: PropTypes.any,
   pull: PropTypes.oneOf([
     '',
     'left',
@@ -67,18 +73,26 @@ StatusIcon.propTypes = {
       '4x',
       '5x'
   ]),
+  inline: PropTypes.bool,
+  valueMode: PropTypes.bool,
+  value: PropTypes.any,
+  renderPrefix: PropTypes.bool,
+  renderIcon: PropTypes.bool,
   className: PropTypes.oneOfType([
+      PropTypes.string,
       PropTypes.object,
       PropTypes.array
     ])
 };
 StatusIcon.defaultProps = {
-  valueMode: false,
-  value: null,
-  inline: false,
+  prefix: null,
   pull: null,
   size: null,
-  prefix: null,
+  inline: false,
+  valueMode: false,
+  value: null,
+  renderPrefix: false,
+  renderIcon: false,
   className: null
 };
 StatusIcon.enablePureRender();
