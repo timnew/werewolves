@@ -18,8 +18,6 @@ class StatusIcon extends React.Component {
   get classNames() {
     return classNames(
       'gi',
-      this.prefix,
-      `${this.prefix}-${this.icon}`,
       `gi-${this.prefix}-${this.icon}`,
       { canceled: this.valueMode && !this.value },
       this.buildSizeClassName(),

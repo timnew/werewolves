@@ -2,7 +2,6 @@
 
 import _ from 'lodash';
 import React, { PropTypes } from 'reactx';
-import { FaIcon } from 'react-fa-icon';
 import { Row, Panel, Table } from 'react-bootstrap';
 import StatusIcon from 'components/StatusIcon';
 import RoleTableRow from './RoleTableRow';
@@ -30,7 +29,7 @@ class RoleTable extends React.Component {
               {this.renderHeader('Werewoles', 'werewolf')}
               {this.renderSide('werewolf')}
               <tr className='total'>
-                <th className='col-md-1 col-sm-1 col-xs-1 icon'><FaIcon icon='user' size='lg'/></th>
+                <th className='col-md-1 col-sm-1 col-xs-1 icon'><StatusIcon prefix='hint' icon='player' size='lg'/></th>
                 <th className='col-md-5 col-sm-6 col-xs-5 role'>Total</th>
                 <th className='col-md-6 col-sm-5 col-xs-6 value'><span>{this.roleCount.total}</span></th>
               </tr>
@@ -58,7 +57,7 @@ class RoleTable extends React.Component {
     return (
       <tr className='header'>
         <th className='col-md-1 col-sm-1 col-xs-1 icon'>
-          <StatusIcon prefix='family'
+          <StatusIcon prefix='side'
                       icon={side}/>
         </th>
         <th className='col-md-5 col-sm-6 col-xs-5 role'>{caption}</th>
@@ -77,7 +76,7 @@ class RoleTable extends React.Component {
 
   renderTitle() {
     let { villager, werewolf, total } = this.roleCount;
-    return <h3><StatusIcon prefix='family' icon='both'/> Roles ( <StatusIcon prefix='family' icon='villager'/> {villager} + <StatusIcon prefix='family' icon='werewolf'/> {werewolf} = <FaIcon icon='user' size='lg'/> {total} )</h3>;
+    return <h3><StatusIcon prefix='panel' icon='roles'/>Roles ( <StatusIcon prefix='side' icon='villager'/> {villager} + <StatusIcon prefix='side' icon='werewolf'/> {werewolf} = <StatusIcon prefix='hint' icon='player'/> {total} )</h3>;
   }
 
   renderError() {

@@ -3,7 +3,7 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 import PlayerTableRow from './PlayerTableRow';
 import GameSetup from 'actions/GameSetup';
 
@@ -67,8 +67,14 @@ class PlayerTable extends React.Component {
                 <th className='col-md-6 col-sm-5 col-xs-6 actions'>
                   <ButtonToolbar>
                     <ButtonGroup bsSize='xsmall'>
-                      <Button onClick={this.increasePlayer.bind(this)} disabled={!this.canIncreasePlayer}><FaIcon icon='user-plus'/></Button>
-                      <Button onClick={this.decreasePlayer.bind(this)} disabled={!this.canDecreasePlayer}><FaIcon icon='user-times'/></Button>
+                      <Button onClick={this.increasePlayer.bind(this)}
+                              disabled={!this.canIncreasePlayer}>
+                        <StatusIcon prefix='action' icon='add-player'/>
+                      </Button>
+                      <Button onClick={this.decreasePlayer.bind(this)}
+                              disabled={!this.canDecreasePlayer}>
+                        <StatusIcon prefix='action' icon='remove-player'/>
+                      </Button>
                     </ButtonGroup>
                     {this.renderEditAll()}
                     {this.renderResetAll()}
@@ -95,7 +101,7 @@ class PlayerTable extends React.Component {
   }
 
   renderTitle() {
-    return <h3><FaIcon icon='group'/> Players ( <FaIcon icon='user'/> {this.playerCount} )</h3>;
+    return <h3><StatusIcon prefix='panel' icon='players'/>Players ( <StatusIcon prefix='hint' icon='player'/> {this.playerCount} )</h3>;
   }
 
   renderError() {
@@ -113,7 +119,7 @@ class PlayerTable extends React.Component {
     return (
       <ButtonGroup bsSize='xsmall'>
         <Button onClick={this.editAll.bind(this)} bsStyle='info' disabled={allChildrenInEditing}>
-          <FaIcon icon='pencil'/>
+          <StatusIcon prefix='action' icon='edit'/>
         </Button>
       </ButtonGroup>
     );
@@ -122,7 +128,10 @@ class PlayerTable extends React.Component {
   renderResetAll() {
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button bsStyle="danger" onClick={this.resetAllPlayer.bind(this)}><FaIcon icon="recycle"/></Button>
+        <Button bsStyle="danger"
+                onClick={this.resetAllPlayer.bind(this)}>
+          <StatusIcon prefix='action' icon="reset"/>
+        </Button>
       </ButtonGroup>
     );
   }
@@ -135,8 +144,13 @@ class PlayerTable extends React.Component {
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button bsStyle="primary" onClick={this.confirmAll.bind(this)}><FaIcon icon="check"/></Button>
-        <Button onClick={this.abortAll.bind(this)}><FaIcon icon="times"/></Button>
+        <Button bsStyle="primary"
+                onClick={this.confirmAll.bind(this)}>
+          <StatusIcon prefix='action' icon='confirm'/>
+        </Button>
+        <Button onClick={this.abortAll.bind(this)}>
+          <StatusIcon prefix='action' icon='abort'/>
+        </Button>
       </ButtonGroup>
     );
   }

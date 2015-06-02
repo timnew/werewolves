@@ -3,8 +3,7 @@
 import _ from 'lodash';
 
 import React, { PropTypes } from 'reactx';
-
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 
 import GameSetup from 'actions/GameSetup';
@@ -68,11 +67,13 @@ class PlayerTableRow extends React.Component {
           <ButtonToolbar>
             <ButtonGroup bsSize='xsmall'>
               <Button bsStyle='info' onClick={this.edit.bind(this)} disabled={this.inEditing}>
-                <FaIcon icon='pencil'/>
+                <StatusIcon prefix='action' icon='edit'/>
               </Button>
             </ButtonGroup>
             <ButtonGroup bsSize='xsmall'>
-              <Button bsStyle='danger' onClick={this.remove.bind(this)}><FaIcon icon='trash'/></Button>
+              <Button bsStyle='danger' onClick={this.remove.bind(this)}>
+                <StatusIcon prefix='action' icon='remove'/>
+              </Button>
             </ButtonGroup>
             {this.renderEditingControl()}
           </ButtonToolbar>
@@ -104,8 +105,12 @@ class PlayerTableRow extends React.Component {
 
     return (
       <ButtonGroup bsSize='xsmall'>
-        <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}><FaIcon icon='check'/></Button>
-        <Button onClick={this.abortEdit.bind(this)}><FaIcon icon='times'/></Button>
+        <Button bsStyle='primary' onClick={this.confirmEdit.bind(this)}>
+          <StatusIcon prefix='action' icon='confirm'/>
+        </Button>
+        <Button onClick={this.abortEdit.bind(this)}>
+          <StatusIcon prefix='action' icon='abort'/>
+        </Button>
       </ButtonGroup>
     );
   }

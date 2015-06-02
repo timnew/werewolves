@@ -2,7 +2,7 @@
 
 import React from 'reactx';
 import { Row, Panel, ButtonToolbar, Button } from 'react-bootstrap';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 
 import GameSetup from 'actions/GameSetup';
 
@@ -36,15 +36,15 @@ class GameControlPanel extends React.Component {
             <Button bsStyle='primary'
                     disabled={!this.isValid}
                     onClick={this.startGame.bind(this)}>
-              <FaIcon icon='rocket'/> Start Game
+              <StatusIcon prefix='action' icon='launch'/>Start Game
             </Button>
 
             <Button disabled={!this.isValid}
                     onClick={this.saveConfig.bind(this)}>
-              <FaIcon icon='sign-out'/> Save
+              <StatusIcon prefix='action' icon='save'/>Save
             </Button>
             <Button onClick={this.loadConfig.bind(this)}>
-              <FaIcon icon='sign-in'/> Load
+              <StatusIcon prefix='action' icon='load'/>Load
             </Button>
           </ButtonToolbar>
         </Panel>
@@ -53,7 +53,7 @@ class GameControlPanel extends React.Component {
   }
 
   renderHeader() {
-    return <h3><FaIcon icon='gamepad'/> Game Control</h3>;
+    return <h3><StatusIcon prefix='panel' icon='control'/>Game Control</h3>;
   }
 
   get panelStyle() {
