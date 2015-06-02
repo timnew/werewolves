@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Table } from 'react-bootstrap';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 import GameStatusRow from './GameStatusRow';
 
 import Phase from 'models/phases/Phase';
@@ -39,7 +39,7 @@ class GameStatus extends React.Component {
   }
 
   renderHeader() {
-    return <h3><FaIcon icon='group'/> Players</h3>;
+    return <h3><StatusIcon inline prefix='panel' icon='players'/>Players</h3>;
   }
 
   renderChildren() {

@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'reactx';
 import { Row, Panel, Button } from 'react-bootstrap';
-import { FaIcon } from 'react-fa-icon';
+import StatusIcon from 'components/StatusIcon';
 
 import GamePlay from 'actions/GamePlay';
 
@@ -20,7 +20,7 @@ class GamePhase extends React.Component {
 
   get turn() { return this.props.turn; }
   get phase() { return this.props.phase; }
-  get dayIndex() { return this.turn.dayIndex; }  
+  get dayIndex() { return this.turn.dayIndex; }
   get canMoveNext() { return this.phase.canMoveNext(this.turn); }
 
   render() {
@@ -45,9 +45,9 @@ class GamePhase extends React.Component {
   renderHeader() {
     return (
       <h3>
-        <FaIcon icon='newspaper-o'/> {this.phase.name}
+        <StatusIcon inline prefix='panel' icon='phase'/>{this.phase.name}
         &nbsp;&nbsp;
-        ( <FaIcon icon='calendar' />: {this.dayIndex} day )
+        ( <StatusIcon inline prefix='hint' icon='day'/>Day {this.dayIndex} )
       </h3>
     );
   }
@@ -57,7 +57,7 @@ class GamePhase extends React.Component {
       <Button bsStyle='primary'
               disabled={!this.canMoveNext}
               onClick={this.nextStep.bind(this)}>
-        Next Step <FaIcon icon='step-forward'/>
+        Next Step <StatusIcon prefix='action' icon='next-step' />
       </Button>
     );
   }
