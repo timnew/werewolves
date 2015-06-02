@@ -1,133 +1,239 @@
 @font-face {
-	font-family: 'werewolves';
-	src:url('fonts/werewolves.eot?v=1.0.0');
-	src:url('fonts/werewolves.eot?v=1.0.0#iefix') format('embedded-opentype'),
-		url('fonts/werewolves.ttf?v=1.0.0') format('truetype'),
-		url('fonts/werewolves.woff?v=1.0.0') format('woff'),
-		url('fonts/werewolves.svg?v=1.0.0#werewolves') format('svg');
+	font-family: 'Werewolves';
+	src:url('fonts/Werewolves.eot?lakidm');
+	src:url('fonts/Werewolves.eot?#iefixlakidm') format('embedded-opentype'),
+		url('fonts/Werewolves.ttf?lakidm') format('truetype'),
+		url('fonts/Werewolves.woff?lakidm') format('woff'),
+		url('fonts/Werewolves.svg?lakidm#Werewolves') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-.ww {
-	font-family: 'werewolves';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+.gi-code-star:before {
+	content: "\f005";
 }
-
-.ww-role-uncertain:before {
+.gi-hint-player:before {
+	content: "\f007";
+}
+.gi-action-confirm:before {
+	content: "\f00c";
+}
+.gi-action-abort:before {
+	content: "\f00d";
+}
+.gi-action-edit:before {
+	content: "\f040";
+}
+.gi-action-skip:before {
+	content: "\f050";
+}
+.gi-action-next-step:before {
+	content: "\f051";
+}
+.gi-hint-open-eye:before {
+	content: "\f06e";
+}
+.gi-hint-close-eye:before {
+	content: "\f070";
+}
+.gi-hint-day:before {
+	content: "\f073";
+}
+.gi-hint-announcement:before {
+	content: "\f0a1";
+}
+.gi-panel-players:before {
+	content: "\f0c0";
+}
+.gi-hint-judgement:before {
+	content: "\f0e3";
+}
+.gi-view-game:before {
+	content: "\f0e4";
+}
+.gi-code-fork:before {
+	content: "\f126";
+}
+.gi-action-launch:before {
+	content: "\f135";
+}
+.gi-panel-control:before {
+	content: "\f144";
+}
+.gi-app-ios:before {
+	content: "\f179";
+}
+.gi-app-android:before {
+	content: "\f17b";
+}
+.gi-action-reset:before {
+	content: "\f1b8";
+}
+.gi-view-setup:before {
+	content: "\f1de";
+}
+.gi-panel-phase:before {
+	content: "\f1ea";
+}
+.gi-action-remove:before {
+	content: "\f1f8";
+}
+.gi-action-add-player:before {
+	content: "\f234";
+}
+.gi-action-remove-player:before {
+	content: "\f235";
+}
+.gi-role-uncertain:before {
 	content: "\e600";
 }
-.ww-role-cupido:before {
+.gi-role-cupido:before {
 	content: "\e601";
 }
-.ww-role-guardian:before {
+.gi-hint-cupido:before {
+	content: "\e601";
+}
+.gi-role-guardian:before {
 	content: "\e602";
 }
-.ww-role-witch:before {
+.gi-hint-guardian:before {
+	content: "\e602";
+}
+.gi-role-witch:before {
 	content: "\e603";
 }
-.ww-role-seer:before {
+.gi-hint-witch:before {
+	content: "\e603";
+}
+.gi-role-seer:before {
 	content: "\e604";
 }
-.ww-role-hunter:before {
+.gi-hint-seer:before {
+	content: "\e604";
+}
+.gi-role-hunter:before {
 	content: "\e605";
 }
-.ww-role-idiot:before {
+.gi-hint-hunter:before {
+	content: "\e605";
+}
+.gi-role-idiot:before {
 	content: "\e606";
 }
-.ww-role-werewolf:before {
+.gi-hint-idiot:before {
+	content: "\e606";
+}
+.gi-role-werewolf:before {
 	content: "\e607";
 }
-.ww-role-girl:before {
+.gi-hint-werewolf:before {
+	content: "\e607";
+}
+.gi-role-girl:before {
 	content: "\e608";
 }
-.ww-role-villager:before {
+.gi-hint-girl:before {
+	content: "\e608";
+}
+.gi-role-villager:before {
 	content: "\e609";
 }
-.ww-action-love:before {
+.gi-hint-villager:before {
+	content: "\e609";
+}
+.gi-action-love:before {
 	content: "\e60a";
 }
-.ww-status-lover:before {
+.gi-status-lover:before {
 	content: "\e60b";
 }
-.ww-action-guard:before {
+.gi-action-guard:before {
 	content: "\e60c";
 }
-.ww-status-guard-ban:before {
+.gi-status-guard-ban:before {
 	content: "\e60d";
 }
-.ww-status-guarded:before {
+.gi-status-guarded:before {
 	content: "\e60e";
 }
-.ww-action-heal:before {
+.gi-action-heal:before {
 	content: "\e60f";
 }
-.ww-capability-heal:before {
+.gi-capability-heal:before {
 	content: "\e60f";
 }
-.ww-status-healed:before {
+.gi-status-healed:before {
 	content: "\e60f";
 }
-.ww-action-poison:before {
+.gi-action-poison:before {
 	content: "\e610";
 }
-.ww-capability-poison:before {
+.gi-capability-poison:before {
 	content: "\e610";
 }
-.ww-status-poisoned:before {
+.gi-status-poisoned:before {
 	content: "\e610";
 }
-.ww-action-verify:before {
+.gi-action-verify:before {
 	content: "\e611";
 }
-.ww-status-verified:before {
+.gi-status-verified:before {
 	content: "\e611";
 }
-.ww-action-shoot:before {
+.gi-action-shoot:before {
 	content: "\e612";
 }
-.ww-action-attack:before {
+.gi-action-attack:before {
 	content: "\e613";
 }
-.ww-status-attacked:before {
+.gi-status-attacked:before {
 	content: "\e613";
 }
-.ww-status-dead:before {
+.gi-status-dead:before {
 	content: "\e614";
 }
-.ww-status-sheriff:before {
+.gi-status-sheriff:before {
 	content: "\e615";
 }
-.ww-action-vote:before {
+.gi-hint-sheriff:before {
+	content: "\e615";
+}
+.gi-action-vote-plus:before {
 	content: "\e616";
 }
-.ww-status-voted:before {
+.gi-status-voted:before {
 	content: "\e616";
 }
-.ww-action-vote-cancel:before {
+.gi-hint-vote:before {
+	content: "\e616";
+}
+.gi-action-vote-minus:before {
 	content: "\e617";
 }
-.ww-action-ban:before {
+.gi-action-ban:before {
 	content: "\e618";
 }
-.ww-action-skip:before {
+.gi-status-sleep:before {
 	content: "\e619";
 }
-.ww-family-both:before {
+.gi-panel-roles:before {
 	content: "\e61a";
 }
-.ww-family-villager:before {
+.gi-side-both:before {
+	content: "\e61a";
+}
+.gi-side-villager:before {
 	content: "\e61b";
 }
-.ww-family-werewolf:before {
+.gi-side-werewolf:before {
 	content: "\e61c";
+}
+.gi-view-roll:before {
+	content: "\e915";
+}
+.gi-action-save:before {
+	content: "\e960";
+}
+.gi-action-load:before {
+	content: "\e961";
 }
