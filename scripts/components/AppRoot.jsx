@@ -5,6 +5,7 @@ import { Navbar, CollapsibleNav, Nav, NavItem} from 'react-bootstrap';
 import { FaIcon } from 'react-fa-icon';
 import { NavItemLink } from 'react-router-bootstrap';
 import { RouteHandler } from 'react-router';
+import Footer from './Footer';
 
 class AppRoot extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class AppRoot extends React.Component {
           </CollapsibleNav>
         </Navbar>
         <RouteHandler/>
+        <Footer/>
       </div>
     );
   }
