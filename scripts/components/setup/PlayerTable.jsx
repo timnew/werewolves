@@ -101,7 +101,7 @@ class PlayerTable extends React.Component {
   }
 
   renderTitle() {
-    return <h3><StatusIcon prefix='panel' icon='players'/>Players ( <StatusIcon prefix='hint' icon='player'/> {this.playerCount} )</h3>;
+    return <h3><StatusIcon inline prefix='panel' icon='players'/>Players ( <StatusIcon prefix='hint' icon='player'/> {this.playerCount} )</h3>;
   }
 
   renderError() {

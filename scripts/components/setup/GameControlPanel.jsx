@@ -36,15 +36,15 @@ class GameControlPanel extends React.Component {
             <Button bsStyle='primary'
                     disabled={!this.isValid}
                     onClick={this.startGame.bind(this)}>
-              <StatusIcon prefix='action' icon='launch'/>Start Game
+              <StatusIcon inline prefix='action' icon='launch'/>Start Game
             </Button>
 
             <Button disabled={!this.isValid}
                     onClick={this.saveConfig.bind(this)}>
-              <StatusIcon prefix='action' icon='save'/>Save
+              <StatusIcon inline prefix='action' icon='save'/>Save
             </Button>
             <Button onClick={this.loadConfig.bind(this)}>
-              <StatusIcon prefix='action' icon='load'/>Load
+              <StatusIcon inline prefix='action' icon='load'/>Load
             </Button>
           </ButtonToolbar>
         </Panel>
@@ -53,7 +53,7 @@ class GameControlPanel extends React.Component {
   }
 
   renderHeader() {
-    return <h3><StatusIcon prefix='panel' icon='control'/>Game Control</h3>;
+    return <h3><StatusIcon inline prefix='panel' icon='control'/>Game Control</h3>;
   }
 
   get panelStyle() {

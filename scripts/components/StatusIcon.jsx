@@ -11,6 +11,7 @@ class StatusIcon extends React.Component {
   get prefix() { return this.props.prefix; }
   get icon() { return this.props.icon.toLowerCase(); }
   get size() { return this.props.size; }
+  get inline() { return this.props.inline; }
   get extension() { return this.props.extension; }
   get valueMode() { return this.props.valueMode; }
   get value() { return this.props.value; }
@@ -20,6 +21,7 @@ class StatusIcon extends React.Component {
       'gi',
       `gi-${this.prefix}-${this.icon}`,
       { canceled: this.valueMode && !this.value },
+      { 'gi-inline': this.inline },
       this.buildSizeClassName(),
       this.props.className
     );
@@ -44,6 +46,7 @@ StatusIcon.propTypes = {
   icon: PropTypes.string.isRequired,
   prefix: PropTypes.string,
   valueMode: PropTypes.bool,
+  inline: PropTypes.bool,
   value: PropTypes.any,
   size: PropTypes.oneOf([
       '',
@@ -62,6 +65,7 @@ StatusIcon.propTypes = {
 StatusIcon.defaultProps = {
   valueMode: false,
   value: null,
+  inline: false,
   size: null,
   prefix: null,
   className: null

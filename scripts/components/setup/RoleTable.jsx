@@ -76,7 +76,7 @@ class RoleTable extends React.Component {
 
   renderTitle() {
     let { villager, werewolf, total } = this.roleCount;
-    return <h3><StatusIcon prefix='panel' icon='roles'/>Roles ( <StatusIcon prefix='side' icon='villager'/> {villager} + <StatusIcon prefix='side' icon='werewolf'/> {werewolf} = <StatusIcon prefix='hint' icon='player'/> {total} )</h3>;
+    return <h3><StatusIcon inline prefix='panel' icon='roles'/>Roles ( <StatusIcon prefix='side' icon='villager'/> {villager} + <StatusIcon prefix='side' icon='werewolf'/> {werewolf} = <StatusIcon prefix='hint' icon='player'/> {total} )</h3>;
   }
 
   renderError() {
