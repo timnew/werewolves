@@ -18,7 +18,8 @@ class CupidoPhase extends Phase {
   }
 
   canMoveNext(turn) {
-    return this.countLovers(turn) === 2;
+    let loverCount = this.countLovers(turn);
+    return loverCount === 0 || loverCount === 2;
   }
 
   onPhaseCompleted(GameEngine) {
@@ -36,10 +37,7 @@ class CupidoPhase extends Phase {
 
   getDescription() {
     return (
-      <div>
-        <p><b>Cupido!</b> Please open your eyes.</p>
-        <p>Pick 2 players as lovers.</p>
-      </div>
+      <p><b>Cupido</b> wake up, and pick 2 players as lovers.</p>
     );
   }
 

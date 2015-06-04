@@ -28,12 +28,14 @@ class Turn {
   get dayIndex() { return this._dayIndex; }
   get events() { return this._events; }
 
+  countRole(roleName) {
+    return this.players
+               .toSeq()
+               .filter(player=>player.roleName === roleName)
+               .count();
+  }
   countMissingRole(roleName) {
-    let actual = this.players
-                     .toSeq()
-                     .filter(player=>player.roleName === roleName)
-                     .count();
-
+    let actual = this.countRole(roleName);
     let expected = this.roleSchema.get(roleName);
 
     return expected - actual;
