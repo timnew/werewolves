@@ -31,7 +31,7 @@ class IdiotPhase extends Phase {
   }
 
   canMoveNext(turn) {
-    if(turn.countMissingRole('Idiot') !== 0) {
+    if(turn.countMissingRole('Idiot') === 0) {
       this.nextStep();
     }
 
