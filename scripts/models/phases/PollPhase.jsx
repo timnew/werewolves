@@ -20,7 +20,7 @@ class PollPhase extends Phase {
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='vote' size='3x' pull='left'/>; }
 
   getDescription() {
-    return 'Please vote the suspect.';
+    return this.renderMarkdown('Please **vote** the suspect.');
   }
 
   votePositive(player) {

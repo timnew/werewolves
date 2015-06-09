@@ -26,13 +26,26 @@ class IdiotPhase extends Phase {
     }
 
     let mostVotedPlayer = turn.players.get(mostVotedNames.first());
+
     return mostVotedPlayer.roleName === 'Uncertain';
+  }
+
+  canMoveNext(turn) {
+    if(turn.countMissingRole('Idiot') !== 0) {
+      this.nextStep();
+    }
+
+    return true;
   }
 
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='idiot' size='3x' pull='left'/>; }
 
-  getDescription() {
-    return <p>Poll result has been published, a potential idiot is voted</p>;
+  getDescription(turn) {
+    return this.renderMarkdown(`Poll result has been published, confirm whether **${this.fetchMostVotedPlayer(turn)} is **idiot**.`);
+  }
+
+  fetchMostVotedPlayer(turn) {
+    return turn.events.get(VOTE_PLAYER).first();
   }
 
   changeRole(player) {
@@ -40,7 +53,7 @@ class IdiotPhase extends Phase {
   }
 
   renderUncertainActions(player, turn) {
-    if(turn.events.get(VOTE_PLAYER).first() !== player.name) {
+    if(this.fetchMostVotedPlayer(turn) !== player.name) {
       return null;
     }
 

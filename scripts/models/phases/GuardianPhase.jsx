@@ -18,6 +18,14 @@ class GuardianPhase extends Phase {
     this.obseletePreviousGuard(turn);
   }
 
+  canMoveNext(turn) {
+    if(turn.events.has(GUARD_PLAYER)) {
+      this.nextStep();
+    }
+
+    return true;
+  }
+
   obseletePreviousGuard(turn) {
     turn.players
         .toSeq()
@@ -31,13 +39,13 @@ class GuardianPhase extends Phase {
   }
 
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='guardian' size='3x' pull='left'/>; }
-  getDescription() {
-    return (
-      <div>
-        <p><b>Guardian!</b> Please open your eyes.</p>
-        <p>Pick a guy to guard.</p>
-      </div>
-    );
+
+  getDescription(turn) {
+    if(!turn.findRole('Guardian')) {
+      return this.renderMarkdown('**Guardian** wake up please. And identify yourself. Or skip the turn.');
+    }
+
+    return this.renderMarkdown('**Guardian**, pick a player to guard');
   }
 
   changeRole(player) {

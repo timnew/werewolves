@@ -22,29 +22,20 @@ class SunrisePhase extends Phase {
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='open-eye' size='3x' pull='left'/>; }
 
   getDescription(turn) {
-    return (
-      <div>
-        <p>The sun goes up.</p>
-        {this.renderDeathNames(turn)}
-      </div>
-    );
-  }
-
-  renderDeathNames(turn) {
     let deathNames = turn.getDeathList(this);
 
     if (deathNames.count() > 0) {
-      return <p><b>{deathNames.join(', ')}</b> died last night, {this.renderLastWords(turn)}.</p>;
+      return this.renderMarkdown(`**${deathNames.join(', ')}** died last night, ${this.renderLastWords(turn)}.`);
     } else {
-      return <p>Last night is a peaceful night, everybody survives.</p>;
+      return this.renderMarkdown('**Peaceful night**, no one died last night.');
     }
   }
 
   renderLastWords(turn) {
     if(turn.dayIndex <= turn.roleSchema.get('Werewolf')) {
-      return 'please leave the last words';
+      return 'please leave the **last words**';
     } else {
-      return 'no last words';
+      return '**no last words**';
     }
   }
 

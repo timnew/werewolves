@@ -13,14 +13,22 @@ class SeerPhase extends Phase {
     super('Seer');
   }
 
+  canMoveNext(turn) {
+    if(turn.events.has('VERIFY_PLAYER')) {
+      this.nextStep();
+    }
+
+    return true;
+  }
+
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='seer' size='3x' pull='left'/>; }
 
-  getDescription() {
-    return (
-      <div>
-        <p><b>Seer!</b> Please open your eyes. Pick a guy to verify.</p>
-      </div>
-    );
+  getDescription(turn) {
+    if(!turn.findRole('Seer')) {
+      return this.renderMarkdown('**Seer** wake up please. And identify yourself. Or skip the turn.');
+    }
+
+    return this.renderMarkdown('**Seer**, pick a player to verify');
   }
 
   changeRole(player) {

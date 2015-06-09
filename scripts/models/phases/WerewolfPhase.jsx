@@ -14,15 +14,26 @@ class WerewolfPhase extends Phase {
     super('Werewolf');
   }
 
+  canMoveNext(turn) {
+    if((turn.dayIndex === 1) && turn.countMissingRole('Werewolf') > 0) {
+      return false;
+    }
+
+    if(turn.events.has(ATTACK_PLAYER)) {
+      this.nextStep();
+    }
+
+    return true;
+  }
+
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='werewolf' size='3x' pull='left'/>; }
 
-  getDescription() {
-    return (
-      <div>
-        <p><b>Weresolves!</b> Please open your eyes.</p>
-        <p>Pick a guy to kill.</p>
-      </div>
-    );
+  getDescription(turn) {
+    if((turn.dayIndex === 1) && turn.countMissingRole('Werewolf') > 0) {
+      return this.renderMarkdown('**Weresolves** open your eyes, and identify yourselves.');
+    }
+
+    return this.renderMarkdown('Pick a player to **attack**. Or skip the turn.');
   }
 
   changeRole(player) {
@@ -53,6 +64,10 @@ class WerewolfPhase extends Phase {
     }
 
     if(turn.events.has(ATTACK_PLAYER)) {
+      return null;
+    }
+
+    if((turn.dayIndex === 1) && !turn.findAliveRole('Werewolf')) {
       return null;
     }
 

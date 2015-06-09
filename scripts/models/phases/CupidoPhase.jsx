@@ -19,11 +19,18 @@ class CupidoPhase extends Phase {
 
   canMoveNext(turn) {
     let loverCount = this.countLovers(turn);
-    return loverCount === 0 || loverCount === 2;
+
+    if(loverCount === 2) {
+      this.nextStep();
+    }
+
+    return loverCount === 0 && !turn.findAliveRole('Cupido');
   }
 
   onPhaseCompleted(GameEngine) {
-    GameEngine.currentTurn.marryLovers();
+    if( this.countLovers(GameEngine.currentTurn) === 2) {
+      GameEngine.currentTurn.marryLovers();
+    }
   }
 
   countLovers(turn) {
@@ -35,10 +42,17 @@ class CupidoPhase extends Phase {
 
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='cupido' size='3x' pull='left'/>; }
 
-  getDescription() {
-    return (
-      <p><b>Cupido</b> wake up, and pick 2 players as lovers.</p>
-    );
+  getDescription(turn) {
+    if(!turn.findRole('Cupido')) {
+      return this.renderMarkdown('**Cupido** wake up please. And identify yourself. Or skip the turn');
+    }
+
+    switch(this.countLovers(turn)) {
+      case 0:
+        return this.renderMarkdown('**Cupido** pick **2** players as lover.');
+      case 1:
+        return this.renderMarkdown('**Cupido** you need pick **1** more player.');      
+    }
   }
 
   changeRole(player) {
@@ -69,6 +83,10 @@ class CupidoPhase extends Phase {
     }
 
     if(player.hasStatus('lover')) {
+      return null;
+    }
+
+    if(!turn.findAliveRole('Cupido')) {
       return null;
     }
 

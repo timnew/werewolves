@@ -11,7 +11,7 @@ class SunsetPhase extends Phase {
   }
 
   getPhaseIcon() { return <StatusIcon prefix='hint' icon='close-eye' size='3x' pull='left'/>; }
-  getDescription() { return 'The sun goes down, every body close your eyes.'; }
+  getDescription() { return this.renderMarkdown('The sun goes down, every body **close your eyes.**'); }
 
   onPhaseBegin(GameEngine) {
     GameEngine.nextTurn();

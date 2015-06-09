@@ -23,28 +23,28 @@ class PollCountPhase extends Phase {
 
   getDescription(turn) {
     if(!turn.events.has(VOTE_PLAYER)) {
-      return <p>It is a peaceful day, no one is setenced.</p>;
+      return this.renderMarkdown('**Peaceful day**, no one is setenced.');
     }
 
     let pollResult = turn.events.get(VOTE_PLAYER);
 
     if(pollResult.count() > 1) {
-      return <p><b>Flat vote</b>, so no one is sentenced.</p>; // eslint-disable-line comma-spacing
+      return this.renderMarkdown(`**Flat vote**, ${pollResult.join(', ')} got same votes, so no one is sentenced.`);
     }
 
     if(turn.events.has(IDIOT_VOTED)) {
       let idiotName = turn.events.get(IDIOT_VOTED);
 
-      return <p><b>{idiotName}</b> has been most voted, whom later annouced as an <b>idiot</b>. The sentence is canceled.</p>;
+      return this.renderMarkdown(`**${idiotName}** got most tickets, who has just declared as **idiot**. The sentence is canceled, no one dies.`);
     }
 
     let sentencedPlayer = pollResult.first();
     let deathList = turn.getDeathList(this);
 
     if(deathList.count() === 1 ) {
-      return <p><b>{sentencedPlayer}</b> is most voted, who is sentenced.</p>;
+      return this.renderMarkdown(`**${sentencedPlayer}** got most tickets, who is sentenced to die.`);
     } else {
-      return <p><b>{sentencedPlayer}</b> is sentenced, and <b>{deathList.join(', ')}</b> died.</p>;
+      return this.renderMarkdown(`**${sentencedPlayer}** is sentenced, and **${deathList.join(', ')}** died.`);
     }
   }
 

@@ -45,9 +45,14 @@ class Turn {
     return new Turn(this);
   }
 
+  findRole(roleName) {
+    return this.players
+               .find(player => player.roleName === roleName);
+  }
+
   findAliveRole(roleName) {
     return this.players
-               .find(player=> player.alive && (player.roleName === roleName));
+               .find(player => player.alive && (player.roleName === roleName));
   }
 
   changeRole(player, roleName) {
