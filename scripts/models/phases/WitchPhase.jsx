@@ -14,7 +14,7 @@ class WitchPhase extends Phase {
     super('Witch');
   }
 
-  canMoveNext(turn) {
+  canMoveNext() {
     // So complicate now to determine whether to skip witch's turn
     // let witch = turn.findAliveRole('Witch');
 
