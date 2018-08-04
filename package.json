@@ -1,13 +1,14 @@
 {
-  "name": "nextjs-starter-kit",
-  "version": "1.0.0",
-  "description": "Next.js starter kit",
-  "author": "soulmachine@gmail.com",
-  "license": "Apache-2.0",
+  "name": "werewolves",
+  "version": "2.0.0",
+  "description": "Werewolves Judge",
+  "author": "TimNew",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soulmachine/nextjs-starter-kit.git"
+    "url": "git@github.com:timnew/werewolves.git"
   },
+  "private": true,
   "scripts": {
     "dev": "node server.js",
     "build": "next build ./src && node ./scripts/default-lang.js",
