@@ -1,10 +1,10 @@
-import { Provider } from "mobx-react"
-import { getSnapshot } from "mobx-state-tree"
-import { Context } from "next"
-import Link from "next/link"
-import React from "react"
-import ClockContainer, { ClockContainerProps } from "../containers/Clock"
-import { IClockStore, initClockStore } from "../stores/ClockStore"
+import { Provider } from 'mobx-react'
+import { getSnapshot } from 'mobx-state-tree'
+import { Context } from 'next'
+import Link from 'next/link'
+import React from 'react'
+import ClockContainer, { ClockContainerProps } from '../containers/Clock'
+import { IClockStore, initClockStore } from '../stores/ClockStore'
 
 interface ClockPageProps {
   isServer: boolean

@@ -1,13 +1,13 @@
-import { inject, observer } from "mobx-react"
-import React from "react"
-import Clock from "../components/Clock"
-import { IClockStore } from "../stores/ClockStore"
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+import Clock from '../components/Clock'
+import { IClockStore } from '../stores/ClockStore'
 
 export interface ClockContainerProps {
   clock: IClockStore
 }
 
-@inject("clock")
+@inject('clock')
 @observer
 class ClockContainer extends React.Component<ClockContainerProps, any> {
   public componentDidMount() {

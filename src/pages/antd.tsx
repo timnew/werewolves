@@ -6,14 +6,14 @@ import {
   Select,
   Slider,
   Switch
-} from "antd"
-import Layout from "../components/Layout"
+} from 'antd'
+import Layout from '../components/Layout'
 
 const FormItem = Form.Item
 const Option = Select.Option
 
 export default () => (
-  <Layout title={"Ant Design"}>
+  <Layout title={'Ant Design'}>
     <div style={{ marginTop: 100 }}>
       <Form layout="horizontal">
         <FormItem

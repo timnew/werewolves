@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 interface ClockProps {
   light: boolean
@@ -6,7 +6,7 @@ interface ClockProps {
 }
 
 export default (props: ClockProps) => (
-  <div className={props.light ? "light" : ""}>
+  <div className={props.light ? 'light' : ''}>
     {format(new Date(props.lastUpdate))}
     <style jsx>{`
       div {

@@ -6,7 +6,8 @@
     "no-object-literal-type-assertion": false,
     "no-submodule-imports": false,
     "semicolon": [true, "never"],
-    "trailing-comma": [true, {"multiline": "nerver", "singleline": "never"}]
+    "quotemark": [true, "single", "jsx-double"],
+    "trailing-comma": [true, { "multiline": "nerver", "singleline": "never" }]
   },
   "include": ["src/**/*.ts"]
 }

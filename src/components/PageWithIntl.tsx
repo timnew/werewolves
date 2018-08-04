@@ -1,17 +1,17 @@
-import LocaleProvider, { Locale } from "antd/lib/locale-provider"
-import { Context } from "next"
-import React, { Component } from "react"
+import LocaleProvider, { Locale } from 'antd/lib/locale-provider'
+import { Context } from 'next'
+import React, { Component } from 'react'
 import {
   addLocaleData,
   InjectedIntlProps,
   injectIntl,
   IntlProvider
-} from "react-intl"
+} from 'react-intl'
 
 // Register React Intl's locale data for the user's locale in the browser. This
 // locale data was added to the page by `pages/_document.js`. This only happens
 // once, on initial page load in the browser.
-if (typeof window !== "undefined" && window.ReactIntlLocaleData) {
+if (typeof window !== 'undefined' && window.ReactIntlLocaleData) {
   Object.keys(window.ReactIntlLocaleData).forEach(lang => {
     addLocaleData(window.ReactIntlLocaleData[lang])
   })
@@ -33,7 +33,7 @@ export default function pageWithIntl<P extends InjectedIntlProps>(
     public static async getInitialProps(context: Context) {
       let props
       const tmp: any = WrappedComponent
-      if (typeof tmp.getInitialProps === "function") {
+      if (typeof tmp.getInitialProps === 'function') {
         props = await tmp.getInitialProps(context)
       }
 

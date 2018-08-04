@@ -1,20 +1,20 @@
-import { Context } from "next"
-import Head from "next/head"
-import React, { Component } from "react"
+import { Context } from 'next'
+import Head from 'next/head'
+import React from 'react'
 import {
   defineMessages,
   FormattedMessage,
   FormattedNumber,
   FormattedRelative,
   InjectedIntlProps
-} from "react-intl"
-import Layout from "../components/Layout"
-import pageWithIntl from "../components/PageWithIntl"
+} from 'react-intl'
+import Layout from '../components/Layout'
+import pageWithIntl from '../components/PageWithIntl'
 
 const { description } = defineMessages({
   description: {
-    defaultMessage: "An example app integrating React Intl with Next.js",
-    id: "description"
+    defaultMessage: 'An example app integrating React Intl with Next.js',
+    id: 'description'
   }
 })
 
