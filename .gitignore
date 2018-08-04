@@ -9,4 +9,8 @@ stats.json
 npm-debug.log
 .idea
 
+# NextJS
 .next
+
+# ReactIntl
+.messages
