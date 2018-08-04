@@ -4,7 +4,7 @@ import { Attributes, Component } from 'react'
 import App from '../components/App'
 import { AppLayoutProps } from '../components/AppLayout'
 
-export default class SetupPage extends Component<Attributes, any> implements AppLayoutProps {
+export default class PlayPage extends Component<Attributes, any> implements AppLayoutProps {
   state = {
     collapsed: false
   }
@@ -20,7 +20,7 @@ export default class SetupPage extends Component<Attributes, any> implements App
   render() {
     return (
       <App title="Home" navbar={{ collapsed: this.collapsed, toggleSideBar: this.toggleSideBar.bind(this) }}>
-        <h1>Setup</h1>
+        <h1>Play</h1>
       </App>
     )
   }

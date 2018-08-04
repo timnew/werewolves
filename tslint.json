@@ -7,7 +7,9 @@
     "no-submodule-imports": false,
     "semicolon": [true, "never"],
     "quotemark": [true, "single", "jsx-double"],
-    "trailing-comma": [true, { "multiline": "nerver", "singleline": "never" }]
+    "trailing-comma": [true, { "multiline": "nerver", "singleline": "never" }],
+    "member-access": [true, "no-public"],
+    "object-literal-sort-keys": false
   },
   "include": ["src/**/*.ts"]
 }
