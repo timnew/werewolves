@@ -29,7 +29,7 @@
     "immutable": "^3.7.2",
     "imports-loader": "^0.6.3",
     "jquery": "^2.1.4",
-    "lodash": "^3.1.0",
+    "lodash": "^4.17.20",
     "marked": "^0.3.3",
     "marty": "^0.9.14",
     "react": "^0.13.3",
